@@ -27,6 +27,6 @@ Proyecto AyD 2015
 
 	MBP:   (mínimos requerimientos para aprobar el proyecto)
 
-			* Como usuario quiero ver mi rancking
-			* Como jugador quiero saber si gane una vez que puse una ficha
+			* "Como usuario quiero ver mi ranking"
+			* "Como jugador quiero saber si gane una vez que puse una ficha"
 
