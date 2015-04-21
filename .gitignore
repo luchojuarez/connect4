@@ -1,0 +1,6 @@
+*.class
+*.o
+*.doc#
+*.odt#
+.~lock*
+.gitignore~
