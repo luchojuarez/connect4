@@ -4,3 +4,4 @@
 *.odt#
 .~lock*
 .gitignore~
+.gitignore
