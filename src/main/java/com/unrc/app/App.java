@@ -15,12 +15,12 @@ public class App
 
         Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/connect4_development", "root", "root");
 
-        User u = new User();
-        u.set("first_name", "Ariel");
-        u.save();
+         User u = new User();
+         u.set("first_name", "Ariel");
+         u.save();
 
 
-        Base.close();
+         Base.close();
         	
     }
 }
