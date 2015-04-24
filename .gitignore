@@ -5,3 +5,5 @@
 .~lock*
 .gitignore~
 .gitignore
+*.properties
+

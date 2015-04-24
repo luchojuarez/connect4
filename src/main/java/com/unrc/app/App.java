@@ -19,7 +19,6 @@ public class App
          u.set("first_name", "Ariel");
          u.save();
 
-
          Base.close();
         	
     }
