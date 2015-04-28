@@ -13,13 +13,14 @@ public class App
     {
         System.out.println( "Hello World!" );
 
-        Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/connect4_development", "root", "root");
-
-         User u = new User();
-         u.set("first_name", "Ariel");
-         u.save();
-
-         Base.close();
+        Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/connect4_test", "root", "root");
+        User u = new User();
+        u.set("first_name", "luciano");
+        u.set("last_name","juarez");
+        u.set("email","lucho.juarez79@gmail.com");
+        u.save();
+        
+        Base.close();
         	
     }
 }
