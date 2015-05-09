@@ -6,7 +6,7 @@ CREATE TABLE users(
  id INT(11) NOT NULL AUTO_INCREMENT,
  nameUs VARCHAR(50),
  lastNameUs VARCHAR(50),
- e-mail VARCHAR(50) UNIQUE,
+ email VARCHAR(50) UNIQUE,
  password VARCHAR(50),
  age INT,
 CONSTRAINT users_pk PRIMARY KEY (id));
@@ -31,7 +31,7 @@ CREATE TABLE games(
  dateEnd DATE,
  grid_id INT,
  user_id INT, -- Jugador 1
- user_id INT, -- Jugador 2
+-- user_id INT, -- Jugador 2
  -- esta es mi duda como le pasas el id de los dos jugadores si vos tenes solo un id para poner
 CONSTRAINT games_pk PRIMARY KEY (numberGame));
 
