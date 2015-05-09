@@ -33,14 +33,14 @@ public class Cell extends Model{
 
 	public Cell(){
 
-		state = 0;
-		x = 0;
-		y = 0;
+		state = new Integer(0);
+		x = new Integer(0);
+		y = new Integer(0);
 	}
 
 	public Cell(Integer x, Integer y){
 
-		state = 0;
+		state = new Integer(0);
 		this.x = x;
 		this.y = y;
 	}
