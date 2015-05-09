@@ -31,6 +31,13 @@ public class Cell extends Model{
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
 //Constructores
 
+	public Cell(){
+
+		state = 0;
+		x = 0;
+		y = 0;
+	}
+
 	public Cell(Integer x, Integer y){
 
 		state = 0;
