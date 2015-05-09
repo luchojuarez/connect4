@@ -7,4 +7,5 @@
 .gitignore
 *.properties
 
-/**/*.class
+/**/target
+/*.class
