@@ -17,8 +17,8 @@ public class Grid extends Model{
 	//Defect (7x6)
 	public Grid(){
 
-		m = 6;
-		n  = 5;
+		m = new Integer(6);
+		n  = new Integer(5);
 		grid = new Cell[m][n];
 		grid = initializeGrid(m,n);
 	}
