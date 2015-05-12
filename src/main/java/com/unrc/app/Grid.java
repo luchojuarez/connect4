@@ -17,13 +17,13 @@ public class Grid extends Model{
 	//Defect (7x6)
 	public Grid(){
 
-		m = new Integer(6);
-		n  = new Integer(5);
+		m = 6;
+		n  = 5;
 		grid = new Cell[m][n];
 		grid = initializeGrid(m,n);
 	}
 
-	public Grid(Integer m, Integer n){
+	public Grid(int m, int n){
 
 		if ((m>=6) && (n>=5)){
 
@@ -38,7 +38,7 @@ public class Grid extends Model{
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
 //Proceso que carga la matriz
 
-	private Cell[][] initializeGrid(Integer m, Integer n){
+	private Cell[][] initializeGrid(int m, int n){
 
 		for(int i = 0; i<=m; i++){
 
@@ -53,7 +53,7 @@ public class Grid extends Model{
 //Get
 
 	//Returna el estado de la ficha indicada 
-	public Boolean getCellState(Integer m, Integer n) throws Err{
+	public Boolean getCellState(int m, int n) throws Err{
 
 		if ((m>this.m) || (n>this.n) || (n<0) || (m<0)) throw new Err(" ");
 		else return grid[m][n].getState;
@@ -66,7 +66,7 @@ public class Grid extends Model{
 //Set
 
 	//Setea el estado de una celda
-	public void setCellState(Integer m, Integer n, Integer p){
+	public void setCellState(int m, int n, int p){
 
 		if ((m>this.m) || (n>this.n) || (n<0) || (m<0)) throw new Err(" ");
 		if ((p!=0) || (p!=1) || (p!=2)) throw new Err(" ");
