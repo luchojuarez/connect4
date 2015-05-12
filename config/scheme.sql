@@ -4,10 +4,11 @@
 
 CREATE TABLE users(
  id INT(11) NOT NULL AUTO_INCREMENT,
- nameUs VARCHAR(50),
- lastNameUs VARCHAR(50),
- email VARCHAR(50) UNIQUE,
- password VARCHAR(50),
+ nameUs VARCHAR(20),
+ lastNameUs VARCHAR(20),
+ email VARCHAR(30) UNIQUE,
+ password VARCHAR(16),
+ DNI VARCHAR(15),
  age INT,
 CONSTRAINT users_pk PRIMARY KEY (id));
 
@@ -72,7 +73,7 @@ CONSTRAINT ranks_pk PRIMARY KEY (id));
 
 CREATE TABLE hits(
  id INT(11) NOT NULL AUTO_INCREMENT,
- nameHit VARCHAR(50),
+ nameHit VARCHAR(30),
  user_id INT,
 CONSTRAINT hits_pk PRIMARY KEY (id));
 
