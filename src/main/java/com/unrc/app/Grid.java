@@ -20,7 +20,7 @@ public class Grid extends Model{
 		m = 6;
 		n  = 5;
 		grid = new Cell[m][n];
-		grid = initializeGrid(m,n);
+		initializeGrid(m,n);
 	}
 
 	public Grid(int m, int n){
@@ -30,7 +30,7 @@ public class Grid extends Model{
 			this.m = m;
 			this.n  = n;
 			grid = new Cell[m][n];
-			grid = initializeGrid(m,n);
+			initializeGrid(m,n);
 		}
 	}
 
@@ -38,7 +38,7 @@ public class Grid extends Model{
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
 //Proceso que carga la matriz
 
-	private Cell[][] initializeGrid(int m, int n){
+	private void Cell[][] initializeGrid(int m, int n){
 
 		for(int i = 0; i<=m; i++){
 
@@ -53,11 +53,11 @@ public class Grid extends Model{
 //Get
 
 	//Retorna el estado de la ficha indicada 
-	public Boolean getCellState(int m, int n){ //throws Err{
+	public int getCellState(int m, int n){ //throws Err{
 
 		//if ((m>this.m) || (n>this.n) || (n<0) || (m<0)) throw new Err(" ");
 		//else 
-		return grid[m][n].getState;
+		return grid[m][n].getState();
 
 	}
 
