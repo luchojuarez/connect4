@@ -19,14 +19,17 @@ public class App
         System.out.println( "Hello World!" );
 		Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/connect4_test", "root", "root");
 		User u = new User();
+		u = User.findFirst("nameUs = ?","Nicolas");
 		Rank r = new Rank();
-		u.set("nameUs", "Nicolas");
-		u.set("lastNameUs","Dominguez");
-		u.set("email","lucho.juarez79@gmail.com");
-		u.save();
-		r.set("points","6");
-		r.save();
-		u.add(r);
+		if (u == null) {
+			u.set("nameUs", "Nicolas");
+			u.set("lastNameUs","Dominguez");
+			u.set("email","lucho.juarez79@gmail.com");
+			u.save();
+			r.set("points","6");
+			r.save();
+			u.add(r);
+		}
 		Base.close();   	
     }
 }
