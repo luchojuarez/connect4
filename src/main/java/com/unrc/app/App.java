@@ -12,7 +12,6 @@ public class App
     public static void main( String[] args )
     {
         System.out.println( "Hello World!" );
-
 		Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/connect4_test", "root", "root");
 		User u = new User();
 		Rank r = new Rank();

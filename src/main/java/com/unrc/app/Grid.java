@@ -38,7 +38,7 @@ public class Grid extends Model{
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
 //Proceso que carga la matriz
 
-	private void Cell[][] initializeGrid(int m, int n){
+	private void initializeGrid(int m, int n){
 
 		for(int i = 0; i<=m; i++){
 

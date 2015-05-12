@@ -4,6 +4,7 @@
 *.odt#
 .~lock*
 .gitignore~
-.gitignore
 *.properties
 
+/**/target
+/*.class
