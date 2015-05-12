@@ -52,11 +52,12 @@ public class Grid extends Model{
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
 //Get
 
-	//Returna el estado de la ficha indicada 
-	public Boolean getCellState(int m, int n) throws Err{
+	//Retorna el estado de la ficha indicada 
+	public Boolean getCellState(int m, int n){ //throws Err{
 
-		if ((m>this.m) || (n>this.n) || (n<0) || (m<0)) throw new Err(" ");
-		else return grid[m][n].getState;
+		//if ((m>this.m) || (n>this.n) || (n<0) || (m<0)) throw new Err(" ");
+		//else 
+		return grid[m][n].getState;
 
 	}
 
@@ -68,8 +69,8 @@ public class Grid extends Model{
 	//Setea el estado de una celda
 	public void setCellState(int m, int n, int p){
 
-		if ((m>this.m) || (n>this.n) || (n<0) || (m<0)) throw new Err(" ");
-		if ((p!=0) || (p!=1) || (p!=2)) throw new Err(" ");
+		//if ((m>this.m) || (n>this.n) || (n<0) || (m<0)) throw new Err(" ");
+		//if ((p!=0) || (p!=1) || (p!=2)) throw new Err(" ");
 
 		grid[m][n].setState(p);
 	}
