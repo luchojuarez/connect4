@@ -20,12 +20,12 @@ las variables x,y indican la posicion en la matriz, podria representarse como un
 public class Cell extends Model{
 
 	//Estado de la celda 
-	private Integer state;
+	private int state;
              //private Boolean state;
 
 	//Coordenadas de la celda
-	private Integer x;
-	private Integer y;
+	private int x;
+	private int y;
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -33,14 +33,14 @@ public class Cell extends Model{
 
 	public Cell(){
 
-		state = new Integer(0);
-		x = new Integer(0);
-		y = new Integer(0);
+		state = 0;
+		x = 0;
+		y = 0;
 	}
 
-	public Cell(Integer x, Integer y){
+	public Cell(int x, int y){
 
-		state = new Integer(0);
+		state = 0;
 		this.x = x;
 		this.y = y;
 	}
@@ -49,17 +49,17 @@ public class Cell extends Model{
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
 //Gets
 
-	public Integer getx(){
+	public int getx(){
 
 		return this.x;
 	}
 
-	public Integer gety(){
+	public int gety(){
 
 		return this.y;
 	}
 
-	public Integer getState(){
+	public int getState(){
 
 		return this.state;
 	}
@@ -67,17 +67,17 @@ public class Cell extends Model{
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
 //Sets
 
-	public void setx(Integer x){
+	public void setx(int x){
 
 		this.x = x;
 	}
 
-	public void sety(Integer y){
+	public void sety(int y){
 
 		this.y = y;
 	}
 
-	public void setState(Integer state){
+	public void setState(int state){
 
 		this.state = state;
 	}
