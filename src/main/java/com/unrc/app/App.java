@@ -23,5 +23,6 @@ public class App
 		Start n = new Start();
 		n.begin();
 		Base.close();   	
+        System.out.println( "GoodBye!! XD" );
     }
 }
