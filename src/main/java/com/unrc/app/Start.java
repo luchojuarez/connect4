@@ -129,6 +129,5 @@ public class Start extends Model {
 
 
 //ARREGLAR CUANDO TE INGRESA UNA LETRA 
-//registered
 //BUSCAR BASE DE DATOS
 //BASE DE DATOS
