@@ -1,5 +1,6 @@
 package com.unrc.app;
 import java.util.Scanner;
+import java.util.List;
 import org.javalite.activejdbc.Model;
 
 public class Start extends Model {
@@ -57,6 +58,7 @@ public class Start extends Model {
 			begin();				
 		}
 	}
+	
 	private static void registered () {
 		System.out.println();
 		System.out.print("Ingrese su nick: ");
@@ -113,8 +115,14 @@ public class Start extends Model {
 		System.out.print("Usuario Registrado Con Exito... ");
 		System.out.println();
 	}
+
 	public static boolean search (String nickId) {
-		return true;
+
+		List<User> u = User.where("nickId = ?", nickId);
+
+		//Verificamos si encontramos un usuario
+		if (u.isEmpty()) return false;		
+		else return true;	
 	} 
 }
 
