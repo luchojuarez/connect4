@@ -1,4 +1,5 @@
 package com.unrc.app;
+import java.util.Date; 
 import java.util.Scanner;
 import java.util.List;
 import org.javalite.activejdbc.Model;
@@ -10,13 +11,16 @@ public class Start extends Model {
 		int respuesta=10;
 
 		do {
+			System.out.println();
 			System.out.println("Presione 1 para LOGUEARSE");
 			System.out.println("Presione 2 para REGISTRARSE");
-			System.out.println("Presione 3 para DARSE DE BAJA");
+			System.out.println("Presione 3 para DARSE DE BAJA");			
+			System.out.println("Presione 4 para CONSULTAR SI EXISTE USUARIO");
 			System.out.println("Presione 0 para SALIR");
+			System.out.println();
 			Scanner escaneo = new Scanner(System.in);
 			respuesta = escaneo.nextInt();
-		} while ((respuesta != 1) && (respuesta!=2) && (respuesta!=0));
+		} while ((respuesta != 1) && (respuesta!=2)&& (respuesta!=3)&& (respuesta!=4) && (respuesta!=0));
 		
 		if (respuesta==1)
 			login();
@@ -26,8 +30,29 @@ public class Start extends Model {
 			else
 				if(respuesta==3)
 					drop();
-				if(respuesta==0)
-					System.out.println("bye");
+				else
+					if(respuesta==4){
+						System.out.println();
+						System.out.print("Ingrese el nick para consultar: ");
+						String nickId = "";
+						Scanner name = new Scanner(System.in);
+						nickId = name.nextLine();
+						if (search(nickId)){//si el usuario esta 
+							System.out.println();
+							System.out.print("El usuario existe ");
+							System.out.println();
+							begin();
+						}
+						else{
+							System.out.println();
+							System.out.print("El usuario NO existe ");
+							System.out.println();
+							begin();
+						}
+					}
+					else
+						if(respuesta==0)
+							System.out.println("bye");
 	}
 
 	// clase para loguear a un usuario
@@ -63,16 +88,23 @@ public class Start extends Model {
 	}
 	
 	private static void registered () {
+	
+		boolean flag;
+		String aux = "";
 		
-		do{
+		do{	
+			flag = true;
 			System.out.println();
 			System.out.print("Ingrese su nick: ");
-			String nickid = "";
 			Scanner nick = new Scanner(System.in);
-			nickid = nick.nextLine();
-			if(search(nickid))
-				System.out.println("nick ya existente..Ingrese otro"); 
-		}while(search(nickid));
+			aux = nick.nextLine();
+			if(search(aux)){
+				System.out.println("nick ya existente..Ingrese otro");
+				flag = false; 
+			}
+		} while(flag == false);
+
+//		} while((search(niik))==true);
 
 		System.out.println();
 		System.out.print("Ingrese su nombre: ");
@@ -111,7 +143,9 @@ public class Start extends Model {
 		age = edad.nextLine();
 
 		User u = new User();
-		u.set("nickId",nickid);
+//		u.set("nickId" , nickId);
+		System.out.println(aux);
+		u.set("nickId",aux);
 		u.set("nameUs",nameus);
 		u.set("lastNameUs",lastnameus);
 		u.set("email",mail);
@@ -146,14 +180,14 @@ public class Start extends Model {
 	//metodo para que el usuario se pueda dar de baja
 	private static void drop(){
 		System.out.println();
-		System.out.print("Ingrese su nick para darse de baja..");
+		System.out.print("Ingrese su nick para darse de baja:");
 		String nickId = "";
-		Scanner name = new Scanner(System.in);
-		nickId = name.nextLine();//se le pide su nickId que es el atributo por el cual buscamos en la base
+		Scanner names = new Scanner(System.in);
+		nickId = names.nextLine();//se le pide su nickId que es el atributo por el cual buscamos en la base
 		if (search(nickId)) {//si el usuario existe
 			List<User> us  = User.where("nickId = ?", nickId);
 
-			String nick = us.get(0).getString("nickId");
+			String ni = us.get(0).getString("nickId");
 			String name = us.get(0).getString("nameUs");
 			String lastname = us.get(0).getString("lastNameUs");
 			String mail = us.get(0).getString("email");
@@ -161,30 +195,31 @@ public class Start extends Model {
 			String year = us.get(0).getString("age");
 
 			Removed r = new Removed();
-			java.util.Date fecha = new Date();
+			Date fecha = new Date();
 			r.set("dateRemov",fecha);
-			r.set("nick",nickid);
-			r.set("name",nameus);
-			r.set("lastName",lastnameus);
+			r.set("nick",ni);
+			r.set("name",name);
+			r.set("lastName",lastname);
 			r.set("mail",mail);
 			r.set("dni",dni);
-			r.set("years",age);
+			r.set("years",year);
 			r.saveIt();
 
-			deleteCascade();
+			r.deleteCascadeShallow();
 
 
 			System.out.println();
 			System.out.print("Usuario Registrado Con Exito... ");
 			System.out.println();
-
+			begin();
 			
 		}
 		else{
 			System.out.println();
 			System.out.println("El usuario no puede darse de baja porque no esta Registrado");
 			begin();
-		}			 
+		}
+	}			 
 
 }
 
