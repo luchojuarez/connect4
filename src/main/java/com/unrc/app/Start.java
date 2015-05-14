@@ -12,6 +12,7 @@ public class Start extends Model {
 		do {
 			System.out.println("Presione 1 para LOGUEARSE");
 			System.out.println("Presione 2 para REGISTRARSE");
+			System.out.println("Presione 3 para DARSE DE BAJA");
 			System.out.println("Presione 0 para SALIR");
 			Scanner escaneo = new Scanner(System.in);
 			respuesta = escaneo.nextInt();
@@ -23,6 +24,8 @@ public class Start extends Model {
 			if (respuesta==2)
 				registered();
 			else
+				if(respuesta==3)
+					drop();
 				if(respuesta==0)
 					System.out.println("bye");
 	}
@@ -60,47 +63,52 @@ public class Start extends Model {
 	}
 	
 	private static void registered () {
-		System.out.println();
-		System.out.print("Ingrese su nick: ");
-		String nickid = "";
-		Scanner nick = new Scanner(System.in);
-		nickid = nick.nextLine();//se le pide su nickId que es el atributo por el cual buscamos en la base
+		
+		do{
+			System.out.println();
+			System.out.print("Ingrese su nick: ");
+			String nickid = "";
+			Scanner nick = new Scanner(System.in);
+			nickid = nick.nextLine();
+			if(search(nickid))
+				System.out.println("nick ya existente..Ingrese otro"); 
+		}while(search(nickid));
 
 		System.out.println();
 		System.out.print("Ingrese su nombre: ");
 		String nameus = "";
 		Scanner name = new Scanner(System.in);
-		nameus = name.nextLine();//se le pide su nickId que es el atributo por el cual buscamos en la base
+		nameus = name.nextLine();
 
 		System.out.println();
 		System.out.print("Ingrese su apellido: ");
 		String lastnameus = "";
 		Scanner lastname = new Scanner(System.in);
-		lastnameus = lastname.nextLine();//se le pide su nickId que es el atributo por el cual buscamos en la base
+		lastnameus = lastname.nextLine();
 
 		System.out.println();
 		System.out.print("Ingrese su e-mail: ");
 		String mail = "";
 		Scanner email = new Scanner(System.in);
-		mail = email.nextLine();//se le pide su nickId que es el atributo por el cual buscamos en la base
+		mail = email.nextLine();
 		
 		System.out.println();
 		System.out.print("Ingrese su password: ");
 		String pass = "";
 		Scanner passw = new Scanner(System.in);
-		pass = passw.nextLine();//se le pide su nickId que es el atributo por el cual buscamos en la base
+		pass = passw.nextLine();
 
 		System.out.println();
 		System.out.print("Ingrese su dni: ");
 		String dni = "";
 		Scanner doc = new Scanner(System.in);
-		dni = doc.nextLine();//se le pide su nickId que es el atributo por el cual buscamos en la base
+		dni = doc.nextLine();
 
 		System.out.println();
 		System.out.print("Ingrese su edad: ");
 		String age = "";
 		Scanner edad = new Scanner(System.in);
-		age = edad.nextLine();//se le pide su nickId que es el atributo por el cual buscamos en la base
+		age = edad.nextLine();
 
 		User u = new User();
 		u.set("nickId",nickid);
@@ -134,10 +142,19 @@ public class Start extends Model {
 		if (p.equals(pass)) return true; //passworld correcto
 		else return false;
 	} 
+
+	//metodo para que el usuario se pueda dar de baja
+	private static void drop(){
+		System.out.println();
+		System.out.print("Ingrese su nick para darse de baja..");
+		String nickId = "";
+		Scanner name = new Scanner(System.in);
+		nickId = name.nextLine();//se le pide su nickId que es el atributo por el cual buscamos en la base
+		if (search(nickId)) {//si el usuario existe
+			 
+
 }
 
 
 
 //ARREGLAR CUANDO TE INGRESA UNA LETRA 
-//BUSCAR BASE DE DATOS
-//BASE DE DATOS

@@ -20,7 +20,13 @@ CONSTRAINT users_pk PRIMARY KEY (id));
 CREATE TABLE removed(
  id INT(11) NOT NULL AUTO_INCREMENT,
  dateRemov DATE,
- user_id INT,
+ nick VARCHAR(10) UNIQUE,
+ name VARCHAR(20),
+ lastName VARCHAR(20),
+ mail VARCHAR(30) UNIQUE,
+ dni VARCHAR(15),
+ years INT,
+ 
 CONSTRAINT removed_pk PRIMARY KEY (id));
 
 
