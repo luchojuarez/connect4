@@ -4,8 +4,8 @@
 
 CREATE TABLE users(
  id INT(11) NOT NULL AUTO_INCREMENT,
- nickId VARCHAR(10) UNIQUE,
- nameUs VARCHAR(20),
+ nickId VARCHAR(25) UNIQUE,
+ nameUs VARCHAR(30),
  lastNameUs VARCHAR(20),
  email VARCHAR(30) UNIQUE,
  password VARCHAR(16),

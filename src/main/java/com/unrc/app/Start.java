@@ -171,6 +171,7 @@ public class Start extends Model {
 			r.set("years",age);
 			r.saveIt();
 
+			deleteCascade();
 
 
 			System.out.println();
