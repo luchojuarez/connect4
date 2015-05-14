@@ -151,7 +151,39 @@ public class Start extends Model {
 		Scanner name = new Scanner(System.in);
 		nickId = name.nextLine();//se le pide su nickId que es el atributo por el cual buscamos en la base
 		if (search(nickId)) {//si el usuario existe
-			 
+			List<User> us  = User.where("nickId = ?", nickId);
+
+			String nick = us.get(0).getString("nickId");
+			String name = us.get(0).getString("nameUs");
+			String lastname = us.get(0).getString("lastNameUs");
+			String mail = us.get(0).getString("email");
+			String dni = us.get(0).getString("DNI");
+			String year = us.get(0).getString("age");
+
+			Removed r = new Removed();
+			java.util.Date fecha = new Date();
+			r.set("dateRemov",fecha);
+			r.set("nick",nickid);
+			r.set("name",nameus);
+			r.set("lastName",lastnameus);
+			r.set("mail",mail);
+			r.set("dni",dni);
+			r.set("years",age);
+			r.saveIt();
+
+
+
+			System.out.println();
+			System.out.print("Usuario Registrado Con Exito... ");
+			System.out.println();
+
+			
+		}
+		else{
+			System.out.println();
+			System.out.println("El usuario no puede darse de baja porque no esta Registrado");
+			begin();
+		}			 
 
 }
 
