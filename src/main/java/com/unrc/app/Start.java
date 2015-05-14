@@ -98,7 +98,7 @@ public class Start extends Model {
 			System.out.print("Ingrese su nick: ");
 			Scanner nick = new Scanner(System.in);
 			aux = nick.nextLine();
-			if(search(aux)){
+			if(search(aux)){//EN AUX SE LLEVA EL NICK INGRESADO POR TECLADO
 				System.out.println("nick ya existente..Ingrese otro");
 				flag = false; 
 			}
@@ -145,7 +145,7 @@ public class Start extends Model {
 		User u = new User();
 //		u.set("nickId" , nickId);
 		System.out.println(aux);
-		u.set("nickId",aux);
+		u.set("nickId",aux);//EN AUX SE LLEVA EL NICK INGRESADO POR TECLADO
 		u.set("nameUs",nameus);
 		u.set("lastNameUs",lastnameus);
 		u.set("email",mail);
@@ -185,31 +185,44 @@ public class Start extends Model {
 		Scanner names = new Scanner(System.in);
 		nickId = names.nextLine();//se le pide su nickId que es el atributo por el cual buscamos en la base
 		if (search(nickId)) {//si el usuario existe
+			System.out.println("00000000000000000000000000000000000000000000000000");
 			List<User> us  = User.where("nickId = ?", nickId);
+			System.out.println("1111111111111111111111111111111111111111111111111");
 
 			String ni = us.get(0).getString("nickId");
+			System.out.println("22222222222222222222222222222222222222222222222222222");
 			String name = us.get(0).getString("nameUs");
+			System.out.println("33333333333333333333333333333333333333333333333333333333");
 			String lastname = us.get(0).getString("lastNameUs");
+			System.out.println("44444444444444444444444444444444444444444444444444444444");
 			String mail = us.get(0).getString("email");
+			System.out.println("5555555555555555555555555555555555555555555555555555555555");
 			String dni = us.get(0).getString("DNI");
+			System.out.println("666666666666666666666666666666666666666666666666666666666666");
 			String year = us.get(0).getString("age");
+			System.out.println("77777777777777777777777777777777777777777777777777777777777777");
 
 			Removed r = new Removed();
-			Date fecha = new Date();
-			r.set("dateRemov",fecha);
+			// System.out.println("8888888888888888888888888888888888888888888888888888888888888");
+			// Date fecha = new Date();
+			// System.out.println("9999999999999999999999999999999999999999999999999999999999999");
+			// r.set("dateRemov",new Date());
 			r.set("nick",ni);
 			r.set("name",name);
 			r.set("lastName",lastname);
 			r.set("mail",mail);
 			r.set("dni",dni);
 			r.set("years",year);
-			r.saveIt();
+			System.out.println("16||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+			r.save();
+			System.out.println("17||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
 
 			r.deleteCascadeShallow();
+			System.out.println("18||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
 
 
 			System.out.println();
-			System.out.print("Usuario Registrado Con Exito... ");
+			System.out.println("Usuario Registrado Con Exito... ");
 			System.out.println();
 			begin();
 			

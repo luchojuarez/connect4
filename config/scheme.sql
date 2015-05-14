@@ -17,9 +17,9 @@ CONSTRAINT users_pk PRIMARY KEY (id));
 -- *********************************************************************************************
 
 
-CREATE TABLE removed(
+CREATE TABLE removeds(
  id INT(11) NOT NULL AUTO_INCREMENT,
- dateRemov DATE,
+ created_at DATE,
  nick VARCHAR(10) UNIQUE,
  name VARCHAR(20),
  lastName VARCHAR(20),
