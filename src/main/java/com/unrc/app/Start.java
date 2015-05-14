@@ -128,16 +128,10 @@ public class Start extends Model {
 	//Verifica si el password es correcto
 	public static boolean checkPass(String nickId, String pass){
 
-		List<User> u = User.where("nickId = ?", nickId);
-		User us = u.get(0);
-		String p = (String) us.get("password"); //consult
+		List<User> us  = User.where("nickId = ?", nickId);
+		String p = us.get(0).getString("password");
 
-		System.out.println(p);
-		System.out.println(pass);
-		System.out.println(p.length());
-		System.out.println(pass.length());
-
-		if (p==pass) return true;
+		if (p.equals(pass)) return true; //passworld correcto
 		else return false;
 	} 
 }
