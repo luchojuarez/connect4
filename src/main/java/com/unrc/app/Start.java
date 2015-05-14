@@ -42,7 +42,7 @@ public class Start extends Model {
 			Scanner word = new Scanner(System.in);
 			pass = word.nextLine();//se le pide su password
 
-			if(pass == ""){//si la password es correcta ingresa
+			if(checkPass(nickId,pass)){//si la password es correcta ingresa
 				System.out.println();
 				System.out.println("Login: user IN");
 			}
@@ -123,6 +123,16 @@ public class Start extends Model {
 		//Verificamos si encontramos un usuario
 		if (u.isEmpty()) return false;		
 		else return true;	
+	}
+
+	//Verifica si el password es correcto
+	public static boolean checkPass(String nickId, String pass){
+
+		List<User> us  = User.where("nickId = ?", nickId);
+		String p = us.get(0).getString("password");
+
+		if (p.equals(pass)) return true; //passworld correcto
+		else return false;
 	} 
 }
 
