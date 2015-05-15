@@ -23,8 +23,7 @@ public class App
 		Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/connect4_test", "root", "root");
         System.out.println( "Hello World!" );
         System.out.println();
-		Start n = new Start();
-		n.begin();
+		Start.begin();
 		Base.close();   	
         System.out.println( "GoodBye!! XD" );
     }
