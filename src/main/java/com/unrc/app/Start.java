@@ -73,6 +73,7 @@ public class Start extends Model {
 			if(checkPass(nickId,pass)){//si la password es correcta ingresa
 				System.out.println();
 				System.out.println("Login: user IN");
+				MenuPlayer.mainMenu();
 			}
 			else{
 				System.out.println();
