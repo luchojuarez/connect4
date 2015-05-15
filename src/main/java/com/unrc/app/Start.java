@@ -226,3 +226,8 @@ public class Start extends Model {
 
 
 //ARREGLAR CUANDO TE INGRESA UNA LETRA 
+/*CONSULTAS:
+	-- user1 y user2 en schema
+	-- como borrar de la base de datos
+	-- como pasar la fecha en removeds con el created_at 
+	-- porque a la fecha la genera bien pero no se queda puesta en la base 
