@@ -22,37 +22,36 @@ public class Start extends Model {
 			respuesta = escaneo.nextInt();
 		} while ((respuesta != 1) && (respuesta!=2)&& (respuesta!=3)&& (respuesta!=4) && (respuesta!=0));
 		
-		if (respuesta==1)
-			login();
-		else 
-			if (respuesta==2)
-				registered();
-			else
-				if(respuesta==3)
-					drop();
-				else
-					if(respuesta==4){
-						System.out.println();
-						System.out.print("Ingrese el nick para consultar: ");
-						String nickId = "";
-						Scanner name = new Scanner(System.in);
-						nickId = name.nextLine();
-						if (search(nickId)){//si el usuario esta 
-							System.out.println();
-							System.out.print("El usuario existe ");
-							System.out.println();
-							begin();
-						}
-						else{
-							System.out.println();
-							System.out.print("El usuario NO existe ");
-							System.out.println();
-							begin();
-						}
-					}
-					else
-						if(respuesta==0)
-							System.out.println("bye");
+		switch (respuesta) {
+			case 1: login();
+				break;
+			case 2: registered();
+				break;
+			case 3: drop();
+				break;
+			case 4:{
+				System.out.println();
+				System.out.print("Ingrese el nick para consultar: ");
+				String nickId = "";
+				Scanner name = new Scanner(System.in);
+				nickId = name.nextLine();
+				if (search(nickId)){//si el usuario esta 
+					System.out.println();
+					System.out.print("El usuario existe ");
+					System.out.println();
+					begin();
+				}
+				else{
+					System.out.println();
+					System.out.print("El usuario NO existe ");
+					System.out.println();
+					begin();
+				}
+				break;
+			}
+			case 0: System.out.println("bye");
+				break;
+		}
 	}
 
 	// clase para loguear a un usuario
