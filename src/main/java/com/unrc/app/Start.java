@@ -202,7 +202,6 @@ public class Start extends Model {
 			r.set("dni",dni);
 			r.set("years",year);
 			r.save();
-
 			User u = us.get(0);
 			u.delete();
 // no me crea la fecha sola y no me elimina el usuario de la tabla users lo unico que hace es 

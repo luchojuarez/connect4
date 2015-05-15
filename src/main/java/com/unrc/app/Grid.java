@@ -10,6 +10,7 @@ public class Grid extends Model{
 	private Cell[][] grid;
 	private int m; 
 	private int n;
+	private cant;
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
 //Constructores
@@ -19,8 +20,9 @@ public class Grid extends Model{
 
 		m = 6;
 		n  = 5;
-		grid = new Cell[m][n];
+		grid = new Cell[m+1][n+1];
 		initializeGrid(m,n);
+		cant = 0;
 	}
 
 	public Grid(int m, int n){
@@ -29,8 +31,9 @@ public class Grid extends Model{
 
 			this.m = m;
 			this.n  = n;
-			grid = new Cell[m][n];
+			grid = new Cell[m+1][n+1];
 			initializeGrid(m,n);
+			cant = 0;
 		}
 	}
 
@@ -53,10 +56,10 @@ public class Grid extends Model{
 //Get
 
 	//Retorna el estado de la ficha indicada 
-	public int getCellState(int m, int n){ //throws Err{
+	public int getCellState(Cell c){ 
 
-		//if ((m>this.m) || (n>this.n) || (n<0) || (m<0)) throw new Err(" ");
-		//else 
+		int m = c.getx();
+		int n =  c.gety();
 		return grid[m][n].getState();
 
 	}
@@ -67,20 +70,38 @@ public class Grid extends Model{
 //Set
 
 	//Setea el estado de una celda
-	public void setCellState(int m, int n, int p){
+	public void setCellState(Cell c, int p){
 
-		//if ((m>this.m) || (n>this.n) || (n<0) || (m<0)) throw new Err(" ");
-		//if ((p!=0) || (p!=1) || (p!=2)) throw new Err(" ");
-
+		int m = c.getx();
+		int n =  c.gety();
 		grid[m][n].setState(p);
 	}
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	//Aumenta la cantidad de fichas en la grilla en 1
+
+	public void incCant(){
+
+		cant++;
+	}
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
 
+	//Retorna la cantidad de celdas ocupadas
 
+	public int getCant(){
+
+		return cant;
+
+	}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
 	
+	//Retorna si una grilla esta llena de fichas
+	public boolean gridFull(){
 
-
+		return cant == (m+1)*(n+1);
+	}
 
 }
