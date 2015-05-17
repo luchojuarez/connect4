@@ -204,35 +204,46 @@ public class Game extends Model {
 		return state;
 	}
 
-
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
 	
-	/* pushDisc(Cell c) pone una nueva ficha en la celda indicada
-	@param c es la celda donde estara la nueva ficha	
+	/* pushDisc(int y) pone una nueva ficha en la columna indicada
+	@param y es la columna donde estara la nueva ficha	
+	@param player es el jugador que esta insertando la ficha
 	*/
-	public void pushDisc(Cell c){
+	public void pushDisc(int y,int player){
 
-		if (isEmpty(c)==0){		/* si la celda esta disponible */
+		Cell cell = g.getCell(0,y);	/* tomamos la celda de mas arriba del tablero, para ver si hay lugar en la columna */
 
-			g.setCell(c);	/* seteamos la celda indicada */
-			g.incCant();  	/* incrementamos la cantidad de fichas en el tablero */
+		if (cell.getState()==0){  	/* si hay lugar en la columna indicada */
+
+			cell = getNextFreeCell(y);	/* buscamos en que fila va la ficha */
+			cell.setState(player);		/* asignamos jugador que pone la ficha */
+			g.setCell(cell);			/* seteamos la celda */
+			g.incCant();  			/* se incrementa la cantidad de fichas en uno */
 		}
+
+		else System.out.println("la columna esta llena!");
 	}
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-	/* isEmpty(Cell c) retorna el estado de una celda
-	@param c es la celda a verificar el estado
-	@returns un entero, donde:
-
-		>0 = Disponible
-		>1 = Ocupada por jugador 1
-		>2 = Ocupada por jugador 2
+	/* getNextFreeCell(int y) devuelve la celda en donde se colocara la nueva ficha
+	@param y es la columna donde estara la nueva ficha	
+	@returns una celda
 	*/
-	public int isEmpty(Cell c){
+	public Cell getNextFreeCell(int y){
 
-		Cell cell = g.getCell(c.getx(),c.gety());
-		return cell.getState();
+		int x = g.getx();	    /* asumimos que la ultima fila esta libre */
+		Cell c = g.getCell(x,y);	    /* tomamos la celda en x,y */
+		int i = 1;
+
+		while (c.getState()!=0){   /* mientras no encuentre una celda vacia */
+
+			x = x - i;
+			c = g.getCell(x,y); /* tomo la proxima celda */
+		}	
+
+		return c;
 	}
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------

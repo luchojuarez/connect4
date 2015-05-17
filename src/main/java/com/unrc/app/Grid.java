@@ -58,7 +58,7 @@ public class Grid extends Model{
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
 //Gets
 
-	/* getx() retorna la cantidad de columnas de la grilla 
+	/* getx() retorna la cantidad de filas de la grilla 
 	@returns un entero con la cantidad
 	*/
 	public int getx(){
