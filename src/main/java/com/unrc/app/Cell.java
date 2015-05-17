@@ -5,15 +5,13 @@ import org.javalite.activejdbc.Model;
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
 /*
 
-Primera idea de la celda
-
 el estado sera un valor entero donde:
 
 	0 = Disponible
 	1 = Ocupada por jugador 1
 	2 = Ocupada por jugador 2
 
-las variables x,y indican la posicion en la matriz, podria representarse como una tupla
+las variables x,y indican la posicion en la matriz
 
 */
 
@@ -21,11 +19,10 @@ public class Cell extends Model{
 
 	//Estado de la celda 
 	private int state;
-             //private Boolean state;
-
+            
 	//Coordenadas de la celda
-	private int x;
-	private int y;
+	private int x;	/* fila */
+	private int y;	/* columna */
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -49,45 +46,65 @@ public class Cell extends Model{
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
 //Gets
 
+	/* getx() retorna la  fila donde se encuentra la celda
+	@returns un entero con la fila
+	*/
 	public int getx(){
 
 		return this.x;
 	}
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	/* gety() retorna la  columna donde se encuentra la celda
+	@returns un entero con la columna
+	*/
 	public int gety(){
 
-		return this.y;
+		return this.y;  
 	}
 
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	/* getState() retorna el estado de la celda
+	@returns un entero con el estado
+	*/
 	public int getState(){
 
-		return this.state;
+		return this.state; 
 	}
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
 //Sets
 
+	/* setx() setea la fila de la celda
+	*/
 	public void setx(int x){
 
-		this.x = x;
-	}
-
-	public void sety(int y){
-
-		this.y = y;
-	}
-
-	public void setState(int state){
-
-		this.state = state;
+		this.x = x;	
 	}
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
 
+	/* sety() setea la columna de la celda
+	*/
+	public void sety(int y){
+
+		this.y = y;
+	}	
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	/* setState() setea el estado de la celda
+	*/
+	public void setState(int state){
+
+		this.state = state;	
+	}
 
 
-
-
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 	
 }
