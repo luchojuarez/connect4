@@ -73,6 +73,7 @@ public class Start extends Model {
 			if(checkPass(nickId,pass)){//si la password es correcta ingresa
 				System.out.println();
 				System.out.println("Login: user IN");
+				MenuPlayer.mainMenu();
 			}
 			else{
 				System.out.println();
@@ -194,7 +195,6 @@ public class Start extends Model {
 			String mail = us.get(0).getString("email");
 			String dni = us.get(0).getString("DNI");
 			String year = us.get(0).getString("age");
-
 			Removed r = new Removed();
 			r.set("nick",ni);
 			r.set("name",name);
@@ -203,8 +203,17 @@ public class Start extends Model {
 			r.set("dni",dni);
 			r.set("years",year);
 			r.save();
+<<<<<<< HEAD
 			User u = us.get(0);
 			u.delete();
+=======
+
+			User u = us.get(0);
+			u.delete();
+// no me crea la fecha sola y no me elimina el usuario de la tabla users lo unico que hace es 
+			// que carga bien en la tabla de removeds
+
+>>>>>>> 18f2e5fdf5492af20d92ebc612fad5ab84ea94ed
 			System.out.println();
 			System.out.println("Usuario eliminado Con Exito... ");
 			System.out.println();
@@ -225,7 +234,15 @@ public class Start extends Model {
 //ARREGLAR CUANDO TE INGRESA UNA LETRA 
 /*CONSULTAS:
 	-- user1 y user2 en schema
+<<<<<<< HEAD
 	-- como borrar de la base de datos
 	-- como pasar la fecha en removeds con el created_at 
 	-- porque a la fecha la genera bien pero no se queda puesta en la base 
 */
+=======
+	-- como pasar la fecha en removeds con el created_at porque a la fecha la genera bien pero no se queda puesta en la base 
+	
+	-- una vez que entramos como seguimos?
+	-- over
+*/
+>>>>>>> 18f2e5fdf5492af20d92ebc612fad5ab84ea94ed
