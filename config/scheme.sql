@@ -3,33 +3,29 @@
 
 
 CREATE TABLE users(
- id INT(11) NOT NULL AUTO_INCREMENT,
+ id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
  nickId VARCHAR(25) UNIQUE,
  nameUs VARCHAR(30),
  lastNameUs VARCHAR(20),
  email VARCHAR(30) UNIQUE,
  password VARCHAR(16),
  DNI VARCHAR(15),
- age INT,
-CONSTRAINT users_pk PRIMARY KEY (id));
+ age INT);
 
 -- *********************************************************************************************
 -- *********************************************************************************************
 
 
 CREATE TABLE removeds(
- id INT(11) NOT NULL AUTO_INCREMENT,
- created_at DATETIME,
+ id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ day VARCHAR(20),
  nick VARCHAR(10) UNIQUE,
  name VARCHAR(20),
  lastName VARCHAR(20),
  mail VARCHAR(30) UNIQUE,
  dni VARCHAR(15),
  years INT,
- 
-CONSTRAINT removed_pk PRIMARY KEY (id));
-
-
+ user_id INT);
 -- *********************************************************************************************
 -- *********************************************************************************************
 

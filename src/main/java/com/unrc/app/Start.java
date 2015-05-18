@@ -1,7 +1,10 @@
 package com.unrc.app;
 import java.util.Date; 
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.util.List;
+import com.unrc.app.User;
+import com.unrc.app.Rank;
 import org.javalite.activejdbc.Model;
 
 public class Start extends Model {
@@ -72,7 +75,7 @@ public class Start extends Model {
 			if(checkPass(nickId,pass)){//si la password es correcta ingresa
 				System.out.println();
 				System.out.println("Login: user IN");
-				MenuPlayer.mainMenu();
+				MenuPlayer.mainMenu(nickId);
 			}
 			else{
 				System.out.println();
@@ -104,7 +107,6 @@ public class Start extends Model {
 			}
 		} while(flag == false);
 
-//		} while((search(niik))==true);
 
 		System.out.println();
 		System.out.print("Ingrese su nombre: ");
@@ -143,8 +145,6 @@ public class Start extends Model {
 		age = edad.nextLine();
 
 		User u = new User();
-//		u.set("nickId" , nickId);
-		System.out.println(aux);
 		u.set("nickId",aux);//EN AUX SE LLEVA EL NICK INGRESADO POR TECLADO
 		u.set("nameUs",nameus);
 		u.set("lastNameUs",lastnameus);
@@ -153,9 +153,21 @@ public class Start extends Model {
 		u.set("DNI",dni);
 		u.set("age",age);
 		u.saveIt();
+
+		// cuando se crea un user se le crea automaticamente su ranking
+		Rank r = new Rank();
+		r.set("PG",0);
+		r.set("PE",0);
+		r.set("PP",0);
+		r.set("points",0);
+		r.set("nroRank",u.get("id"));
+		r.saveIt();
+// FIJARSE QUE NO TE PONE LA CLAVE FORANEA(el user_id no funciona)
+
 		System.out.println();
 		System.out.print("Usuario Registrado Con Exito... ");
 		System.out.println();
+		MenuPlayer.mainMenu(aux);
 	}
 
 	public static boolean search (String nickId) {
@@ -176,6 +188,8 @@ public class Start extends Model {
 		if (p.equals(pass)) return true; //passworld correcto
 		else return false;
 	} 
+
+
 
 	//metodo para que el usuario se pueda dar de baja
 	private static void drop(){
@@ -201,9 +215,10 @@ public class Start extends Model {
 			r.set("mail",mail);
 			r.set("dni",dni);
 			r.set("years",year);
+			r.set("day",getFechaActual());
 			r.save();
 			User u = us.get(0);
-			u.delete();
+			u.deleteCascade();
 			System.out.println();
 			System.out.println("Usuario eliminado Con Exito... ");
 			System.out.println();
@@ -216,18 +231,26 @@ public class Start extends Model {
 		}
 	}			 
 
+    public static String getFechaActual() {
+        Date ahora = new Date();
+ 		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+        return formato.format(ahora);
+    }
+
 }
 
 
 
 //ARREGLAR CUANDO TE INGRESA UNA LETRA 
 /*CONSULTAS:
-	-- user1 y user2 en schema
-	-- como borrar de la base de datos
-	-- como pasar la fecha en removeds con el created_at 
-	-- porque a la fecha la genera bien pero no se queda puesta en la base 
-	-- como pasar la fecha en removeds con el created_at porque a la fecha la genera bien pero no se queda puesta en la base 
+	-- no anda el user_id
+	-- no anda el deleteCascade() (como no anda el user_id no encuentra lo que tiene que eliminar)
+
+	-- user1 y user2 en schema -- overrhide (esto va en la clase game (partida))
+	-- hacer que cree una partida logee al segundo jugador y "empieze a jugar"
+
+	-- como pasar la fecha en removeds >>>>>>>>>(LISTO)<<<<<<<<<
+	-- hacer que cuando cree el usuario automaticamente le cargue el ranking >>>>>>>>>(LISTO)<<<<<<<<<
+	-- hacer que le muestre el ranking >>>>>>>>>(LISTO)<<<<<<<<<
 	
-	-- una vez que entramos como seguimos?
-	-- over
 */
