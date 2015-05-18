@@ -22,11 +22,11 @@ public class MenuPlayer extends Model{
 		} while ((respuesta != 1) && (respuesta!=2)&& (respuesta!=3)&& (respuesta!=4)&& (respuesta!=0));
 		
 		switch (respuesta) {
-			case 1: newGame();
+			case 1: newGame(nickId);
 				break;
 			case 2: showRank(nickId);
 				break;
-			case 3: showHit();
+			case 3: showHit(nickId);
 				break;
 			case 4: Start.begin();
 				break;
@@ -35,8 +35,44 @@ public class MenuPlayer extends Model{
 		}
 	}
 
-	private static void newGame () {
+	private static void newGame (String nickId) {
+		Game g = new Game();
+		g.set("dateBegin",Start.getFechaActual());
 
+//		g.set("player1_id",nickId);
+
+		System.out.println("Empezando Juego nuevo");
+		System.out.println("Loguea al segundo jugador");
+		System.out.println();
+		System.out.print("Ingrese el nick: ");
+		String ni = "";
+		Scanner name = new Scanner(System.in);
+		ni = name.nextLine();//se le pide su nickId que es el atributo por el cual buscamos en la base
+		if (Start.search(ni)) {//si el usuario es correcto 
+
+			System.out.println();
+			System.out.print("Ingrese su password: ");
+			String pass = "";
+			Scanner word = new Scanner(System.in);
+			pass = word.nextLine();//se le pide su password
+
+			if(Start.checkPass(ni,pass)){//si la password es correcta ingresa
+				System.out.println();
+				System.out.println("Login: user IN");
+//				g.set("player2_id",ni);
+			}
+			else{
+				System.out.println();
+				System.out.println("Nick o Pass incorrectos");
+				mainMenu(nickId);				
+			}
+		}
+		else{
+			System.out.println();
+			System.out.println("Nick invalido");
+			mainMenu(nickId);				
+		}
+		g.save();
 	}
 
 	private static void showRank (String nickId){
@@ -59,7 +95,7 @@ public class MenuPlayer extends Model{
 
 	}
 
-	private static void showHit () {
+	private static void showHit (String nickId) {
 
 	}
 

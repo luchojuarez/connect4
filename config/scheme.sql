@@ -19,6 +19,7 @@ CREATE TABLE users(
 CREATE TABLE removeds(
  id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
  day VARCHAR(20),
+ -- para pasar la fecha con el created_at tiene que ser: (created_at TIMESTAMP,)
  nick VARCHAR(10) UNIQUE,
  name VARCHAR(20),
  lastName VARCHAR(20),
@@ -31,12 +32,12 @@ CREATE TABLE removeds(
 
 CREATE TABLE games(
  numberGame INT(11) NOT NULL AUTO_INCREMENT,
- dateBegin DATE,
- dateEnd DATE,
+ dateBegin VARCHAR(30),
+ dateEnd VARCHAR(30),
  grid_id INT,
- user_id INT, -- Jugador 1
- -- user2_id INT, -- Jugador 2
- -- esta es mi duda como le pasas el id de los dos jugadores si vos tenes solo un id para poner
+ user_id INT,
+ -- player1_id,
+ -- player2_id,
 CONSTRAINT games_pk PRIMARY KEY (numberGame));
 
 -- *********************************************************************************************
