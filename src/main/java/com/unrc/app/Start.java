@@ -204,13 +204,15 @@ public class Start extends Model {
 			r.save();
 			User u = us.get(0);
 			u.delete();
+<<<<<<< HEAD
 			// no me crea la fecha sola y no me elimina el usuario de la tabla users lo unico que hace es 
 			// que carga bien en la tabla de removeds
+=======
+>>>>>>> 15af14cc226be05e1a5c257bde673a895974be4f
 			System.out.println();
 			System.out.println("Usuario eliminado Con Exito... ");
 			System.out.println();
 			begin();
-			
 		}
 		else{
 			System.out.println();
@@ -233,4 +235,8 @@ public class Start extends Model {
 	
 	-- una vez que entramos como seguimos?
 	-- over
+<<<<<<< HEAD
 */
+=======
+*/
+>>>>>>> 15af14cc226be05e1a5c257bde673a895974be4f
