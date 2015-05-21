@@ -60,6 +60,9 @@ public class MenuPlayer extends Model{
 				System.out.println();
 				System.out.println("Login: user IN");
 //				g.set("player2_id",ni);
+				g.save();
+				
+
 			}
 			else{
 				System.out.println();
@@ -72,7 +75,6 @@ public class MenuPlayer extends Model{
 			System.out.println("Nick invalido");
 			mainMenu(nickId);				
 		}
-		g.save();
 	}
 
 	private static void showRank (String nickId){
