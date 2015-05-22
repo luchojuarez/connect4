@@ -248,11 +248,11 @@ public class Start extends Model {
 
 //ARREGLAR CUANDO TE INGRESA UNA LETRA 
 /*CONSULTAS:
-	-- no anda el user_id (te complica el delete y las claves foraneas)
-	-- no anda el deleteCascade() (como no anda el user_id no encuentra lo que tiene que eliminar)
+	-- no anda el user_id (te complica el delete y las claves foraneas) >>>>>>>>>(LISTO)<<<<<<<<<
+	-- no anda el deleteCascade() (como no anda el user_id no encuentra lo que tiene que eliminar) >>>>>>>>>(LISTO)<<<<<<<<<
 
-	-- user1 y user2 en schema -- override (esto va en la clase game (partida))
-	-- hacer que cree una partida logee al segundo jugador y "empieze a jugar"
+	-- user1 y user2 en schema -- override (esto va en la clase game (partida))>>>>>>>>>(LISTO)<<<<<<<<<
+	-- hacer que cree una partida logee al segundo jugador y "empieze a jugar">>>>>>>>>(LISTO)<<<<<<<<<
 
 	-- como pasar la fecha en removeds >>>>>>>>>(LISTO)<<<<<<<<<
 	-- hacer que cuando cree el usuario automaticamente le cargue el ranking >>>>>>>>>(LISTO)<<<<<<<<<
