@@ -4,6 +4,16 @@ import org.javalite.activejdbc.Model;
 import java.util.ArrayList;
 
 
+
+
+// BelongsToParents({ 
+// BelongsTo(foreignKeyName="player1_id",User=Game.class), 
+// BelongsTo(foreignKeyName="player2_id",User=Game.class) })
+
+//@BelongsTo(parent = User.class, foreignKeyName = "player1_id")
+
+//@Many2Many(other = User.class, join = "id", player1FKName = "player1_id", player2FKName = "player2_id")
+
 public class Game extends Model {
 
 
