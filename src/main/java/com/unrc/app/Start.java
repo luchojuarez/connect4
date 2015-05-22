@@ -256,4 +256,4 @@ public class Start extends Model {
 	-- como pasar la fecha en removeds >>>>>>>>>(LISTO)<<<<<<<<<
 	-- hacer que cuando cree el usuario automaticamente le cargue el ranking >>>>>>>>>(LISTO)<<<<<<<<<
 	-- hacer que le muestre el ranking >>>>>>>>>(LISTO)<<<<<<<<<
-	
+*/

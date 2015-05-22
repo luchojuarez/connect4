@@ -23,7 +23,7 @@ public class MenuPlayer extends Model{
 			respuesta = escaneo.nextLine();
 			charArray = respuesta.toCharArray();
 			res = charArray[0];
-		} while ((res != '1') && (res!='2')&& (res!='3')&& (res!='0'));
+		} while ((res != '1') && (res!='2')&& (res!='3')&& (res!='4')&& (res!='0'));
 		
 		switch (res) {
 			case '1': newGame(nickId);
@@ -31,6 +31,8 @@ public class MenuPlayer extends Model{
 			case '2': showRank(nickId);
 				break;
 			case '3': showHit(nickId);
+				break;
+			case '4': Start.begin();
 				break;
 			case '0': System.out.println("chau!");
 				break;
