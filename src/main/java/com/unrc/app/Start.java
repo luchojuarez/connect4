@@ -165,6 +165,7 @@ public class Start extends Model {
 		r.set("points",0);
 		r.set("nroRank",u.get("id"));
 		r.saveIt();
+		u.add(r);
 // FIJARSE QUE NO TE PONE LA CLAVE FORANEA(el user_id no funciona)
 
 		System.out.println();
@@ -256,4 +257,15 @@ public class Start extends Model {
 	-- como pasar la fecha en removeds >>>>>>>>>(LISTO)<<<<<<<<<
 	-- hacer que cuando cree el usuario automaticamente le cargue el ranking >>>>>>>>>(LISTO)<<<<<<<<<
 	-- hacer que le muestre el ranking >>>>>>>>>(LISTO)<<<<<<<<<
+	
+
+	-- diferencia entre save y saveit es que el saveir te lanza una ecxeption si no puede guardar
+		y se captura con untry y un catch y el save te devuelve false si no puede guardar
+		y lo capturas solo con un if(r.save())....
+
+	-- en menuPlayer cuando se crea el objeto game tmb crear un objeto grid para pedirle la dimension
+		de la grilla y pasarle el id de la grilla a la tabla game el pedido de dimension
+		puede estar dsp de que se loguue el segundo player pero antes de guardar el g y dsp hacer
+		los add
+
 */

@@ -31,14 +31,14 @@ CREATE TABLE removeds(
 -- *********************************************************************************************
 
 CREATE TABLE games(
- numberGame INT(11) NOT NULL AUTO_INCREMENT,
+ id INT(11) NOT NULL AUTO_INCREMENT,
  dateBegin VARCHAR(30),
  dateEnd VARCHAR(30),
  grid_id INT,
- user_id INT,
- -- player1_id,
- -- player2_id,
-CONSTRAINT games_pk PRIMARY KEY (numberGame));
+--  user_id INT,
+ player1_id INT,
+ player2_id INT,
+CONSTRAINT games_pk PRIMARY KEY (id));
 
 -- *********************************************************************************************
 -- *********************************************************************************************
@@ -47,7 +47,6 @@ CREATE TABLE grids(
  id INT(11) NOT NULL AUTO_INCREMENT,
  X INT,
  Y INT,
- cell_id INT,
 CONSTRAINT grids_pk PRIMARY KEY (id));
 
 -- *********************************************************************************************
@@ -57,6 +56,7 @@ CREATE TABLE cells(
  id INT(11) NOT NULL AUTO_INCREMENT,
  X INT,
  Y INT,
+ grid_id INT,
 CONSTRAINT cells_pk PRIMARY KEY (id));
 
 -- *********************************************************************************************
