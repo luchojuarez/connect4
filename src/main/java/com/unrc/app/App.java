@@ -20,7 +20,7 @@ public class App
 	private User player2;
     public static void main( String[] args )
     {
-		Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/connect4_test", "root", "root");
+		Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/connect4_development", "root", "root");
         System.out.println( "Hello World!" );
         System.out.println();
 		Start.begin();

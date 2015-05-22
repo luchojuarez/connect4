@@ -221,13 +221,8 @@ public class Start extends Model {
 			r.set("day",getFechaActual());
 			r.save();
 			User u = us.get(0);
-<<<<<<< HEAD
-			u.delete();
-			// no me crea la fecha sola y no me elimina el usuario de la tabla users lo unico que hace es 
-			// que carga bien en la tabla de removeds
-=======
 			u.deleteCascade();
->>>>>>> 184195dc7cf07da6d7516349031df097945c96b2
+
 			System.out.println();
 			System.out.println("Usuario eliminado Con Exito... ");
 			System.out.println();
@@ -262,11 +257,3 @@ public class Start extends Model {
 	-- hacer que cuando cree el usuario automaticamente le cargue el ranking >>>>>>>>>(LISTO)<<<<<<<<<
 	-- hacer que le muestre el ranking >>>>>>>>>(LISTO)<<<<<<<<<
 	
-<<<<<<< HEAD
-	-- una vez que entramos como seguimos?
-	-- over
-<<<<<<< HEAD
-*/
-=======
-*/
->>>>>>> 184195dc7cf07da6d7516349031df097945c96b2

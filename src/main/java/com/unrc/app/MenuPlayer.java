@@ -9,15 +9,10 @@ import org.javalite.activejdbc.Model;
 
 public class MenuPlayer extends Model{
 	
-<<<<<<< HEAD
-	public static void mainMenu (){
+	public static void mainMenu (String nickId){
 		String respuesta;
 		char[] charArray;
 		char res;
-=======
-	public static void mainMenu (String nickId){
-		int respuesta;
->>>>>>> 184195dc7cf07da6d7516349031df097945c96b2
 		do {
 			System.out.println("Presione 1 para jugar");
 			System.out.println("Presione 2 para ver ranking");
@@ -25,31 +20,17 @@ public class MenuPlayer extends Model{
 			System.out.println("Presione 4 para volver a la pantalla anterior");
 			System.out.println("Presione 0 para salir");
 			Scanner escaneo = new Scanner(System.in);
-<<<<<<< HEAD
 			respuesta = escaneo.nextLine();
 			charArray = respuesta.toCharArray();
 			res = charArray[0];
 		} while ((res != '1') && (res!='2')&& (res!='3')&& (res!='0'));
 		
 		switch (res) {
-			case '1': newGame();
+			case '1': newGame(nickId);
 				break;
-			case '2': showRank();
+			case '2': showRank(nickId);
 				break;
-			case '3': showHit();
-=======
-			respuesta = escaneo.nextInt();
-		} while ((respuesta != 1) && (respuesta!=2)&& (respuesta!=3)&& (respuesta!=4)&& (respuesta!=0));
-		
-		switch (respuesta) {
-			case 1: newGame(nickId);
-				break;
-			case 2: showRank(nickId);
-				break;
-			case 3: showHit(nickId);
-				break;
-			case 4: Start.begin();
->>>>>>> 184195dc7cf07da6d7516349031df097945c96b2
+			case '3': showHit(nickId);
 				break;
 			case '0': System.out.println("chau!");
 				break;
