@@ -66,8 +66,7 @@ public class MenuPlayer extends Model{
 					System.out.println("Login: user IN");
 	//				g.set("player2_id",ni);
 					g.save();
-					
-
+					int gameState = Play.playing(nickId,ni,g);
 				}
 				else{
 					System.out.println();
