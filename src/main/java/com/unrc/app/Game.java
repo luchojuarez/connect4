@@ -235,11 +235,10 @@ public class Game extends Model {
 
 		int x = g.getx();	    /* asumimos que la ultima fila esta libre */
 		Cell c = g.getCell(x,y);	    /* tomamos la celda en x,y */
-		int i = 1;
-
+		
 		while (c.getState()!=0){   /* mientras no encuentre una celda vacia */
 
-			x = x - i;
+			x--;
 			c = g.getCell(x,y); /* tomo la proxima celda */
 		}	
 
