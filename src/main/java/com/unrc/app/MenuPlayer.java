@@ -52,26 +52,28 @@ public class MenuPlayer extends Model{
 		String ni = "";
 		Scanner name = new Scanner(System.in);
 		ni = name.nextLine();//se le pide su nickId que es el atributo por el cual buscamos en la base
-		if (Start.search(ni)) {//si el usuario es correcto 
+		if (nickId != ni){
+			if (Start.search(ni)) {//si el usuario es correcto 
 
-			System.out.println();
-			System.out.print("Ingrese su password: ");
-			String pass = "";
-			Scanner word = new Scanner(System.in);
-			pass = word.nextLine();//se le pide su password
-
-			if(Start.checkPass(ni,pass)){//si la password es correcta ingresa
 				System.out.println();
-				System.out.println("Login: user IN");
-//				g.set("player2_id",ni);
-				g.save();
-				
+				System.out.print("Ingrese su password: ");
+				String pass = "";
+				Scanner word = new Scanner(System.in);
+				pass = word.nextLine();//se le pide su password
 
-			}
-			else{
-				System.out.println();
-				System.out.println("Nick o Pass incorrectos");
-				mainMenu(nickId);				
+				if(Start.checkPass(ni,pass)){//si la password es correcta ingresa
+					System.out.println();
+					System.out.println("Login: user IN");
+	//				g.set("player2_id",ni);
+					g.save();
+					
+
+				}
+				else{
+					System.out.println();
+					System.out.println("Nick o Pass incorrectos");
+					mainMenu(nickId);				
+				}
 			}
 		}
 		else{
