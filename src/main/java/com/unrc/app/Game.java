@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 
 
-// BelongsToParents({ 
-// BelongsTo(foreignKeyName="player1_id",User=Game.class), 
-// BelongsTo(foreignKeyName="player2_id",User=Game.class) })
+ // @BelongsToParents({ 
+ // @BelongsTo(foreignKeyName="player1_id",parent=User.class), 
+ // @BelongsTo(foreignKeyName="player2_id",parent=User.class) })
 
 //@BelongsTo(parent = User.class, foreignKeyName = "player1_id")
 

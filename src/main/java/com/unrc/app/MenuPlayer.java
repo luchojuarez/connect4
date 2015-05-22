@@ -43,7 +43,10 @@ public class MenuPlayer extends Model{
 		Game g = new Game();
 		g.set("dateBegin",Start.getFechaActual());
 
-//		g.set("player1_id",nickId);
+
+		User u1 = User.findFirst("nickId=?", nickId);
+		g.set("player1_id",u1.get("id"));
+
 
 		System.out.println("Empezando Juego nuevo");
 		System.out.println("Loguea al segundo jugador");
@@ -67,6 +70,30 @@ public class MenuPlayer extends Model{
 	//				g.set("player2_id",ni);
 					g.save();
 					int gameState = Play.playing(nickId,ni,g);
+//					g.set("player2_id",2);
+					
+					User u2 = User.findFirst("nickId=?", ni);
+					g.set("player2_id",u2.get("id"));
+
+					Grid grid = new Grid();
+					System.out.println();
+					System.out.println("ingresar la dimension de la grilla: ");
+					System.out.println();
+					System.out.println("ingresar X: ");
+					int x ;
+					Scanner dimX = new Scanner(System.in);
+					x = dimX.nextInt();
+					System.out.println("ingresar Y: ");
+					int y ;
+					Scanner dimY = new Scanner(System.in);
+					y = dimY.nextInt();
+
+					grid.set("X",x);
+					grid.set("Y",y);
+					grid.save();
+
+					g.save();
+					grid.add(g);
 				}
 				else{
 					System.out.println();
@@ -94,9 +121,9 @@ public class MenuPlayer extends Model{
 		List<User> us  = User.where("nickId = ?", nickId);
 		User u = new User();
 		u = us.get(0);
-		//List<Rank> ran  = Rank.where("user_id = ?",u.get("id"));
-// CUANDO ANDE EL USER_ID CAMBIAR LA LINEA 46 POR LA LINEA 48
-		List<Rank> ran  = Rank.where("nroRank = ?",u.get("id"));
+		List<Rank> ran  = Rank.where("user_id = ?",u.get("id"));
+// // CUANDO ANDE EL USER_ID CAMBIAR LA LINEA 46 POR LA LINEA 48
+// 		List<Rank> ran  = Rank.where("nroRank = ?",u.get("id"));
 		Rank r = new Rank();
 		r = ran.get(0);
 
