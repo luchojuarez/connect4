@@ -46,10 +46,11 @@ public class Game extends Model {
 
 		>0 indica que el juego termino ya que no hay mas casilleros disponibles
 		>1 indica que el jugador que hizo el ultimo movimiento gano
-		>2 indica que no hay ganador, el juego continua
+		>2 indica que no hay ganador, el juego continua o indica que se ingreso una columna inexistente
 	*/
 	public int gameOver(Cell c){
 
+		/* si ingreso una columna invalida, retorno 2 */
 		if (c==null) return 2;
 		/* si la grilla esta llena, retorno 0 */
 		if ( g.gridFull() ) return 0;	
@@ -281,8 +282,4 @@ public class Game extends Model {
 
 }
 
-/*
-linea 89 error en el constructor!
 
-
-*/

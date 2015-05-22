@@ -70,6 +70,10 @@ public class MenuPlayer extends Model{
 	//				g.set("player2_id",ni);
 					g.save();
 					int gameState = Play.playing(nickId,ni,g);
+
+					if (gameState==0) System.out.println("Juego Empatado");
+					if (gameState==1) System.out.println("Gano "+ nickId+"!!!!");
+					if (gameState==2) System.out.println("Gano "+ ni+"!!!!");
 //					g.set("player2_id",2);
 					
 					User u2 = User.findFirst("nickId=?", ni);
