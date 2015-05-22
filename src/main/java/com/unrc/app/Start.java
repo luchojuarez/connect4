@@ -8,8 +8,9 @@ public class Start extends Model {
 
 	// Menu de inicio
 	public static void begin (){
-		int respuesta=10;
-
+		String respuesta;
+		char[] charArray;
+		char res;
 		do {
 			System.out.println();
 			System.out.println("Presione 1 para LOGUEARSE");
@@ -19,17 +20,19 @@ public class Start extends Model {
 			System.out.println("Presione 0 para SALIR");
 			System.out.println();
 			Scanner escaneo = new Scanner(System.in);
-			respuesta = escaneo.nextInt();
-		} while ((respuesta != 1) && (respuesta!=2)&& (respuesta!=3)&& (respuesta!=4) && (respuesta!=0));
+			respuesta = escaneo.nextLine();
+			charArray = respuesta.toCharArray();
+			res = charArray[0];
+		} while ((res != '1') && (res!='2')&& (res!='3')&& (res!='4') && (res!='0'));
 		
-		switch (respuesta) {
-			case 1: login();
+		switch (res) {
+			case '1': login();
 				break;
-			case 2: registered();
+			case '2': registered();
 				break;
-			case 3: drop();
+			case '3': drop();
 				break;
-			case 4:{
+			case '4':{
 				System.out.println();
 				System.out.print("Ingrese el nick para consultar: ");
 				String nickId = "";
@@ -204,11 +207,8 @@ public class Start extends Model {
 			r.save();
 			User u = us.get(0);
 			u.delete();
-<<<<<<< HEAD
 			// no me crea la fecha sola y no me elimina el usuario de la tabla users lo unico que hace es 
 			// que carga bien en la tabla de removeds
-=======
->>>>>>> 15af14cc226be05e1a5c257bde673a895974be4f
 			System.out.println();
 			System.out.println("Usuario eliminado Con Exito... ");
 			System.out.println();
@@ -237,6 +237,3 @@ public class Start extends Model {
 	-- over
 <<<<<<< HEAD
 */
-=======
-*/
->>>>>>> 15af14cc226be05e1a5c257bde673a895974be4f

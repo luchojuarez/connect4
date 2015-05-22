@@ -86,7 +86,7 @@ public class Game extends Model {
 	*/
 	public ArrayList<Cell> getVertical(Cell c){
 
-		ArrayList<Cell> array = new ArrayList();	/* Arreglo a devolver */
+		ArrayList<Cell> array = new ArrayList();	/* Arreglo a devolver */ /*ESTA MAL EL CONSTRUCTOR*/
 
 		int x = c.getx(); 
 
@@ -238,3 +238,9 @@ public class Game extends Model {
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 }
+
+/*
+linea 89 error en el constructor!
+
+
+*/
