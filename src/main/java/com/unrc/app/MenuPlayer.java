@@ -52,7 +52,7 @@ public class MenuPlayer extends Model{
 		String ni = "";
 		Scanner name = new Scanner(System.in);
 		ni = name.nextLine();//se le pide su nickId que es el atributo por el cual buscamos en la base
-		if (nickId != ni){
+		if (!(nickId.equals(ni))){
 			if (Start.search(ni)) {//si el usuario es correcto 
 
 				System.out.println();
@@ -75,12 +75,18 @@ public class MenuPlayer extends Model{
 					mainMenu(nickId);				
 				}
 			}
+			else{
+				System.out.println();
+				System.out.println("Nick invalido");
+				mainMenu(nickId);				
+			}
 		}
 		else{
 			System.out.println();
-			System.out.println("Nick invalido");
-			mainMenu(nickId);				
-		}
+			System.out.print("No podes jugar contra ti mismo");
+			System.out.println();
+			mainMenu(nickId);
+		}		
 	}
 
 	private static void showRank (String nickId){
