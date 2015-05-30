@@ -21,16 +21,22 @@ public class App
 	// private User player2;
     public static void main( String[] args )
     {
-            get("/hello", (req, res) -> {
+            get("/Conect4", (req, res) -> {
                 String response = "<h1> Connect 4</h1>";
-                response  += "<a href =\"/play\"> Jugar</a>";
+//                response  += "<a href =\"/play\"> Jugar</a>";
+                response  += "<a href =\"/play\"> <h2>Jugar<h2>";
+                response  += "<a href =\"/shut\"> <h3>Ranking<h3>";
                 return response;
              });   
 
             get("/play", (request, response) -> {
 //            response.status(401);
             return "Go Away!!!";
-        });
+            });
+            get("/shut", (request, response) -> {
+//            response.status(401);
+            return "sr yes sr!!!";
+            });
 
     }
 
