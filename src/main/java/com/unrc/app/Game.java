@@ -50,10 +50,11 @@ public class Game extends Model {
 	*/
 	public int gameOver(Cell c){
 
+		if (c==null) return 2;
 		/* si la grilla esta llena, retorno 0 */
 		if ( g.gridFull() ) return 0;	
 		/* si la grilla no esta llena, evaluo el estado de la partida */
-		if (g.getCant()>7){
+		if (g.getCant()>=7){
 
 			boolean state = false;	/* Se asume que la partida no tiene ganador */
 			ArrayList<Cell> array = new ArrayList();  /*  Creamos un arreglo  */
@@ -219,8 +220,9 @@ public class Game extends Model {
 	/* pushDisc(int y) pone una nueva ficha en la columna indicada
 	@param y es la columna donde estara la nueva ficha	
 	@param player es el jugador que esta insertando la ficha
+	@returns la celda en donde se coloco la ficha
 	*/
-	public void pushDisc(int y,int player){
+	public Cell pushDisc(int y,int player){
 
 		Cell cell = g.getCell(0,y);	/* tomamos la celda de mas arriba del tablero, para ver si hay lugar en la columna */
 
@@ -230,9 +232,11 @@ public class Game extends Model {
 			cell.setState(player);		/* asignamos jugador que pone la ficha */
 			g.setCell(cell);			/* seteamos la celda */
 			g.incCant();  			/* se incrementa la cantidad de fichas en uno */
+			return cell;
 		}
 
 		else System.out.println("la columna esta llena!");
+		return null;
 	}
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -256,6 +260,24 @@ public class Game extends Model {
 	}
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	/* getx() devuelve la cantidad de filas del tablero
+	@returns un entero 
+	*/
+	public int getx(){
+
+		return g.getx();
+	}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	/* gety() devuelve la cantidad de columnas del tablero
+	@returns un entero 
+	*/
+	public int gety(){
+
+		return g.gety();
+	}
 
 }
 

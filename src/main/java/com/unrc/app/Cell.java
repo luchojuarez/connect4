@@ -42,6 +42,13 @@ public class Cell extends Model{
 		this.y = y;
 	}
 
+	public Cell(int x, int y, int state){
+
+		this.state = state;
+		this.x = x;
+		this.y = y;
+	}
+
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
 //Gets

@@ -67,6 +67,9 @@ public class MenuPlayer extends Model{
 				if(Start.checkPass(ni,pass)){//si la password es correcta ingresa
 					System.out.println();
 					System.out.println("Login: user IN");
+	//				g.set("player2_id",ni);
+					g.save();
+					int gameState = Play.playing(nickId,ni,g);
 //					g.set("player2_id",2);
 					
 					User u2 = User.findFirst("nickId=?", ni);
@@ -91,8 +94,6 @@ public class MenuPlayer extends Model{
 
 					g.save();
 					grid.add(g);
-
-
 				}
 				else{
 					System.out.println();
