@@ -1,16 +1,20 @@
 package com.unrc.app;
+
 import java.util.Date; 
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.util.List;
 import com.unrc.app.User;
 import com.unrc.app.Rank;
+import com.unrc.app.App;
 import org.javalite.activejdbc.Model;
+import static spark.Spark.*;
 
 public class Start extends Model {
 
 	// Menu de inicio
 	public static void begin (){
+		
 		String respuesta;
 		char[] charArray;
 		char res;

@@ -12,34 +12,67 @@ import com.unrc.app.Hit;
 import com.unrc.app.Removed;
 import org.javalite.activejdbc.Base;
 import static spark.Spark.*;
+
+
+
 /**
  **Hello world!
  **
  */
-public class App
-{
+public class App{
 	// private User player1;
 	// private User player2;
-    public static void main( String[] args )
-    {
-            get("/Conect4", (req, res) -> {
-                String response = "<h1> Connect 4</h1>";
-//                response  += "<a href =\"/play\"> Jugar</a>";
-                response  += "<a href =\"/play\"> <h2>Jugar<h2>";
-                response  += "<a href =\"/shut\"> <h3>Ranking<h3>";
-                return response;
-             });   
 
-            get("/play", (request, response) -> {
-//            response.status(401);
-            return "Go Away!!!";
-            });
-            get("/shut", (request, response) -> {
-//            response.status(401);
-            return "sr yes sr!!!";
-            });
 
-    }
+  public static void main( String[] args ){
+
+    get("/Conect4", (req, res) -> {
+      String response = "<h1> Connect 4</h1>";
+      response  += "<a href =\"/login\"> <h2>Iniciar Sesion<h2>";
+      response  += "<a href =\"/registered\"> <h3>Registrarse<h3>";
+      return response;
+    });   
+
+    get("/login", (request, response) -> {
+      String log = "<h1> Connect 4</h1>";
+      log  += "<a href =\"/nick\"> <h2>Nombre de Usuario<h2>";
+      log  += "<a href =\"/pass\"> <h3>Contraseña<h3>";
+      log  += "<a href =\"/in\"> <h4>Ingresar<h4>";
+      log  += "<a href =\"/Conect4\"> <h5>Volver";
+      return log;
+    });
+
+
+    get("/registered", (request, response) -> {
+      return "sorry, in build";
+    });
+
+
+    get("/in", (request, response) -> {
+      String inUs = "<h1> Connect 4</h1>";
+      inUs  += "<a href =\"/play\"> <h2>Jugar<h2>";
+      inUs  += "<a href =\"/rank\"> <h3>Ranking<h3>";
+      return inUs;
+    });
+
+    get("/nick", (request, response) -> {
+      return "sorry, in build";
+    });
+
+    get("/pass", (request, response) -> {
+      return "sorry, in build";
+    });
+
+    get("/play", (request, response) -> {
+      return "sorry, in build";
+    });
+
+    get("/rank", (request, response) -> {
+      return "sorry, in build";
+    });
+
+
+  }
 
 		// Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/connect4_development", "root", "root");
   //       System.out.println( "Hello World!" );
@@ -47,4 +80,5 @@ public class App
 		// Start.begin();
 		// Base.close();   	
   //       System.out.println( "GoodBye!! XD" );
+  // }
 }
