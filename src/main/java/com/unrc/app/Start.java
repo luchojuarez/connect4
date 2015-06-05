@@ -1,16 +1,20 @@
 package com.unrc.app;
+
 import java.util.Date; 
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.util.List;
 import com.unrc.app.User;
 import com.unrc.app.Rank;
+import com.unrc.app.App;
 import org.javalite.activejdbc.Model;
+import static spark.Spark.*;
 
 public class Start extends Model {
 
 	// Menu de inicio
 	public static void begin (){
+		
 		String respuesta;
 		char[] charArray;
 		char res;
@@ -155,7 +159,7 @@ public class Start extends Model {
 		u.set("password",pass);
 		u.set("DNI",dni);
 		u.set("age",age);
-		u.saveIt();
+		u.save();
 
 		// cuando se crea un user se le crea automaticamente su ranking
 		Rank r = new Rank();
@@ -163,10 +167,13 @@ public class Start extends Model {
 		r.set("PE",0);
 		r.set("PP",0);
 		r.set("points",0);
-		r.set("nroRank",u.get("id"));
-		r.saveIt();
+
+		//cuento cuantos renking hay cargados y le pongo 1 mayor al que estoy registrando(osea ultimo)
+		long rankCount = Rank.count();
+		r.set("nroRank",rankCount+1);
+			
+		r.save();
 		u.add(r);
-// FIJARSE QUE NO TE PONE LA CLAVE FORANEA(el user_id no funciona)
 
 		System.out.println();
 		System.out.print("Usuario Registrado Con Exito... ");
@@ -205,6 +212,7 @@ public class Start extends Model {
 		if (search(nickId)) {//si el usuario existe
 
 			List<User> us  = User.where("nickId = ?", nickId);
+			User u = us.get(0);
 
 			String ni = us.get(0).getString("nickId");
 			String name = us.get(0).getString("nameUs");
@@ -220,8 +228,34 @@ public class Start extends Model {
 			r.set("dni",dni);
 			r.set("years",year);
 			r.set("day",getFechaActual());
+
+			//actualizamos el ranking de los sucesores del usuario a eliminar
+
+
+			String aux = us.get(0).getString("id");//saco el id del usuario a eliminar
+			List<Rank> ran  = Rank.where("user_id = ?", aux);//saco el ranking del usuario a eliminar
+			String nroRank = ran.get(0).getString("nroRank");//saco en nroRank el numero de ranking del usuario a eliminar
+			//ahora busco de apartir del ranking del usuario a eliminar sus sucesocer asi actualizo su ranking
+
+			Rank rk = new Rank();
+		 	int intAelim = Integer.parseInt(nroRank);//convierto el nroRank en un entero 
+
+			long rankCount = Rank.count();// cuento cuantos registros hay en ranks
+
+			for (int i = 1; i<=rankCount ;i++ ) {
+
+				rk = Rank.findFirst("nroRank = ?", i);//a rk le asigno el registro buscandolo por su nro de ranking
+
+				String nroR = rk.getString("nroRank");//a nroR le doy el nro de ranking de ese registro
+
+			 	int intAupdate = Integer.parseInt(nroR);//convierto el nroR en un entero 
+
+				if(intAupdate > intAelim){//si el nro capturado es mayor al ranking que tengo que eliminar
+					rk.set("nroRank",intAupdate-1);//lo actualizo con un numero menos
+				}
+			}
+	
 			r.save();
-			User u = us.get(0);
 			u.deleteCascade();
 
 			System.out.println();
@@ -266,6 +300,11 @@ public class Start extends Model {
 	-- en menuPlayer cuando se crea el objeto game tmb crear un objeto grid para pedirle la dimension
 		de la grilla y pasarle el id de la grilla a la tabla game el pedido de dimension
 		puede estar dsp de que se loguue el segundo player pero antes de guardar el g y dsp hacer
-		los add
+		los add		>>>>>>>>>>LISTO PERO VERIFICAR<<<<<<<<<<<<<<<<<<<<<
+
+	-- no actualiza bien los ranking !!!!! hacerlo!!!! y dsp hacer el paso de abajo!
+
+	-- tirar base de datos , crearla y cargar a,b,c,d,e y ahi ver si al eliminar te actualiza bien
+		los ranking
 
 */
