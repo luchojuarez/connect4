@@ -46,7 +46,37 @@ public class App{
         
 
     get("/registered", (request, response) -> {
-      return "Selected user: " + request.params(":name");
+    // <form>
+    // First name:<br>
+    // <input type="text" name="firstname">
+    // <br>
+    // Last name:<br>
+    // <input type="text" name="lastname">
+    // </form>
+
+
+// *************************************
+      // <!DOCTYPE html>
+      // <html>
+      // <body>
+
+      // <form>
+      // First name:<br>
+      // <input type="text" name="firstname">
+      // <br>
+      // Last name:<br>
+      // <input type="text" name="lastname">
+      // </form>
+
+      // <p>Note that the form itself is not visible.</p>
+
+      // <p>Also note that the default width of a text field is 20 characters.</p>
+
+      // </body>
+      // </html>   
+   // ********************************************
+
+       return "Selected user: " + request.params(":name");
       // return "sorry, in build";
     });
 
@@ -67,7 +97,14 @@ public class App{
     });
 
     get("/play", (request, response) -> {
-      return "sorry, in build";
+      String jugar = " <form>";
+      jugar += "First name:<br>";
+      jugar += "<input type="+"text"+" name="+"firstname"+">";
+      jugar += "<br>";
+      jugar += "Last name:<br>";
+      jugar += "<input type="+"text"+" name="+"lastname"+">";
+      jugar += "</form>";
+      return jugar;
     });
 
     get("/rank", (request, response) -> {
