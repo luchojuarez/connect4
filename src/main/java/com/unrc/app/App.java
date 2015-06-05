@@ -43,8 +43,11 @@ public class App{
     });
 
 
+        
+
     get("/registered", (request, response) -> {
-      return "sorry, in build";
+      return "Selected user: " + request.params(":name");
+      // return "sorry, in build";
     });
 
 
