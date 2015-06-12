@@ -9,15 +9,16 @@
 
 	<body>
 
-		<form action="/play" method="POST">
+		<!-- <form action="/play" method="POST"> -->
 			<!-- Caja de Texto para User 1 -->
 			<br><br>
 			<br><br>
 			<br><br>
+			<form action="/play" method = "POST">
 			<p style="text-align:center"><i> Player 1 Name: <i><br>
 				<select name="comboboxUs1">
 					{{#users}}
-					<option value="{{nickId}}"> {{toString}}</option>
+					<option value="{{toString}}"> {{toString}}</option>
 					{{/users}}
 				</select>
 			</p>
@@ -25,20 +26,17 @@
 			<p style="text-align:center"><i> Player 2 Name: <i><br>
 				<select name="comboboxUs2">
 					{{#users}}
-					<option value="{{nickId}}"> {{toString}}</option>
+					<option value="{{toString}}"> {{toString}}</option>
 					{{/users}}
 				</select>
+			</p>
 				<br><br>
 				<br><br>
-				<input type="submit" value="Jugar" name="play">
-			</p>
-		</form>	
-	
-		<form action="/registered">
-			<p style="text-align:center"><br>
-				<input type="submit" value="Registrarse" name="registered">
-			</p>
-		</form>
+					<p style="text-align:center"><br>
+						<input type="submit" value="Jugar" name="play">
+					</p>
+						<input type="text" name="test">
+				</form>
 	
 		<br><br>
 		<br><br>
