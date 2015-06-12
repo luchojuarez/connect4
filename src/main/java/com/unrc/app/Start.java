@@ -15,53 +15,53 @@ public class Start extends Model {
 	// Menu de inicio
 	public static void begin (){
 		
-	// 	String respuesta;
-	// 	char[] charArray;
-	// 	char res;
-	// 	do {
-	// 		System.out.println();
-	// 		System.out.println("Presione 1 para LOGUEARSE");
-	// 		System.out.println("Presione 2 para REGISTRARSE");
-	// 		System.out.println("Presione 3 para DARSE DE BAJA");			
-	// 		System.out.println("Presione 4 para CONSULTAR SI EXISTE USUARIO");
-	// 		System.out.println("Presione 0 para SALIR");
-	// 		System.out.println();
-	// 		Scanner escaneo = new Scanner(System.in);
-	// 		respuesta = escaneo.nextLine();
-	// 		charArray = respuesta.toCharArray();
-	// 		res = charArray[0];
-	// 	} while ((res != '1') && (res!='2')&& (res!='3')&& (res!='4') && (res!='0'));
+		// String respuesta;
+		// char[] charArray;
+		// char res;
+		// do {
+		// 	System.out.println();
+		// 	System.out.println("Presione 1 para LOGUEARSE");
+		// 	System.out.println("Presione 2 para REGISTRARSE");
+		// 	System.out.println("Presione 3 para DARSE DE BAJA");			
+		// 	System.out.println("Presione 4 para CONSULTAR SI EXISTE USUARIO");
+		// 	System.out.println("Presione 0 para SALIR");
+		// 	System.out.println();
+		// 	Scanner escaneo = new Scanner(System.in);
+		// 	respuesta = escaneo.nextLine();
+		// 	charArray = respuesta.toCharArray();
+		// 	res = charArray[0];
+		// } while ((res != '1') && (res!='2')&& (res!='3')&& (res!='4') && (res!='0'));
 		
-	// 	switch (res) {
-	// 		case '1': login();
-	// 			break;
-	// 		case '2': registered();
-	// 			break;
-	// 		case '3': drop();
-	// 			break;
-	// 		case '4':{
-	// 			System.out.println();
-	// 			System.out.print("Ingrese el nick para consultar: ");
-	// 			String nickId = "";
-	// 			Scanner name = new Scanner(System.in);
-	// 			nickId = name.nextLine();
-	// 			if (search(nickId)){//si el usuario esta 
-	// 				System.out.println();
-	// 				System.out.print("El usuario existe ");
-	// 				System.out.println();
-	// 				begin();
-	// 			}
-	// 			else{
-	// 				System.out.println();
-	// 				System.out.print("El usuario NO existe ");
-	// 				System.out.println();
-	// 				begin();
-	// 			}
-	// 			break;
-	// 		}
-	// 		case 0: System.out.println("bye");
-	// 			break;
-	// 	}
+		// switch (res) {
+		// 	case '1': login();
+		// 		break;
+		// 	case '2': registered();
+		// 		break;
+		// 	case '3': drop();
+		// 		break;
+		// 	case '4':{
+		// 		System.out.println();
+		// 		System.out.print("Ingrese el nick para consultar: ");
+		// 		String nickId = "";
+		// 		Scanner name = new Scanner(System.in);
+		// 		nickId = name.nextLine();
+		// 		if (search(nickId)){//si el usuario esta 
+		// 			System.out.println();
+		// 			System.out.print("El usuario existe ");
+		// 			System.out.println();
+		// 			begin();
+		// 		}
+		// 		else{
+		// 			System.out.println();
+		// 			System.out.print("El usuario NO existe ");
+		// 			System.out.println();
+		// 			begin();
+		// 		}
+		// 		break;
+		// 	}
+		// 	case 0: System.out.println("bye");
+		// 		break;
+		// }
 	}
 
 	// clase para loguear a un usuario

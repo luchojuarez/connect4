@@ -109,8 +109,55 @@ public class App{
                   }
                
             }, new MustacheTemplateEngine());
+
+
+            //ingresa a la pantalla de Jugar despues de crear un nuevo game y grid
+            post("/play", (request, response) -> {
+                  // String us1 = request.queryParams("comboboxUs1");
+                  // String us2 = request.queryParams("comboboxUs2");
+                  // System.out.println("**************"+request.queryParams("comboboxUs1"));
+                  // System.out.println("**************"+us2);
+                  // boolean reg = MenuPlayer.newGame(us1,us2);
+                  // Base.close();
+                  // if (reg){
+                        return new ModelAndView(null, "play.moustache");
+                  // }                                   
+                  // else{
+                  //       baseOpen();                
+                  //       Map<String, Object> attributes = new HashMap<>();
+                  //       List <User> users = User.findAll();
+                  //       attributes.put("users",users);
+
+                  //       String player1 = request.queryParams("comboboxUs1");
+                  //       String player2 = request.queryParams("comboboxUs2");
+
+                  //       attributes.put("us1",player1);
+                  //       attributes.put("us2",player2);
+                  //       return new ModelAndView(attributes, "Connect4.moustache");                                   
+                  // }
+            }, new MustacheTemplateEngine());
             
-      // //carga usuarios de la base
+
+            get("/rank", (request, response) -> {
+                  Map<String, Object> attributes = new HashMap<>();
+                  List <Rank> ranking = Rank.findAll();
+                  attributes.put("ranking",ranking);
+
+                  Base.close();
+                  return new ModelAndView(attributes, "rank.moustache");
+            }, new MustacheTemplateEngine());
+
+            get("/volver", (request, response) -> {
+                  return new ModelAndView(null, "play.moustache");
+            }, new MustacheTemplateEngine());
+
+
+
+
+
+
+
+
       //       post("/play", (request, response) -> {
       //             Map<String, Object> attributes = new HashMap<>();
       //             String player1 = request.queryParams("comboboxUs1");
@@ -415,7 +462,7 @@ public class App{
 
 // FALTA PARA EL VIERNES:
       // >> INTERFAZ COMPLETA! (MAIN,REGISTRARSE,JUGAR)
-      // >> INTERACCION DEL REGISTRARSE CON LA BASE DE DATOS
+      // >> INTERACCION DEL REGISTRARSE CON LA BASE DE DATOS >>> LISTO <<<
       // >> INTERACCION DEL MAIN CON LA BASE DE DATOS
 
 }

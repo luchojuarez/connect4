@@ -10,109 +10,62 @@ import org.javalite.activejdbc.Model;
 public class MenuPlayer extends Model{
 	
 	public static void mainMenu (String nickId){
-		String respuesta;
-		char[] charArray;
-		char res;
-		do {
-			System.out.println("Presione 1 para jugar");
-			System.out.println("Presione 2 para ver ranking");
-			System.out.println("Presione 3 ver logros");
-			System.out.println("Presione 4 para volver a la pantalla anterior");
-			System.out.println("Presione 0 para salir");
-			Scanner escaneo = new Scanner(System.in);
-			respuesta = escaneo.nextLine();
-			charArray = respuesta.toCharArray();
-			res = charArray[0];
-		} while ((res != '1') && (res!='2')&& (res!='3')&& (res!='4')&& (res!='0'));
+		// String respuesta;
+		// char[] charArray;
+		// char res;
+		// do {
+		// 	System.out.println("Presione 1 para jugar");
+		// 	System.out.println("Presione 2 para ver ranking");
+		// 	System.out.println("Presione 3 ver logros");
+		// 	System.out.println("Presione 4 para volver a la pantalla anterior");
+		// 	System.out.println("Presione 0 para salir");
+		// 	Scanner escaneo = new Scanner(System.in);
+		// 	respuesta = escaneo.nextLine();
+		// 	charArray = respuesta.toCharArray();
+		// 	res = charArray[0];
+		// } while ((res != '1') && (res!='2')&& (res!='3')&& (res!='4')&& (res!='0'));
 		
-		switch (res) {
-			case '1': newGame(nickId);
-				break;
-			case '2': showRank(nickId);
-				break;
-			case '3': showHit(nickId);
-				break;
-			case '4': Start.begin();
-				break;
-			case '0': System.out.println("chau!");
-				break;
-		}
+		// switch (res) {
+		// 	case '1': newGame(nickId,nickId);
+		// 		break;
+		// 	case '2': showRank(nickId);
+		// 		break;
+		// 	case '3': showHit(nickId);
+		// 		break;
+		// 	case '4': Start.begin();
+		// 		break;
+		// 	case '0': System.out.println("chau!");
+		// 		break;
+		// }
 	}
 
-	private static void newGame (String nickId) {
-		Game g = new Game();
-		g.set("dateBegin",Start.getFechaActual());
+	public static boolean newGame (String us1,String us2) {
+		boolean respuesta = false;
+		if(respuesta == false){
+			Game g = new Game();
+			g.set("dateBegin",Start.getFechaActual());
 
+			System.out.println("**************"+us1);
+			System.out.println("**************"+us2);
+			User u1 = User.findFirst("nickId=?", us1);
+			g.set("player1_id",u1.get("id"));
 
-		User u1 = User.findFirst("nickId=?", nickId);
-		g.set("player1_id",u1.get("id"));
+			User u2 = User.findFirst("nickId=?", us2);
+			g.set("player2_id",u2.get("id"));
 
+			g.save();
+			// int gameState = Play.playing(us1,us2,g);
 
-		System.out.println("Empezando Juego nuevo");
-		System.out.println("Loguea al segundo jugador");
-		System.out.println();
-		System.out.print("Ingrese el nick: ");
-		String ni = "";
-		Scanner name = new Scanner(System.in);
-		ni = name.nextLine();//se le pide su nickId que es el atributo por el cual buscamos en la base
-		if (!(nickId.equals(ni))){
-			if (Start.search(ni)) {//si el usuario es correcto 
-
-				System.out.println();
-				System.out.print("Ingrese su password: ");
-				String pass = "";
-				Scanner word = new Scanner(System.in);
-				pass = word.nextLine();//se le pide su password
-
-				if(Start.checkPass(ni,pass)){//si la password es correcta ingresa
-					System.out.println();
-					System.out.println("Login: user IN");
-	//				g.set("player2_id",ni);
-					g.save();
-					int gameState = Play.playing(nickId,ni,g);
-//					g.set("player2_id",2);
-					
-					User u2 = User.findFirst("nickId=?", ni);
-					g.set("player2_id",u2.get("id"));
-
-					Grid grid = new Grid();
-					System.out.println();
-					System.out.println("ingresar la dimension de la grilla: ");
-					System.out.println();
-					System.out.println("ingresar X: ");
-					int x ;
-					Scanner dimX = new Scanner(System.in);
-					x = dimX.nextInt();
-					System.out.println("ingresar Y: ");
-					int y ;
-					Scanner dimY = new Scanner(System.in);
-					y = dimY.nextInt();
-
-					grid.set("X",x);
-					grid.set("Y",y);
-					grid.save();
-
-					g.save();
-					grid.add(g);
-				}
-				else{
-					System.out.println();
-					System.out.println("Nick o Pass incorrectos");
-					mainMenu(nickId);				
-				}
-			}
-			else{
-				System.out.println();
-				System.out.println("Nick invalido");
-				mainMenu(nickId);				
-			}
+			Grid grid = new Grid();
+			grid.set("X",7);
+			grid.set("Y",6);
+			grid.save();
+			grid.add(g);
+			return true;
 		}
 		else{
-			System.out.println();
-			System.out.print("No podes jugar contra ti mismo");
-			System.out.println();
-			mainMenu(nickId);
-		}		
+			return false;
+		}	
 	}
 
 	private static void showRank (String nickId){
