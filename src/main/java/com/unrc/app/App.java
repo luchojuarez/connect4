@@ -28,16 +28,6 @@ import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 
 
-  // <h1>Users</h1>
-
-  // <h2>Users count: {{users_count}}</h2>
-
-  // <table width="100%" border="0" cellspacing="0" cellpadding="3">
-  //   {{#users}}
-  //       <tr>
-  //         <td>{{nameUs}}</td>
-  //       </tr>
-  //   {{/users}}
 
 
 /**
@@ -113,10 +103,15 @@ public class App{
 
             //ingresa a la pantalla de Jugar despues de crear un nuevo game y grid
             post("/play", (request, response) -> {
-                  // String us1 = request.queryParams("comboboxUs1");
-                  // String us2 = request.queryParams("comboboxUs2");
-                  // System.out.println("**************"+request.queryParams("comboboxUs1"));
-                  // System.out.println("**************"+us2);
+                  String us1 = request.queryParams("comboboxUs1");
+                  String us2 = request.queryParams("comboboxUs2");
+                  System.out.println("-------------"+request.queryParams("test"));
+                  System.out.println("-------------"+request.queryParams("comboboxUs1"));
+                  System.out.println("-------------"+request.queryParams());
+                  System.out.println("---------------"+us2);
+                  System.out.println("---------------"+request.attributes());
+                  System.out.println("---------------"+request.params());
+                  System.out.println("---------------"+request.queryMap());
                   // boolean reg = MenuPlayer.newGame(us1,us2);
                   // Base.close();
                   // if (reg){
@@ -464,5 +459,8 @@ public class App{
       // >> INTERFAZ COMPLETA! (MAIN,REGISTRARSE,JUGAR)
       // >> INTERACCION DEL REGISTRARSE CON LA BASE DE DATOS >>> LISTO <<<
       // >> INTERACCION DEL MAIN CON LA BASE DE DATOS
+      // >> como sacar los parametros del combobox
+      // >> como obtener los ranking
+      // >> como manejar los graficos de las fichas
 
 }
