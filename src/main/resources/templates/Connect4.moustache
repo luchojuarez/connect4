@@ -9,39 +9,51 @@
 
 	<body>
 
-		<!-- <form action="/play" method="POST"> -->
-			<!-- Caja de Texto para User 1 -->
-			<br><br>
-			<br><br>
-			<br><br>
-			<form action="/play" method = "POST">
-			<p style="text-align:center"><i> Player 1 Name: <i><br>
-				<select name="comboboxUs1">
-					{{#users}}
-					<option value="{{toString}}"> {{toString}}</option>
-					{{/users}}
-				</select>
-			</p>
+		<br><br>
+		<br><br>
+		<br><br>
+		<form action="/play" method = "POST">
+		<p style="text-align:center"><i> Player 1 Name: <i><br>
+			<select name="comboboxUs1">
+				{{#users}}
+				<option value="{{toString}}"> {{toString}}</option>
+				{{/users}}
+			</select>
+		</p>
 
-			<p style="text-align:center"><i> Player 2 Name: <i><br>
-				<select name="comboboxUs2">
-					{{#users}}
-					<option value="{{toString}}"> {{toString}}</option>
-					{{/users}}
-				</select>
+		<p style="text-align:center"><i> Player 2 Name: <i><br>
+			<select name="comboboxUs2">
+				{{#users}}
+				<option value="{{toString}}"> {{toString}}</option>
+				{{/users}}
+			</select>
+		</p>
+			<br><br>
+			<br><br>
+			<p style="text-align:center"><br>
+				<input type="submit" value="Jugar" name="play">
 			</p>
-				<br><br>
-				<br><br>
-					<p style="text-align:center"><br>
-						<input type="submit" value="Jugar" name="play">
-					</p>
-						<input type="text" name="test">
-				</form>
+		</form>
+
+
+		<form action="/registered">
+			<p style="text-align:center"><br>
+				<input type="submit" value="Registrarse" name="registered">
+			</p>
+		</form>
+
+		<form action="/rank">
+			<p style="text-align:center"><br>
+				<input type="submit" value="Ver Ranking" name="rank">
+			</p>
+		</form>
 	
-		<br><br>
-		<br><br>
-		<br><br>
-		<br><br>
+		<form action="/load" method = "POST">
+			<p style="text-align:center"><br>
+				<input type="submit" value="Cargar Partida" name="load">
+			</p>
+		</form>
+
 		<br><br>
 		<p style="text-align:center"><i>" Cibils - Dominguez - Juarez "<i><br>
 

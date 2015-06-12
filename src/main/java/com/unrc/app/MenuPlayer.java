@@ -45,8 +45,6 @@ public class MenuPlayer extends Model{
 			Game g = new Game();
 			g.set("dateBegin",Start.getFechaActual());
 
-			System.out.println("-------------"+us1);
-			System.out.println("-------------"+us2);
 			User u1 = User.findFirst("nickId=?", us1);
 			g.set("player1_id",u1.get("id"));
 
