@@ -1,0 +1,117 @@
+			<!-- rank.moustache -->
+
+<html>
+	<head>
+		<h1 style="text-align:center">Connect 4</h1>
+		<h2 style="text-align:center">Los 10 Mejores</h2>
+
+	</head>
+
+	<head>
+		<style>
+			table {
+			    width:100%;
+			}
+			table, th, td {
+			    border: 1px solid black;
+			    border-collapse: collapse;
+			}
+			th, td {
+			    padding: 5px;
+			    text-align: center;
+			}
+			table#t01 tr:nth-child(even) {
+			    background-color: #eee;
+			}
+			table#t01 tr:nth-child(odd) {
+			   background-color:#fff;
+			}
+			table#t01 th	{
+			    background-color: black;
+			    color: white;
+			}
+			</style>
+	</head>
+	<body>
+
+
+	<br>
+
+	<table id="t01">
+	  <tr>
+	    <th>Id</th>
+	    <th>First Name</th>
+	    <th>Last Name</th>		
+	    <th>Points</th>
+	  </tr>
+	  <tr>
+	    <td>-</td>
+	    <td>-</td>
+	    <td>-</td>		
+	    <td>-</td>
+	  </tr>
+	  <tr>
+	    <td>-</td>
+	    <td>-</td>
+	    <td>-</td>		
+	    <td>-</td>
+	  </tr>
+	  <tr>
+	    <td>-</td>
+	    <td>-</td>
+	    <td>-</td>		
+	    <td>-</td>
+	  </tr>
+	  <tr>
+	    <td>-</td>
+	    <td>-</td>
+	    <td>-</td>		
+	    <td>-</td>
+	  </tr>
+	  <tr>
+	    <td>-</td>
+	    <td>-</td>		
+	    <td>-</td>
+	    <td>-</td>
+	  </tr>
+	  <tr>
+	    <td>-</td>
+	    <td>-</td>		
+	    <td>-</td>
+	    <td>-</td>
+	  </tr>
+	  <tr>
+	    <td>-</td>
+	    <td>-</td>		
+	    <td>-</td>
+	    <td>-</td>
+	  </tr>
+	  <tr>
+	    <td>-</td>
+	    <td>-</td>		
+	    <td>-</td>
+	    <td>-</td>
+	  </tr>
+	  <tr>
+	    <td>-</td>
+	    <td>-</td>		
+	    <td>-</td>
+	    <td>-</td>
+	  </tr>
+	  <tr>
+	    <td>-</td>
+	    <td>-</td>		
+	    <td>-</td>
+	    <td>-</td>
+	  </tr>
+	</table>
+	<form action="/volver">
+		<p style="text-align:center"><br>
+			<input type="submit" value="Volver" name="volver">
+		</p>
+	</form>
+
+	<br><br>
+	<p style="text-align:center"><i>" Cibils - Dominguez - Juarez "<i><br>
+	</body>
+</html>

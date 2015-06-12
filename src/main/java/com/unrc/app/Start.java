@@ -15,53 +15,53 @@ public class Start extends Model {
 	// Menu de inicio
 	public static void begin (){
 		
-		String respuesta;
-		char[] charArray;
-		char res;
-		do {
-			System.out.println();
-			System.out.println("Presione 1 para LOGUEARSE");
-			System.out.println("Presione 2 para REGISTRARSE");
-			System.out.println("Presione 3 para DARSE DE BAJA");			
-			System.out.println("Presione 4 para CONSULTAR SI EXISTE USUARIO");
-			System.out.println("Presione 0 para SALIR");
-			System.out.println();
-			Scanner escaneo = new Scanner(System.in);
-			respuesta = escaneo.nextLine();
-			charArray = respuesta.toCharArray();
-			res = charArray[0];
-		} while ((res != '1') && (res!='2')&& (res!='3')&& (res!='4') && (res!='0'));
+		// String respuesta;
+		// char[] charArray;
+		// char res;
+		// do {
+		// 	System.out.println();
+		// 	System.out.println("Presione 1 para LOGUEARSE");
+		// 	System.out.println("Presione 2 para REGISTRARSE");
+		// 	System.out.println("Presione 3 para DARSE DE BAJA");			
+		// 	System.out.println("Presione 4 para CONSULTAR SI EXISTE USUARIO");
+		// 	System.out.println("Presione 0 para SALIR");
+		// 	System.out.println();
+		// 	Scanner escaneo = new Scanner(System.in);
+		// 	respuesta = escaneo.nextLine();
+		// 	charArray = respuesta.toCharArray();
+		// 	res = charArray[0];
+		// } while ((res != '1') && (res!='2')&& (res!='3')&& (res!='4') && (res!='0'));
 		
-		switch (res) {
-			case '1': login();
-				break;
-			case '2': registered();
-				break;
-			case '3': drop();
-				break;
-			case '4':{
-				System.out.println();
-				System.out.print("Ingrese el nick para consultar: ");
-				String nickId = "";
-				Scanner name = new Scanner(System.in);
-				nickId = name.nextLine();
-				if (search(nickId)){//si el usuario esta 
-					System.out.println();
-					System.out.print("El usuario existe ");
-					System.out.println();
-					begin();
-				}
-				else{
-					System.out.println();
-					System.out.print("El usuario NO existe ");
-					System.out.println();
-					begin();
-				}
-				break;
-			}
-			case 0: System.out.println("bye");
-				break;
-		}
+		// switch (res) {
+		// 	case '1': login();
+		// 		break;
+		// 	case '2': registered();
+		// 		break;
+		// 	case '3': drop();
+		// 		break;
+		// 	case '4':{
+		// 		System.out.println();
+		// 		System.out.print("Ingrese el nick para consultar: ");
+		// 		String nickId = "";
+		// 		Scanner name = new Scanner(System.in);
+		// 		nickId = name.nextLine();
+		// 		if (search(nickId)){//si el usuario esta 
+		// 			System.out.println();
+		// 			System.out.print("El usuario existe ");
+		// 			System.out.println();
+		// 			begin();
+		// 		}
+		// 		else{
+		// 			System.out.println();
+		// 			System.out.print("El usuario NO existe ");
+		// 			System.out.println();
+		// 			begin();
+		// 		}
+		// 		break;
+		// 	}
+		// 	case 0: System.out.println("bye");
+		// 		break;
+		// }
 	}
 
 	// clase para loguear a un usuario
@@ -96,89 +96,41 @@ public class Start extends Model {
 			begin();				
 		}
 	}
+    
+	public static boolean registered (String nick,String name,String lastName,String mail,String pass,String dni,String age) {
 	
-	private static void registered () {
-	
-		boolean flag;
-		String aux = "";
-		
-		do{	
-			flag = true;
-			System.out.println();
-			System.out.print("Ingrese su nick: ");
-			Scanner nick = new Scanner(System.in);
-			aux = nick.nextLine();
-			if(search(aux)){//EN AUX SE LLEVA EL NICK INGRESADO POR TECLADO
-				System.out.println("nick ya existente..Ingrese otro");
-				flag = false; 
-			}
-		} while(flag == false);
 
+		if(search(nick)){//EN AUX SE LLEVA EL NICK INGRESADO POR EL USUARIO
+			return false; 
+		}
+		else{
 
-		System.out.println();
-		System.out.print("Ingrese su nombre: ");
-		String nameus = "";
-		Scanner name = new Scanner(System.in);
-		nameus = name.nextLine();
+			User u = new User();
+			u.set("nickId",nick);
+			u.set("nameUs",name);
+			u.set("lastNameUs",lastName);
+			u.set("email",mail);
+			u.set("password",pass);
+			u.set("DNI",dni);
+			u.set("age",age);
+			u.save();
 
-		System.out.println();
-		System.out.print("Ingrese su apellido: ");
-		String lastnameus = "";
-		Scanner lastname = new Scanner(System.in);
-		lastnameus = lastname.nextLine();
+			// cuando se crea un user se le crea automaticamente su ranking
+			Rank r = new Rank();
+			r.set("PG",0);
+			r.set("PE",0);
+			r.set("PP",0);
+			r.set("points",0);
 
-		System.out.println();
-		System.out.print("Ingrese su e-mail: ");
-		String mail = "";
-		Scanner email = new Scanner(System.in);
-		mail = email.nextLine();
-		
-		System.out.println();
-		System.out.print("Ingrese su password: ");
-		String pass = "";
-		Scanner passw = new Scanner(System.in);
-		pass = passw.nextLine();
+			//cuento cuantos renking hay cargados y le pongo 1 mayor al que estoy registrando(osea ultimo)
+			long rankCount = Rank.count();
+			r.set("nroRank",rankCount+1);
+				
+			r.save();
+			u.add(r);
 
-		System.out.println();
-		System.out.print("Ingrese su dni: ");
-		String dni = "";
-		Scanner doc = new Scanner(System.in);
-		dni = doc.nextLine();
-
-		System.out.println();
-		System.out.print("Ingrese su edad: ");
-		String age = "";
-		Scanner edad = new Scanner(System.in);
-		age = edad.nextLine();
-
-		User u = new User();
-		u.set("nickId",aux);//EN AUX SE LLEVA EL NICK INGRESADO POR TECLADO
-		u.set("nameUs",nameus);
-		u.set("lastNameUs",lastnameus);
-		u.set("email",mail);
-		u.set("password",pass);
-		u.set("DNI",dni);
-		u.set("age",age);
-		u.save();
-
-		// cuando se crea un user se le crea automaticamente su ranking
-		Rank r = new Rank();
-		r.set("PG",0);
-		r.set("PE",0);
-		r.set("PP",0);
-		r.set("points",0);
-
-		//cuento cuantos renking hay cargados y le pongo 1 mayor al que estoy registrando(osea ultimo)
-		long rankCount = Rank.count();
-		r.set("nroRank",rankCount+1);
-			
-		r.save();
-		u.add(r);
-
-		System.out.println();
-		System.out.print("Usuario Registrado Con Exito... ");
-		System.out.println();
-		MenuPlayer.mainMenu(aux);
+			return true;
+		}
 	}
 
 	public static boolean search (String nickId) {

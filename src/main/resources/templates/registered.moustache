@@ -1,0 +1,43 @@
+			<!-- registered.moustache -->
+
+
+<html>
+	<head>
+		<h1 style="text-align:center">Connect 4</h1>
+
+	</head>
+
+	<body>
+		<form action="/registrar" method="POST">
+			<br><br>
+			<p style="text-align:center"><i> Nick: <i><br>
+				<input type="text" name="nick">
+
+				<p style="text-align:center"><i> Nombre: <i><br>
+				<input type="text" name="nombre">
+
+				<p style="text-align:center"><i> Apellido: <i><br>
+				<input type="text" name="apellido">
+
+				<p style="text-align:center"><i> E-mail: <i><br>
+				<input type="email" name="e-mail">
+
+				<p style="text-align:center"><i> Contraseña: <i><br>
+				<input type="password" name="pass">
+
+				<p style="text-align:center"><i> Dni: <i><br>
+				<input type="text" name="dni">
+
+				<p style="text-align:center"><i> Edad: <i><br>
+				<input type="text" name="edad">
+
+				<br><br>
+				<input type="submit" value="Registrarse">
+				</form>
+				<br><br>
+				<br><br>
+				<br><br>
+				<p style="text-align:center"><i>" Cibils - Dominguez - Juarez "<i><br>
+		</form>
+	</body>
+</html>
