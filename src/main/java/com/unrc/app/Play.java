@@ -7,17 +7,7 @@ import org.javalite.activejdbc.Model;
 
 public class Play extends Model{
 
-	/* playing(String player1, String player2,Game game) maneja todo el juego, y devuelve el ganador (o empate)
-	@player1 es el nombre del jugador 1
-	@player2 es el nombre del jugador 2
-	@game es el tablero de juego
-	@returns un entero con el resultado de la partida donde:
 
-		1 = gano el jugador 1
-		2 = gano el jugador 2
-		0 = empate
-
-	*/
 	public static int playing(String player1, String player2,Game game){
 
 
@@ -33,11 +23,7 @@ public class Play extends Model{
 		/* mientras no termine el juego */
 		while (game.gameOver(c)==2){
 
-			if (c!=null) turn = !turn; 	/* si se pudo ingresar la ficha, cambio de turno */
-
-			/* mientras no ingrese una columna correcta */
-			while (!correct){	
-
+			while (!correct){
 				System.out.println("");
 				if  (turn) System.out.print(player1+" "+msj);
 				if (!turn) System.out.print(player2+" "+msj);	
@@ -49,14 +35,15 @@ public class Play extends Model{
 
 			if (turn) c = game.pushDisc(disc,1);
 			else 	 c = game.pushDisc(disc,2);
-			
+
+			if (c!=null) turn = !turn; /* si se pudo ingresar la ficha, cambio de turno */
 			correct = false;
 		}
 
-		if (game.gameOver(c)==0) return 0;
-		if (turn) return 1;
-		else return 2;
-
+		System.out.println("*************************************************************");
+		System.out.println(game.gameOver(c));
+		System.out.println("*************************************************************");
+		return game.gameOver(c);
 	}
 
 	/* check_column(int column, int y) devuelve si la columna en donde vamos a ingresar la ficha existe
