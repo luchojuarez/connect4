@@ -37,14 +37,25 @@
 
 	<br>
 
+
 	<table id="t01">
 	  <tr>
-	    <th>Id</th>
-	    <th>First Name</th>
-	    <th>Last Name</th>		
+	    <th>Position</th>
 	    <th>Points</th>
+	    <th>Id Player</th>
 	  </tr>
-	  <tr>
+
+		{{#ranking}}
+		<tr>
+			<td> {{toStringR}}</td>
+			<td> {{toStringR1}}</td>
+			<td> {{toStringR2}}</td>
+		</tr>
+		{{/ranking}}
+
+
+
+<!-- 	  <tr>
 	    <td>-</td>
 	    <td>-</td>
 	    <td>-</td>		
@@ -104,7 +115,7 @@
 	    <td>-</td>
 	    <td>-</td>
 	  </tr>
-	</table>
+ -->	</table>
 	<form action="/volver">
 		<p style="text-align:center"><br>
 			<input type="submit" value="Volver" name="volver">

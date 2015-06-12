@@ -38,16 +38,19 @@ public class App{
 	// private User player1;
 	// private User player2;
 
-      public static void baseOpen(){
-            Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/connect4_development", "root", "root");
-      }
-
+  
       public static void main( String[] args ){
 
-        
+            before((request, response) -> {
+              Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/connect4_development", "root", "root");
+            });
+
+            after((request, response) -> {
+                  Base.close();
+            });        
+  
             //ingresa a la pantalla principal
             get("/Connect4", (request, response) -> {
-                  baseOpen();                
                   Map<String, Object> attributes = new HashMap<>();
                   List <User> users = User.findAll();
                   attributes.put("users",users);
@@ -57,7 +60,6 @@ public class App{
 
                   attributes.put("us1",player1);
                   attributes.put("us2",player2);
-                  // Base.close();
                   return new ModelAndView(attributes, "Connect4.moustache");                                   
             }, new MustacheTemplateEngine());
 
@@ -70,7 +72,6 @@ public class App{
 
             //registra usuario 
             post("/registrar", (request, response) -> {
-                  Base.close();
                   String nick = request.queryParams("nick");
                   String name = request.queryParams("nombre");
                   String lastName = request.queryParams("apellido");
@@ -78,11 +79,8 @@ public class App{
                   String pass = request.queryParams("pass");
                   String dni = request.queryParams("dni");
                   String age = request.queryParams("edad");
-                  baseOpen();                
                   boolean reg = Start.registered(nick,name,lastName,mail,pass,dni,age);
-                  Base.close();
                   if (reg){
-                        baseOpen();                
                         Map<String, Object> attributes = new HashMap<>();
                         List <User> users = User.findAll();
                         attributes.put("users",users);
@@ -113,12 +111,10 @@ public class App{
                   System.out.println("---------------"+request.params());
                   System.out.println("---------------"+request.queryMap());
                   // boolean reg = MenuPlayer.newGame(us1,us2);
-                  // Base.close();
                   // if (reg){
                         return new ModelAndView(null, "play.moustache");
                   // }                                   
                   // else{
-                  //       baseOpen();                
                   //       Map<String, Object> attributes = new HashMap<>();
                   //       List <User> users = User.findAll();
                   //       attributes.put("users",users);
@@ -138,7 +134,6 @@ public class App{
                   List <Rank> ranking = Rank.findAll();
                   attributes.put("ranking",ranking);
 
-                  Base.close();
                   return new ModelAndView(attributes, "rank.moustache");
             }, new MustacheTemplateEngine());
 
@@ -459,8 +454,12 @@ public class App{
       // >> INTERFAZ COMPLETA! (MAIN,REGISTRARSE,JUGAR)
       // >> INTERACCION DEL REGISTRARSE CON LA BASE DE DATOS >>> LISTO <<<
       // >> INTERACCION DEL MAIN CON LA BASE DE DATOS
-      // >> como sacar los parametros del combobox
+      // >> como sacar los parametros del combobox >>> LISTO <<<
+
       // >> como obtener los ranking
       // >> como manejar los graficos de las fichas
+      // >> recuperar partida
+      // >> ranking
+
 
 }
