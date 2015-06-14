@@ -69,6 +69,7 @@ CREATE TABLE ranks(
  PG INT,
  PE INT,
  PP INT,
+ PJ INT,
  points INT,
  nroRank INT,
  user_id INT,

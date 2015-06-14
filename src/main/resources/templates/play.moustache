@@ -41,7 +41,7 @@
 					}
 			</style>
 
-			<p style="text-align:center"><br>
+			<p style="text-align:left"><br>
 
 					<input type="hidden" name="table" value="{{table}}" />
 					<input type="hidden" name="turno" value="{{turno}}" />
@@ -74,7 +74,7 @@
 		</form>
 
 			<form action="/save" method = "POST">
-				<p style="text-align:center"><br>
+				<p style="text-align:left"><br>
 					<input type="submit" value="Guardar" name="save">
 				</p>
 			</form>

@@ -120,6 +120,7 @@ public class Start extends Model {
 			r.set("PG",0);
 			r.set("PE",0);
 			r.set("PP",0);
+			r.set("PJ",0);
 			r.set("points",0);
 
 			//cuento cuantos renking hay cargados y le pongo 1 mayor al que estoy registrando(osea ultimo)

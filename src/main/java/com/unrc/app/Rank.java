@@ -14,6 +14,9 @@ public class Rank extends Model {
       return this.getString("points");
   }   
 
+    public String toStringPos(){
+      return this.getString("nroRank");
+  }   
    	
    	public String toStringUser(){
     	return this.getString("user_id");
@@ -30,11 +33,15 @@ public class Rank extends Model {
     public String toStringPP(){
       return this.getString("PP");
   }   
+    public String toStringPJ(){
+      return this.getString("PJ");
+  }   
 
 
   // partida ganada
   public static void win(User us) {
     Rank ranking = Rank.findFirst("user_id = ?", us.get("id"));
+    System.out.println("||||||||||||||||---->>>>>>>>><<<<<<<<<<<<<"+ranking.get("user_id"));
 
     if (ranking == null) {
       Rank r = new Rank();
@@ -42,11 +49,13 @@ public class Rank extends Model {
       r.set("PG", 1);
       r.set("PE", 0);  
       r.set("PP", 0);  
+      r.set("PJ", 1);
       r.set("points", 3);
       r.save();
   
     }else{  
       ranking.set("PG", ranking.getInteger("PG")+1);
+      ranking.set("PJ", ranking.getInteger("PJ")+1);
       ranking.set("points", ranking.getInteger("points")+3);
       ranking.save();
     }
@@ -57,6 +66,7 @@ public class Rank extends Model {
   // partida empatada
   public static void draw(User us){
     Rank ranking = Rank.findFirst("user_id = ?", us.get("id"));
+    System.out.println("||||||||||||||||---->>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<"+ranking.get("user_id"));
     
     if (ranking == null) {
       Rank r = new Rank();
@@ -64,12 +74,14 @@ public class Rank extends Model {
       r.set("PG", 0);
       r.set("PE", 1);  
       r.set("PP", 0);  
+      r.set("PJ", 1);  
       r.set("points", 1);
       r.save(); 
         
     }else{  
       ranking.set("PE", ranking.getInteger("PE")+1);
       ranking.set("points", ranking.getInteger("points")+1);
+      ranking.set("PJ", ranking.getInteger("PJ")+1);
       ranking.save();
     }
   }
@@ -77,6 +89,7 @@ public class Rank extends Model {
   // partida perdida
   public static void loser(User us){
     Rank ranking = Rank.findFirst("user_id = ?", us.get("id"));
+    System.out.println("||||||||||||||||---->>>>>>>><<<<<<<<<<<<<<"+ranking.get("user_id"));
     
     if (ranking == null) {
       Rank r = new Rank();
@@ -84,11 +97,13 @@ public class Rank extends Model {
       r.set("PG", 0);
       r.set("PE", 0);  
       r.set("PP", 1);  
+      r.set("PJ", 1);  
       r.set("points", 0);
       r.save(); 
 
     }else{  
       ranking.set("PP", ranking.getInteger("PP")+1);
+      ranking.set("PJ", ranking.getInteger("PJ")+1);
       ranking.save();
       
     }

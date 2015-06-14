@@ -126,6 +126,7 @@ public class App{
                   }
             }, new MustacheTemplateEngine());
             
+            
             get("/play", (request, response) -> {
                   Map<String, Object> attributes = new HashMap<>();
 
@@ -160,59 +161,65 @@ public class App{
                   
                   if (c!=null){
 
-                	c.set("X",c.getx());	
-                	c.set("Y",c.gety());	
-                    	c.set("state",c.getState());	
-                    	c.save();
-                    	g.add(c);
+                  c.set("X",c.getx());    
+                  c.set("Y",c.gety());    
+                        c.set("state",c.getState());  
+                        c.save();
+                        g.add(c);
 
-                    	//Check winner
+                        //Check winner
 
-                    	int partida = game.gameOver(c);
+                        int partida = game.gameOver(c);
 
-  		//>0 indica que el juego termino ya que no hay mas casilleros disponibles
-		// >1 indica que el jugador que hizo el ultimo movimiento gano
-		// >2 indica que no hay ganador, el juego continua
+            //>0 indica que el juego termino ya que no hay mas casilleros disponibles
+            // >1 indica que el jugador que hizo el ultimo movimiento gano
+            // >2 indica que no hay ganador, el juego continua
 
-                    	if (partida==0){
+                        if (partida==0){
 
-                    		String actual = Play.turn(player1,player2,turno);
-                    		String draw = "<h2 style="+"\"text-align:center\""+"><i>"+"Empatee..!<i><br></h2>";
-                    		List<User> l_us = User.where("nickId = ?", actual);
-	          		User u = l_us.get(0);
-	          		Rank.draw(u);
-	          		List<User> us = User.where("nickId = ?", turno);
-	          		u = l_us.get(0);
-	          		Rank.draw(u);	
-                    		attributes.put("result",draw);
-                    		game.set("dateEnd",Start.getFechaActual());
-                    		game.save();
-                    	}
+                        String actual = Play.turn(player1,player2,turno);
+                        String draw = "<h2 style="+"\"text-align:center\""+"><i>"+"Empatee..!<i><br></h2>";
+                        List<User> l_us = User.where("nickId = ?", actual);
+                        User u1 = l_us.get(0);
+                        Rank.draw(u1);
+                        List<User> us = User.where("nickId = ?", turno);
+                        User u2 = us.get(0);
+                        Rank.draw(u2);     
+                        attributes.put("result",draw);
+                        game.set("dateEnd",Start.getFechaActual());
+                        game.save();
+                        }
 
-                    	if (partida==1){
+                        if (partida==1){
 
-                    		String actual = Play.turn(player1,player2,turno);
-	          		String winner = "<h2 style="+"\"text-align:center\""+"><i> Ganador!!!:"+actual +"<i><br></h2>";
-	          		List<User> l_us = User.where("nickId = ?", actual);
-	          		User u = l_us.get(0);
-	          		Rank.win(u);
-	          		game.set("dateEnd",Start.getFechaActual());
-                    		game.save();
-                    		u.add(game);
-	          		List<User> us = User.where("nickId = ?", turno);
-	          		u = l_us.get(0);
-	          		Rank.loser(u);		          		
-                    		attributes.put("result",winner);
+                        String actual = Play.turn(player1,player2,turno);
+                        String winner = "<h2 style="+"\"text-align:center\""+"><i> Ganador!!!:"+actual +"<i><br></h2>";
+                        List<User> l_us = User.where("nickId = ?", actual);
+                        User u1 = l_us.get(0);
+                        System.out.println("||||||||||||||||---->>>>>>>>"+actual);
+                        System.out.println("||||||||||||||||---->>>>>>>>"+turno);
+                        System.out.println("||||||||||||||||---->>>>>>>>"+u1.get("nickId"));
+                        Rank.win(u1);
+                        game.set("dateEnd",Start.getFechaActual());
+                        game.save();
+                        // u.add(game);
+                        List<User> us = User.where("nickId = ?", turno);
+                        User u2 = us.get(0);
+                        System.out.println("||||||||||||||||---->>>>>>>>"+actual);
+                        System.out.println("||||||||||||||||---->>>>>>>>"+turno);
+                        System.out.println("||||||||||||||||---->>>>>>>>"+u2.get("nickId"));
+                        Rank.loser(u2);                            
+                        attributes.put("result",winner);
 
-                    	}
+                        }
 
-                    	if(partida==2){
+                        if(partida==2){
 
-                    		String table = request.queryParams("table");
-                   		table = game.getGrid().toStringTable(); 
-                  		attributes.put("table", table);
+                              String table = request.queryParams("table");
+                              table = game.getGrid().toStringTable(); 
+                              attributes.put("table", table);
 
-                    	}
+                        }
 
                     
                   }
@@ -221,6 +228,7 @@ public class App{
                    return new ModelAndView(attributes, "play.moustache");
                 }, new MustacheTemplateEngine());
 
+      
 	
 
 	 
@@ -233,11 +241,11 @@ public class App{
                   List <Rank> ranking = Rank.findAll()
                   .orderBy("points desc");
 
-                  // List<int> num = new List();
-                  // for (int i=0;i<ranking.size();i++) num.add(i);
+                  List <Rank> position = Rank.findAll()
+                  .orderBy("nroRank asc");
 
                   attributes.put("ranking",ranking);
-                  // attributes.put("pos",num);
+                  attributes.put("pos",position);
 
                   return new ModelAndView(attributes, "rank.moustache");
             }, new MustacheTemplateEngine());

@@ -47,6 +47,7 @@
 	    <th>PG</th>
 	    <th>PE</th>
 	    <th>PP</th>
+	    <th>PJ</th>
 	  </tr>
 
 		{{#ranking}}
@@ -56,12 +57,12 @@
 			<td> {{toStringPG}}</td>
 			<td> {{toStringPE}}</td>
 			<td> {{toStringPP}}</td>
+			<td> {{toStringPJ}}</td>
 		</tr>
 		{{/ranking}}
+	</table>		
 
 		
-
-	</table>
 	<form action="/volverConnect4">
 		<p style="text-align:center"><br>
 			<input type="submit" value="Volver" name="volverConnect4">
