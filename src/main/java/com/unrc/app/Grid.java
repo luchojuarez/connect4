@@ -51,7 +51,7 @@ public class Grid extends Model{
 			for(int j = 0; j<=y; j++){
 
 				grid[i][j] = new Cell(i,j);
-				// grid[i][j] = 0;
+				
 			}
 		}
 	} 
@@ -134,106 +134,104 @@ public class Grid extends Model{
 		return cant == (x+1)*(y+1);
 	}
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-	// private String returnFicha(Cell number){
- //        if (number==0){
- //            return "<td bgcolor="+"#ffffff"+"></td>";
- //        }else if(number==1){
- //            return "<td bgcolor="+"#FF0000"+"></td>";
-        
- //        }else if (number==2){
- //            return "<td bgcolor="+"#0004FF"+"></td>";
-            
- //        }else{
- //            return null;
- //        }
- //    }
+	public int getState(Cell c){
+
+		int x = c.getx();
+		int y = c.gety();
+		return grid[x][y].getState();
+	}
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
 	
- 	// private String returnFicha(Cell c){
-  //       if (grid[c.getx()][c.gety()]==0){
-  //           return "<td bgcolor="+"#ffffff"+"></td>";
-  //       }else if(grid[c.getx()][c.gety()]==1){
-  //           return "<td bgcolor="+"#FF0000"+"></td>";
-        
-  //       }else if (grid[c.getx()][c.gety()]==2){
-  //           return "<td bgcolor="+"#0004FF"+"></td>";
-            
-  //       }else{
-  //           return null;
-  //       }
-    
-    
-  //   }
-   
-    
-    // public String toStringTabla(){
-    //  String tabla;
-    //         tabla="<table><tr>\n" +		
-    //             "<td>"+returnFicha(getCell(0,0))+"</td>\n" +
+ 	public String returnCell(Cell c){
+	
+	    if (getState(c)==0)
+	    	 return " bgcolor="+"\"#ffffff\""+">";
 
-    //             "<td>"+returnFicha(getCell(0,1))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(0,2))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(0,3))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(0,4))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(0,5))+"</td>\n" +
+	    if (getState(c)==1) 
+	    	 return " bgcolor="+"\"#FF0000\""+">";
+	    
+	    return " bgcolor="+"\"#0004FF\""+">";
+	}
 
-    //             "</tr>\n"+
-                
-    //             "<tr>\n" +		
-    //             "<td>"+returnFicha(getCell(1,0))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(1,1))+"</td>\n"+
-    //             "<td>"+returnFicha(getCell(1,2))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(1,3))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(1,4))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(1,5))+"</td>\n" +
-    //             "</tr>\n"+
-    //             "<tr>\n" +		
-    //             "<td>"+returnFicha(getCell(2,0))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(2,1))+"</td>\n"+
-    //             "<td>"+returnFicha(getCell(2,2))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(2,3))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(2,4))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(2,5))+"</td>\n" +
-    //             "</tr>\n"+
-                
-    //             "<tr>\n" +		
-    //             "<td>"+returnFicha(getCell(3,0))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(3,1))+"</td>\n"+
-    //             "<td>"+returnFicha(getCell(3,2))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(3,3))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(3,4))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(3,5))+"</td>\n" +
-    //             "</tr>\n"+
-    //              "<tr>\n" +		
-    //             "<td>"+returnFicha(getCell(4,0))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(4,1))+"</td>\n"+
-    //             "<td>"+returnFicha(getCell(4,2))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(4,3))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(4,4))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(4,5))+"</td>\n" +
-    //             "</tr>\n"+
-    //                 "<tr>\n" +		
-    //             "<td>"+returnFicha(getCell(5,0))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(5,1))+"</td>\n"+
-    //             "<td>"+returnFicha(getCell(5,2))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(5,3))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(5,4))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(5,5))+"</td>\n" +
-    //             "</tr>\n"+
-    //             "<tr>\n" +		
-    //             "<td>"+returnFicha(getCell(6,0))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(6,1))+"</td>\n"+
-    //             "<td>"+returnFicha(getCell(6,2))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(6,3))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(6,4))+"</td>\n" +
-    //             "<td>"+returnFicha(getCell(6,5))+"</td>\n" +
-    //             "</tr>\n</table>";
-                    
-                    
-                    
-                    
-                  
-                   
-    //         return tabla;
-    // }
+//----------------------------------------------------------------------------------------------------------------------------------------------------------   
+    
+   	public String toStringTable(){
+     	
+	            String table ="<table style="+"width:30%;"+"><tr>"+
+		    
+		    "<td>C0</td>" +
+		    "<td>C1</td>" +
+		    "<td>C2</td>" +
+		    "<td>C3</td>" +
+		    "<td>C4</td>" +
+		    "<td>C5</td><tr>" +		    
+
+	                "<td"+returnCell(getCell(0,0))+"-</td>" +
+
+	                "<td"+returnCell(getCell(0,1))+"-</td>" +
+	                "<td"+returnCell(getCell(0,2))+"-</td>" +
+	                "<td"+returnCell(getCell(0,3))+"-</td>" +
+	                "<td"+returnCell(getCell(0,4))+"-</td>" +
+	                "<td"+returnCell(getCell(0,5))+"-</td>" +
+
+	                "</tr>"+
+	                
+	                "<tr>" +		
+	                "<td"+returnCell(getCell(1,0))+"-</td>" +
+	                "<td"+returnCell(getCell(1,1))+"-</td>"+
+	                "<td"+returnCell(getCell(1,2))+"-</td>" +
+	                "<td"+returnCell(getCell(1,3))+"-</td>" +
+	                "<td"+returnCell(getCell(1,4))+"-</td>" +
+	                "<td"+returnCell(getCell(1,5))+"-</td>" +
+	                "</tr>"+
+	                "<tr>" +		
+	                "<td"+returnCell(getCell(2,0))+"-</td>" +
+	                "<td"+returnCell(getCell(2,1))+"-</td>"+
+	                "<td"+returnCell(getCell(2,2))+"-</td>" +
+	                "<td"+returnCell(getCell(2,3))+"-</td>" +
+	                "<td"+returnCell(getCell(2,4))+"-</td>" +
+	                "<td"+returnCell(getCell(2,5))+"-</td>" +
+	                "</tr>"+
+	                
+	                "<tr>" +		
+	                "<td"+returnCell(getCell(3,0))+"-</td>" +
+	                "<td"+returnCell(getCell(3,1))+"-</td>"+
+	                "<td"+returnCell(getCell(3,2))+"-</td>" +
+	                "<td"+returnCell(getCell(3,3))+"-</td>" +
+	                "<td"+returnCell(getCell(3,4))+"-</td>" +
+	                "<td"+returnCell(getCell(3,5))+"-</td>" +
+	                "</tr>"+
+	                 "<tr>" +		
+	                "<td"+returnCell(getCell(4,0))+"-</td>" +
+	                "<td"+returnCell(getCell(4,1))+"-</td>"+
+	                "<td"+returnCell(getCell(4,2))+"-</td>" +
+	                "<td"+returnCell(getCell(4,3))+"-</td>" +
+	                "<td"+returnCell(getCell(4,4))+"-</td>" +
+	                "<td"+returnCell(getCell(4,5))+"-</td>" +
+	                "</tr>"+
+	                    "<tr>" +		
+	                "<td"+returnCell(getCell(5,0))+"-</td>" +
+	                "<td"+returnCell(getCell(5,1))+"-</td>"+
+	                "<td"+returnCell(getCell(5,2))+"-</td>" +
+	                "<td"+returnCell(getCell(5,3))+"-</td>" +
+	                "<td"+returnCell(getCell(5,4))+"-</td>" +
+	                "<td"+returnCell(getCell(5,5))+"-</td>" +
+	                "</tr>"+
+	                "<tr>" +		
+	                "<td"+returnCell(getCell(6,0))+"-</td>" +
+	                "<td"+returnCell(getCell(6,1))+"-</td>"+
+	                "<td"+returnCell(getCell(6,2))+"-</td>" +
+	                "<td"+returnCell(getCell(6,3))+"-</td>" +
+	                "<td"+returnCell(getCell(6,4))+"-</td>" +
+	                "<td"+returnCell(getCell(6,5))+"-</td>" +
+	                "</tr></table>";
+
+	            return table;
+            }
+
+
 }

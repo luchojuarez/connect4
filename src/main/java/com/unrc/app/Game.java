@@ -2,6 +2,7 @@ package com.unrc.app;
 
 import org.javalite.activejdbc.Model;
 import java.util.ArrayList;
+import java.util.List;
 
 
 
@@ -241,6 +242,21 @@ public class Game extends Model {
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
 
+	public void set_Cells(List<Cell> c){
+
+		for (int i = 0 ; i<c.size() ; i++ ) {
+
+			Cell cell = new Cell();
+			cell.setx( (int) c.get(i).get("X")  );
+			cell.sety(  (int) c.get(i).get("Y")  );
+			cell.setState( (int) c.get(i).get("state")  );
+			g.setCell(cell);
+			g.incCant();
+		}
+	}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
+
 	/* getNextFreeCell(int y) devuelve la celda en donde se colocara la nueva ficha
 	@param y es la columna donde estara la nueva ficha	
 	@returns una celda
@@ -286,6 +302,11 @@ public class Game extends Model {
    	public String toString1 (){
     	return this.getString("player2_id");
 	}   
+
+	public Grid getGrid(){
+
+		return g;
+	}
 
 }
 

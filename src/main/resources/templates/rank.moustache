@@ -41,20 +41,25 @@
 
 	<table id="t01">
 	  <tr>
-	    <th>Position</th>
+	    
 	    <th>Points</th>
 	    <th>Id Player</th>
+	    <th>PG</th>
+	    <th>PE</th>
+	    <th>PP</th>
 	  </tr>
 
 		{{#ranking}}
 		<tr>
-			<td> {{toStringR1}}</td>
-			<td> {{toStringR}}</td>
-			<td> {{toStringR2}}</td>
+			<td> {{toStringPoint}}</td>
+			<td> {{toStringUser}}</td>
+			<td> {{toStringPG}}</td>
+			<td> {{toStringPE}}</td>
+			<td> {{toStringPP}}</td>
 		</tr>
 		{{/ranking}}
 
-
+		
 
 	</table>
 	<form action="/volverConnect4">

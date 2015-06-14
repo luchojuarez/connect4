@@ -108,13 +108,16 @@ public class App{
                   String player2 = request.queryParams("comboboxUs2");
                   System.out.println("----------"+player1);
                   System.out.println("----------"+player2);
+                             
                   attributes.put("us1",player1);
                   attributes.put("us2",player2);
                   attributes.put("turno",player1);
                   Game g = new Game();
+                  String table = g.getGrid().toStringTable();
                   boolean reg = MenuPlayer.newGame(player1,player2,g);
                   System.out.println("----------"+g.get("id"));
                   attributes.put("game_id",g.get("id"));
+                  attributes.put("table", table);
                   if(reg){
                     return new ModelAndView(attributes, "play.moustache");
                   }
@@ -126,73 +129,115 @@ public class App{
             get("/play", (request, response) -> {
                   Map<String, Object> attributes = new HashMap<>();
 
-                  System.out.println("***********"+request.attributes());
-                  System.out.println("***********"+request.attributes());
                   String player1 = request.queryParams("us1");
                   String player2 = request.queryParams("us2");
                   String game_id = request.queryParams("game_id");
                   String turno = request.queryParams("turno");
-                  String ficha = request.queryParams("ficha");
-                  String c1 = request.queryParams("1");
-                  String c2 = request.queryParams("2");
-                  String c3 = request.queryParams("3");
-                  String c4 = request.queryParams("4");
-                  String c5 = request.queryParams("5");
-                  String c6 = request.queryParams("6");
-                  String c7 = request.queryParams("7");
-                  System.out.println("***********"+request.attributes());
-                  System.out.println("***********"+request.queryParams());
-                  System.out.println("***********"+player1);
-                  System.out.println("***********"+player2);
-                  System.out.println("***********"+game_id);
-                  System.out.println("***********"+c1);
-                  System.out.println("***********"+c2);
-                  System.out.println("***********"+c3);
-                  System.out.println("***********"+c4);
-                  System.out.println("***********"+c5);
-                  System.out.println("***********"+c6);
-                  System.out.println("***********"+c7);
-                  System.out.println("+++++++++++"+turno);
-                  System.out.println("+++++++++++"+ficha);
+                  String boton = request.queryParams("C");
+                  
+                  List<Game> ga  = Game.where("id = ?", game_id);
+                  Game game = new Game();
+                  game = ga.get(0); 
+
+                  int id_grid = (int) game.get("grid_id");
+
+                  List<Grid> grid = Grid.where("id = ?", id_grid);
+                 
+                 List<Cell> celdas = Cell.where("grid_id = ?",id_grid);  
+
+                 game.set_Cells(celdas);
+
+                 Grid g = grid.get(0);               
+
+                 
                   turno = Play.turn(player1,player2,turno);
-                  System.out.println("+++++++++++"+turno);
-                  ficha = Play.colorFicha(player1,player2,turno);
-                  System.out.println("+++++++++++"+ficha);
-                  attributes.put("turno",turno);
-                  attributes.put("ficha",ficha);
                   attributes.put("us1",player1);
                   attributes.put("us2",player2);
                   attributes.put("game_id",game_id);
-                  attributes.put("1",c1);
-                  attributes.put("2",c2);
-                  attributes.put("3",c3);
-                  attributes.put("4",c4);
-                  attributes.put("5",c5);
-                  attributes.put("6",c6);
-                  attributes.put("7",c7);
+                  attributes.put("turno",turno);
+                  int y = Character.getNumericValue(boton.charAt(3));
+                  Cell c = game.pushDisc(y,Play.player_actual(player1,player2,turno)); 
+                  
+                  if (c!=null){
 
-                  List<Game> ga  = Game.where("id = ?", game_id);
-                  Game game = new Game();
-                  game = ga.get(0);
-                  System.out.println("***********"+game.get("player1_id"));
-                  System.out.println("***********"+game.get("player2_id"));
-  
-                  //ACA TENGO QUE LLAMAR A LA CLASE BOARD 
-                  // CON LOS PARAMETROS CORRESPONDIENTES 
-                  // PARA QUE ME PINTE LA CELDA QUE ME TIENE QUE PINTAR
-                  // Y DESPUES PASARLE LA TABLA A LA PAGINA WEB 
-                  // la clase board es nuestra clase grid
+                	c.set("X",c.getx());	
+                	c.set("Y",c.gety());	
+                    	c.set("state",c.getState());	
+                    	c.save();
+                    	g.add(c);
 
+                    	//Check winner
+
+                    	int partida = game.gameOver(c);
+
+  		//>0 indica que el juego termino ya que no hay mas casilleros disponibles
+		// >1 indica que el jugador que hizo el ultimo movimiento gano
+		// >2 indica que no hay ganador, el juego continua
+
+                    	if (partida==0){
+
+                    		String actual = Play.turn(player1,player2,turno);
+                    		String draw = "<h2 style="+"\"text-align:center\""+"><i>"+"Empatee..!<i><br></h2>";
+                    		List<User> l_us = User.where("nickId = ?", actual);
+	          		User u = l_us.get(0);
+	          		Rank.draw(u);
+	          		List<User> us = User.where("nickId = ?", turno);
+	          		u = l_us.get(0);
+	          		Rank.draw(u);	
+                    		attributes.put("result",draw);
+                    		game.set("dateEnd",Start.getFechaActual());
+                    		game.save();
+                    	}
+
+                    	if (partida==1){
+
+                    		String actual = Play.turn(player1,player2,turno);
+	          		String winner = "<h2 style="+"\"text-align:center\""+"><i> Ganador!!!:"+actual +"<i><br></h2>";
+	          		List<User> l_us = User.where("nickId = ?", actual);
+	          		User u = l_us.get(0);
+	          		Rank.win(u);
+	          		game.set("dateEnd",Start.getFechaActual());
+                    		game.save();
+                    		u.add(game);
+	          		List<User> us = User.where("nickId = ?", turno);
+	          		u = l_us.get(0);
+	          		Rank.loser(u);		          		
+                    		attributes.put("result",winner);
+
+                    	}
+
+                    	if(partida==2){
+
+                    		String table = request.queryParams("table");
+                   		table = game.getGrid().toStringTable(); 
+                  		attributes.put("table", table);
+
+                    	}
+
+                    
+                  }
+
+                   
                    return new ModelAndView(attributes, "play.moustache");
                 }, new MustacheTemplateEngine());
+
+	
+
+	 
 
 
  
             //ingresa a la pantalla que te muestra los ranking
             get("/rank", (request, response) -> {
                   Map<String, Object> attributes = new HashMap<>();
-                  List <Rank> ranking = Rank.findAll();
+                  List <Rank> ranking = Rank.findAll()
+                  .orderBy("points desc");
+
+                  // List<int> num = new List();
+                  // for (int i=0;i<ranking.size();i++) num.add(i);
+
                   attributes.put("ranking",ranking);
+                  // attributes.put("pos",num);
 
                   return new ModelAndView(attributes, "rank.moustache");
             }, new MustacheTemplateEngine());

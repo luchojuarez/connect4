@@ -17,37 +17,20 @@
 		</form>
 
 		<form>
-			<i> Color ficha Jugador 1: <i>
+			<i> Color ficha {{us1}}: <i>
 			<input type="color" name="colorP1" value="#ff0000">
 		</form>
 
 
 		<form>
-			<i> Color ficha Jugador 2: <i>
+			<i> Color ficha {{us2}}: <i>
 			<input type="color" name="colorP2" value="#000dff">
 		</form>
 
 
 				
-		<form action="/play">
-			<p style="text-align:center"><br>
-					<input type="hidden" name="game_id" value="{{game_id}}" />
-					<input type="hidden" name="us1" value="{{us1}}" />
-					<input type="hidden" name="us2" value="{{us2}}" />
-					<input type="hidden" name="turno" value="{{turno}}" />
-					<input type="hidden" name="ficha" value="{{ficha}}" />
-	
-				<input type="submit" value="  C1  " name="1" />
-				<input type="submit" value="  C2  " name="2"/>
-				<input type="submit" value="  C3  " name="3"/>
-				<input type="submit" value="  C4  " name="4"/>
-				<input type="submit" value="  C5  " name="5"/>
-				<input type="submit" value="  C6  " name="6"/>
-				<input type="submit" value="  C7  " name="7"/>
-			</p>
-		</form>	
-		<form>	
-				<style>
+		<form action="/play" >
+			<style>
 					table, th, td {
 						border: 1px solid black;
 						border-collapse: collapse;
@@ -56,80 +39,39 @@
 						padding: 7px;
 						text-align: center;
 					}
-				</style>
-				<table style="width:30%;">
-					<p style="text-align:center"><br>
-					<caption>{{us1}} vs {{us2}}</caption>
-					<i> Turno: {{turno}} <i>
+			</style>
 
-					<tr>
-						<td bgcolor>C1</td>
-						<td>C2</td>
-						<td>C3</td>
-						<td>C4</td>
-						<td>C5</td>
-						<td>C6</td>
-						<td>C7</td>
-					</tr>
-					<tr>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-					</tr>
-					<tr>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-					</tr>
-					<tr>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-					</tr>
-					<tr>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-					</tr>
-					<tr>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-					</tr>
-					<tr>
+			<p style="text-align:center"><br>
 
-						<td {{ficha}}>{{1}}</td>
-						<td>{{2}}</td>
-						<td>{{3}}</td>
-						<td>{{4}}</td>
-						<td>{{5}}</td>
-						<td>{{6}}</td>
-						<td>{{7}}</td>
-					</tr>
-				</table>
+					<input type="hidden" name="table" value="{{table}}" />
+					<input type="hidden" name="turno" value="{{turno}}" />
+					<input type="hidden" name="game_id" value="{{game_id}}" />
+					<input type="hidden" name="us1" value="{{us1}}" />
+					<input type="hidden" name="us2" value="{{us2}}" />
+					
+	
+				<input type="submit" value="   0   " name="C" />
+				<input type="submit" value="   1   " name="C"/>
+				<input type="submit" value="   2   " name="C"/>
+				<input type="submit" value="   3   " name="C"/>
+				<input type="submit" value="   4   " name="C"/>
+				<input type="submit" value="   5   " name="C"/>
+				
 			</p>
-			</p>		
 		</form>	
+		<form>	
+			
+	           		<p style="text-align:left"><br>
+			<caption>{{us1}} vs {{us2}}</caption><br>
+			<i> Turno: {{turno}}<i>	
+			{{{table}}}
+			</p>
+		</form>
+
+		<form>		
+			{{{result}}}
+
+		</form>
 
 			<form action="/save" method = "POST">
 				<p style="text-align:center"><br>
