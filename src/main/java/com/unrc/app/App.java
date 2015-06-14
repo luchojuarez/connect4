@@ -176,42 +176,64 @@ public class App{
 
                     	if (partida==0){
 
-                    		String winner = "<p style="+"\"text-align:center\""+"><i>"+"Empatee..!<i><br></p>";
-                    		attributes.put("result",winner);
-                    		return ModelAndView(attributes, "result.moustache");
+                    		String actual = Play.turn(player1,player2,turno);
+                    		String draw = "<h2 style="+"\"text-align:center\""+"><i>"+"Empatee..!<i><br></h2>";
+                    		List<User> l_us = User.where("nickId = ?", actual);
+	          		User u = l_us.get(0);
+	          		Rank.draw(u);
+	          		List<User> us = User.where("nickId = ?", turno);
+	          		u = l_us.get(0);
+	          		Rank.draw(u);	
+                    		attributes.put("result",draw);
+                    		
                     	}
 
                     	if (partida==1){
 
                     		String actual = Play.turn(player1,player2,turno);
-	          		String winner = "<p style="+"\"text-align:center\""+"><i> Ganador!!!:"+actual +"<i><br></p>";
+	          		String winner = "<h2 style="+"\"text-align:center\""+"><i> Ganador!!!:"+actual +"<i><br></h2>";
+	          		List<User> l_us = User.where("nickId = ?", actual);
+	          		User u = l_us.get(0);
+	          		Rank.win(u);
+	          		List<User> us = User.where("nickId = ?", turno);
+	          		u = l_us.get(0);
+	          		Rank.loser(u);		          		
                     		attributes.put("result",winner);
-                    		return ModelAndView(attributes, "result.moustache");
+                    		
+                    	}
+
+                    	if(partida==2){
+
+                    		String table = request.queryParams("table");
+                   		table = game.getGrid().toStringTable(); 
+                  		attributes.put("table", table);
+
                     	}
 
                     
                   }
 
-                   String table = request.queryParams("table");
-                   table = game.getGrid().toStringTable(); 
-                   attributes.put("table", table);
+                   
                    return new ModelAndView(attributes, "play.moustache");
                 }, new MustacheTemplateEngine());
 
 	
 
-	 get("/result", (request, response) -> {
-                  return new ModelAndView(attributes, "Connect4.moustache");                                   
-            }, new MustacheTemplateEngine());
-
+	 
 
 
  
             //ingresa a la pantalla que te muestra los ranking
             get("/rank", (request, response) -> {
                   Map<String, Object> attributes = new HashMap<>();
-                  List <Rank> ranking = Rank.findAll();
+                  List <Rank> ranking = Rank.findAll()
+                  .orderBy("points desc");
+
+                  List<int> num = new List();
+                  for (int i=0;i<ranking.size();i++) num.add(i);
+
                   attributes.put("ranking",ranking);
+                  attributes.put("pos",num);
 
                   return new ModelAndView(attributes, "rank.moustache");
             }, new MustacheTemplateEngine());

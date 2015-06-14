@@ -2,23 +2,35 @@ package com.unrc.app;
 
 import org.javalite.activejdbc.Model;
 import org.javalite.activejdbc.Base;
+import java.util.List;
 
 public class Rank extends Model {
 
    // @Override
    
-    public String toStringR (){
+
+
+    public String toStringPoint(){
       return this.getString("points");
   }   
 
-   	public String toStringR1 (){
-    	return this.getString("nroRank");
-	}   
-
-   	public String toStringR2 (){
+   	
+   	public String toStringUser(){
     	return this.getString("user_id");
 	}   
   
+    public String toStringPG(){
+      return this.getString("PG");
+  }   
+
+      public String toStringPE(){
+      return this.getString("PE");
+  }   
+
+    public String toStringPP(){
+      return this.getString("PP");
+  }   
+
 
   // partida ganada
   public static void win(User us) {
@@ -39,6 +51,7 @@ public class Rank extends Model {
       ranking.save();
     }
   } 
+
 
 
   // partida empatada
