@@ -29,7 +29,7 @@
 
 
 				
-		<form action="/play">
+		<form action="/play" method = "GET">
 			<style>
 					table, th, td {
 						border: 1px solid black;
@@ -50,12 +50,12 @@
 					<input type="hidden" name="us2" value="{{us2}}" />
 					
 	
-				<input type="submit" value="   1   " name="C" />
+				<input type="submit" value="   0   " name="C" />
+				<input type="submit" value="   1   " name="C"/>
 				<input type="submit" value="   2   " name="C"/>
 				<input type="submit" value="   3   " name="C"/>
 				<input type="submit" value="   4   " name="C"/>
 				<input type="submit" value="   5   " name="C"/>
-				<input type="submit" value="   6   " name="C"/>
 				
 			</p>
 		</form>	

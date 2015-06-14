@@ -108,13 +108,16 @@ public class App{
                   String player2 = request.queryParams("comboboxUs2");
                   System.out.println("----------"+player1);
                   System.out.println("----------"+player2);
+                             
                   attributes.put("us1",player1);
                   attributes.put("us2",player2);
                   attributes.put("turno",player1);
                   Game g = new Game();
+                  String table = g.getGrid().toStringTable();
                   boolean reg = MenuPlayer.newGame(player1,player2,g);
                   System.out.println("----------"+g.get("id"));
                   attributes.put("game_id",g.get("id"));
+                  attributes.put("table", table);
                   if(reg){
                     return new ModelAndView(attributes, "play.moustache");
                   }
@@ -133,8 +136,6 @@ public class App{
                   String turno = request.queryParams("turno");
                   String boton = request.queryParams("C");
                   
-                  //System.out.println("***********"+request.queryParams());
-                  
                   List<Game> ga  = Game.where("id = ?", game_id);
                   Game game = new Game();
                   game = ga.get(0); 
@@ -147,9 +148,7 @@ public class App{
 
                  game.set_Cells(celdas);
 
-                 Grid g = grid.get(0);
-
-                 System.out.println("---------------->>>>"+ celdas.size());
+                 Grid g = grid.get(0);               
 
                   table = game.getGrid().toStringTable(); 
                   turno = Play.turn(player1,player2,turno);
@@ -159,15 +158,13 @@ public class App{
                   attributes.put("game_id",game_id);
                   attributes.put("turno",turno);
                   int y = Character.getNumericValue(boton.charAt(3));
-                  Cell cell = game.pushDisc(y,Play.player_actual(player1,player2,turno)); 
+                  Cell c = game.pushDisc(y,Play.player_actual(player1,player2,turno)); 
                   
-                  if (cell!=null){
+                  if (c!=null){
 
-                	Cell c = new Cell();
-
-                	c.set("X",cell.getx());
-                	c.set("Y",cell.gety());
-                    	c.set("state",cell.getState());	
+                	c.set("X",c.getx());	
+                	c.set("Y",c.gety());	
+                    	c.set("state",c.getState());	
                     	c.save();
                     	g.add(c);
                   }

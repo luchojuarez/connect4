@@ -163,12 +163,12 @@ public class Grid extends Model{
      	
 	            String table ="<table style="+"width:30%;"+"><tr>"+
 		    
+		    "<td>C0</td>" +
 		    "<td>C1</td>" +
 		    "<td>C2</td>" +
 		    "<td>C3</td>" +
 		    "<td>C4</td>" +
-		    "<td>C5</td>" +
-		    "<td>C6</td><tr>" +		    
+		    "<td>C5</td><tr>" +		    
 
 	                "<td"+returnCell(getCell(0,0))+"-</td>" +
 

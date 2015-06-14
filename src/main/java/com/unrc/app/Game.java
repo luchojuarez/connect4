@@ -246,7 +246,11 @@ public class Game extends Model {
 
 		for (int i = 0 ; i<c.size() ; i++ ) {
 
-			g.setCell(c.get(i) );			
+			Cell cell = new Cell();
+			cell.setx( (int) c.get(i).get("X")  );
+			cell.sety(  (int) c.get(i).get("Y")  );
+			cell.setState( (int) c.get(i).get("state")  );
+			g.setCell(cell);
 		}
 	}
 
