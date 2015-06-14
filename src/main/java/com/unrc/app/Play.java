@@ -82,6 +82,14 @@ public class Play extends Model{
 		}
 
 	}
+
+	public static int player_actual(String p1,String p2,String turno){
+
+		if (turno.equals(p1)) return 1;
+		return 2;
+	}
+
+
 	public static String colorFicha(String p1,String p2,String turno){
 
         System.out.println("AAAAAAAAAA"+turno);

@@ -126,60 +126,51 @@ public class App{
             get("/play", (request, response) -> {
                   Map<String, Object> attributes = new HashMap<>();
 
-                  System.out.println("***********"+request.attributes());
+                  String table = request.queryParams("table");
                   String player1 = request.queryParams("us1");
                   String player2 = request.queryParams("us2");
                   String game_id = request.queryParams("game_id");
                   String turno = request.queryParams("turno");
-                  String ficha = request.queryParams("ficha");
-                  String c1 = request.queryParams("1");
-                  String c2 = request.queryParams("2");
-                  String c3 = request.queryParams("3");
-                  String c4 = request.queryParams("4");
-                  String c5 = request.queryParams("5");
-                  String c6 = request.queryParams("6");
-                  String c7 = request.queryParams("7");
-                  System.out.println("***********"+player1);
-                  System.out.println("***********"+player2);
-                  System.out.println("***********"+game_id);
-                  System.out.println("***********"+c1);
-                  System.out.println("***********"+c2);
-                  System.out.println("***********"+c3);
-                  System.out.println("***********"+c4);
-                  System.out.println("***********"+c5);
-                  System.out.println("***********"+c6);
-                  System.out.println("***********"+c7);
-                  System.out.println("+++++++++++"+turno);
-                  System.out.println("+++++++++++"+ficha);
+                  String boton = request.queryParams("C");
+                  
+                  //System.out.println("***********"+request.queryParams());
+                  
+                  List<Game> ga  = Game.where("id = ?", game_id);
+                  Game game = new Game();
+                  game = ga.get(0); 
+
+                  int id_grid = (int) game.get("grid_id");
+
+                  List<Grid> grid = Grid.where("id = ?", id_grid);
+                 
+                 List<Cell> celdas = Cell.where("grid_id = ?",id_grid);  
+
+                 game.set_Cells(celdas);
+
+                 Grid g = grid.get(0);
+
+                 System.out.println("---------------->>>>"+ celdas.size());
+
+                  table = game.getGrid().toStringTable(); 
                   turno = Play.turn(player1,player2,turno);
-                  System.out.println("+++++++++++"+turno);
-                  ficha = Play.colorFicha(player1,player2,turno);
-                  System.out.println("+++++++++++"+ficha);
-                  attributes.put("turno",turno);
-                  attributes.put("ficha",ficha);
+                  attributes.put("table", table);
                   attributes.put("us1",player1);
                   attributes.put("us2",player2);
                   attributes.put("game_id",game_id);
-                  attributes.put("1",c1);
-                  attributes.put("2",c2);
-                  attributes.put("3",c3);
-                  attributes.put("4",c4);
-                  attributes.put("5",c5);
-                  attributes.put("6",c6);
-                  attributes.put("7",c7);
+                  attributes.put("turno",turno);
+                  int y = Character.getNumericValue(boton.charAt(3));
+                  Cell cell = game.pushDisc(y,Play.player_actual(player1,player2,turno)); 
+                  
+                  if (cell!=null){
 
-                  List<Game> ga  = Game.where("id = ?", game_id);
-                  Game game = new Game();
-                  game = ga.get(0);
-                  System.out.println("***********"+game.get("player1_id"));
-                  System.out.println("***********"+game.get("player2_id"));
-  
-                  //ACA TENGO QUE LLAMAR A LA CLASE BOARD 
-                  // CON LOS PARAMETROS CORRESPONDIENTES 
-                  // PARA QUE ME PINTE LA CELDA QUE ME TIENE QUE PINTAR
-                  // Y DESPUES PASARLE LA TABLA A LA PAGINA WEB 
-                  // la clase board es nuestra clase grid
+                	Cell c = new Cell();
 
+                	c.set("X",cell.getx());
+                	c.set("Y",cell.gety());
+                    	c.set("state",cell.getState());	
+                    	c.save();
+                    	g.add(c);
+                  }
                    return new ModelAndView(attributes, "play.moustache");
                 }, new MustacheTemplateEngine());
 

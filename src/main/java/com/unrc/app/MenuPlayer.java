@@ -55,9 +55,9 @@ public class MenuPlayer extends Model{
 			g.save();
 			// int gameState = Play.playing(us1,us2,g);
 
-			Grid grid = new Grid();
-			grid.set("X",7);
-			grid.set("Y",6);
+			Grid grid = g.getGrid();
+			grid.set("X",6);
+			grid.set("Y",5);
 			grid.save();
 			grid.add(g);
             System.out.println("***********");

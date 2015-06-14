@@ -57,6 +57,7 @@ CREATE TABLE cells(
  id INT(11) NOT NULL AUTO_INCREMENT,
  X INT,
  Y INT,
+ state INT,
  grid_id INT,
 CONSTRAINT cells_pk PRIMARY KEY (id));
 
