@@ -73,9 +73,9 @@
 
 		</form>
 
-			<form action="/save" method = "POST">
-				<p style="text-align:left"><br>
-					<input type="submit" value="Guardar" name="save">
+			<form action="/volverConnect4">
+				<p style="text-align:center"><br>
+					<input type="submit" value="Guardar" name="volverConnect4">
 				</p>
 			</form>
 

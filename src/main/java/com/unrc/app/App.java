@@ -108,22 +108,33 @@ public class App{
                   String player2 = request.queryParams("comboboxUs2");
                   System.out.println("----------"+player1);
                   System.out.println("----------"+player2);
-                             
-                  attributes.put("us1",player1);
-                  attributes.put("us2",player2);
-                  attributes.put("turno",player1);
-                  Game g = new Game();
-                  String table = g.getGrid().toStringTable();
-                  boolean reg = MenuPlayer.newGame(player1,player2,g);
-                  System.out.println("----------"+g.get("id"));
-                  attributes.put("game_id",g.get("id"));
-                  attributes.put("table", table);
-                  if(reg){
-                    return new ModelAndView(attributes, "play.moustache");
+
+                  // control de usuarios diferentes
+                  if(player1.equals(player2)){
+                        List <User> users = User.findAll();
+                        attributes.put("users",users);
+
+                        attributes.put("us1",player1);
+                        attributes.put("us2",player2);
+                        return new ModelAndView(attributes, "Connect4.moustache");                                   
                   }
                   else{
-                      return new ModelAndView(attributes, "Connect4.moustache");                                   
-                  }
+                        attributes.put("us1",player1);
+                        attributes.put("us2",player2);
+                        attributes.put("turno",player1);
+                        Game g = new Game();
+                        String table = g.getGrid().toStringTable();
+                        boolean reg = MenuPlayer.newGame(player1,player2,g);
+                        System.out.println("----------"+g.get("id"));
+                        attributes.put("game_id",g.get("id"));
+                        attributes.put("table", table);
+                        if(reg){
+                          return new ModelAndView(attributes, "play.moustache");
+                        }
+                        else{
+                            return new ModelAndView(attributes, "Connect4.moustache");                                   
+                        }
+                  }      
             }, new MustacheTemplateEngine());
             
             
@@ -177,39 +188,39 @@ public class App{
 
                         if (partida==0){
 
-                        String actual = Play.turn(player1,player2,turno);
-                        String draw = "<h2 style="+"\"text-align:center\""+"><i>"+"Empatee..!<i><br></h2>";
-                        List<User> l_us = User.where("nickId = ?", actual);
-                        User u1 = l_us.get(0);
-                        Rank.draw(u1);
-                        List<User> us = User.where("nickId = ?", turno);
-                        User u2 = us.get(0);
-                        Rank.draw(u2);     
-                        attributes.put("result",draw);
-                        game.set("dateEnd",Start.getFechaActual());
-                        game.save();
+                              String actual = Play.turn(player1,player2,turno);
+                              String draw = "<h2 style="+"\"text-align:center\""+"><i>"+"Empatee..!<i><br></h2>";
+                              List<User> l_us = User.where("nickId = ?", actual);
+                              User u1 = l_us.get(0);
+                              Rank.draw(u1);
+                              List<User> us = User.where("nickId = ?", turno);
+                              User u2 = us.get(0);
+                              Rank.draw(u2);     
+                              attributes.put("result",draw);
+                              game.set("dateEnd",Start.getFechaActual());
+                              game.save();
                         }
 
                         if (partida==1){
 
-                        String actual = Play.turn(player1,player2,turno);
-                        String winner = "<h2 style="+"\"text-align:center\""+"><i> Ganador!!!:"+actual +"<i><br></h2>";
-                        List<User> l_us = User.where("nickId = ?", actual);
-                        User u1 = l_us.get(0);
-                        System.out.println("||||||||||||||||---->>>>>>>>"+actual);
-                        System.out.println("||||||||||||||||---->>>>>>>>"+turno);
-                        System.out.println("||||||||||||||||---->>>>>>>>"+u1.get("nickId"));
-                        Rank.win(u1);
-                        game.set("dateEnd",Start.getFechaActual());
-                        game.save();
-                        // u.add(game);
-                        List<User> us = User.where("nickId = ?", turno);
-                        User u2 = us.get(0);
-                        System.out.println("||||||||||||||||---->>>>>>>>"+actual);
-                        System.out.println("||||||||||||||||---->>>>>>>>"+turno);
-                        System.out.println("||||||||||||||||---->>>>>>>>"+u2.get("nickId"));
-                        Rank.loser(u2);                            
-                        attributes.put("result",winner);
+                              String actual = Play.turn(player1,player2,turno);
+                              String winner = "<h2 style="+"\"text-align:center\""+"><i> Ganador!!!:"+actual +"<i><br></h2>";
+                              List<User> l_us = User.where("nickId = ?", actual);
+                              User u1 = l_us.get(0);
+                              System.out.println("||||||||||||||||---->>>>>>>>"+actual);
+                              System.out.println("||||||||||||||||---->>>>>>>>"+turno);
+                              System.out.println("||||||||||||||||---->>>>>>>>"+u1.get("nickId"));
+                              Rank.win(u1);
+                              game.set("dateEnd",Start.getFechaActual());
+                              game.save();
+                              // u.add(game);
+                              List<User> us = User.where("nickId = ?", turno);
+                              User u2 = us.get(0);
+                              System.out.println("||||||||||||||||---->>>>>>>>"+actual);
+                              System.out.println("||||||||||||||||---->>>>>>>>"+turno);
+                              System.out.println("||||||||||||||||---->>>>>>>>"+u2.get("nickId"));
+                              Rank.loser(u2);                            
+                              attributes.put("result",winner);
 
                         }
 
@@ -226,7 +237,7 @@ public class App{
 
                    
                    return new ModelAndView(attributes, "play.moustache");
-                }, new MustacheTemplateEngine());
+                  }, new MustacheTemplateEngine());
 
       
 	
@@ -265,13 +276,78 @@ public class App{
             }, new MustacheTemplateEngine());
 
 
-            post("/save", (request, response) -> {
-                return new ModelAndView(null, "play.moustache");
-            }, new MustacheTemplateEngine());
+            // post("/save", (request, response) -> {
+            //     return new ModelAndView(null, "play.moustache");
+            // }, new MustacheTemplateEngine());
 
             post("/load", (request, response) -> {
-                return new ModelAndView(null, "play.moustache");
+                  // Map<String, Object> attributes = new HashMap<>();
+
+                  // String gameId = request.queryParams("comboboxGame");
+                  // String player1 = request.queryParams("us1");
+                  // String player2 = request.queryParams("us2");
+                  // attributes.put("us1",player1);
+                  // attributes.put("us2",player2);
+                  // attributes.put("us2",game_id);
+                  Map<String, Object> attributes = new HashMap<>();
+
+                  String j1 = request.queryParams("comboboxUs1");
+                  String j2 = request.queryParams("comboboxUs2");
+
+                  System.out.println("<><><><><><><><><><><><>"+j1);
+                  System.out.println("<><><><><><><><><><><><>"+j2);
+                  List<Game> juegos = Game.where("player1_id = ?",j1);
+                  attributes.put("juegos",juegos);
+                  attributes.put("us1",j1);
+                  attributes.put("us2",j2);
+
+
+                return new ModelAndView(attributes, "load.moustache");
             }, new MustacheTemplateEngine());
+
+            get("/load", (request, response) -> {
+                  Map<String, Object> attributes = new HashMap<>();
+                  List <User> users = User.findAll();
+                  attributes.put("users",users);
+
+                  String player1 = request.queryParams("comboboxUs1");
+                  String player2 = request.queryParams("comboboxUs2");
+                  String juegos = "";
+
+                  attributes.put("us1",player1);
+                  attributes.put("us2",player2);
+                  attributes.put("juegos",juegos);
+
+                  // Map<String, Object> attributes = new HashMap<>();
+
+                  // String j1 = request.queryParams("comboboxUs1");
+                  // String j2 = request.queryParams("comboboxUs2");
+
+                  // System.out.println("<><><><><><><><><><><><>"+j1);
+                  // System.out.println("<><><><><><><><><><><><>"+j2);
+                  // List<Game> juegos = Game.where("player1_id = ?",j1);
+                  // attributes.put("juegos",juegos);
+                  // attributes.put("us1",j1);
+                  // attributes.put("us2",j2);
+
+
+                return new ModelAndView(attributes, "load.moustache");
+            }, new MustacheTemplateEngine());
+
+
+            // post("/cargar", (request, response) -> {
+            //       Map<String, Object> attributes = new HashMap<>();
+
+            //       String gameId = request.queryParams("comboboxGame");
+            //       String player1 = request.queryParams("us1");
+            //       String player2 = request.queryParams("us2");
+            //       attributes.put("us1",player1);
+            //       attributes.put("us2",player2);
+            //       attributes.put("game_id",gameId);
+            //     return new ModelAndView(attributes, "play.moustache");
+            // }, new MustacheTemplateEngine());
+
+
       }
 
 
@@ -289,8 +365,12 @@ public class App{
       // >> como manejar los graficos de las fichas
       // >> recuperar partida
       // >> ranking
-     // >> fichas
-     // >> que no pueda jugar el mismo jugador contra el
+      // >> fichas
+      // >> que no pueda jugar el mismo jugador contra el
+      
+
+      // control de usuarios diferentes
+      // cargar partida
 
 
 }

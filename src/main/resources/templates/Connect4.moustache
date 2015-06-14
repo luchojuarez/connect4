@@ -48,14 +48,13 @@
 
 
 
-
 		<form action="/rank">
 			<p style="text-align:center"><br>
 				<input type="submit" value="Ver Ranking" name="rank">
 			</p>
 		</form>
 	
-		<form action="/load" method = "POST">
+		<form action="/load">
 			<p style="text-align:center"><br>
 				<input type="submit" value="Cargar Partida" name="load">
 			</p>

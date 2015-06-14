@@ -302,6 +302,9 @@ public class Game extends Model {
    	public String toString1 (){
     	return this.getString("player2_id");
 	}   
+   	public String toStringGame (){
+    	return this.getString("id");
+	}   
 
 	public Grid getGrid(){
 
