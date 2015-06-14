@@ -127,6 +127,7 @@ public class App{
                   Map<String, Object> attributes = new HashMap<>();
 
                   System.out.println("***********"+request.attributes());
+                  System.out.println("***********"+request.attributes());
                   String player1 = request.queryParams("us1");
                   String player2 = request.queryParams("us2");
                   String game_id = request.queryParams("game_id");
@@ -139,6 +140,8 @@ public class App{
                   String c5 = request.queryParams("5");
                   String c6 = request.queryParams("6");
                   String c7 = request.queryParams("7");
+                  System.out.println("***********"+request.attributes());
+                  System.out.println("***********"+request.queryParams());
                   System.out.println("***********"+player1);
                   System.out.println("***********"+player2);
                   System.out.println("***********"+game_id);

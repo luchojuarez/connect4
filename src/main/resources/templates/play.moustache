@@ -63,7 +63,7 @@
 					<i> Turno: {{turno}} <i>
 
 					<tr>
-						<td>C1</td>
+						<td bgcolor>C1</td>
 						<td>C2</td>
 						<td>C3</td>
 						<td>C4</td>
