@@ -251,6 +251,7 @@ public class Game extends Model {
 			cell.sety(  (int) c.get(i).get("Y")  );
 			cell.setState( (int) c.get(i).get("state")  );
 			g.setCell(cell);
+			g.incCant();
 		}
 	}
 

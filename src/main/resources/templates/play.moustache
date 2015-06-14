@@ -29,7 +29,7 @@
 
 
 				
-		<form action="/play" method = "GET">
+		<form action="/play" >
 			<style>
 					table, th, td {
 						border: 1px solid black;
@@ -66,7 +66,12 @@
 			<i> Turno: {{turno}}<i>	
 			{{{table}}}
 			</p>
-		</form>	
+		</form>
+
+		<form>		
+			{{{result}}}
+
+		</form>
 
 			<form action="/save" method = "POST">
 				<p style="text-align:center"><br>

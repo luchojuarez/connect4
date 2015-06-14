@@ -129,7 +129,6 @@ public class App{
             get("/play", (request, response) -> {
                   Map<String, Object> attributes = new HashMap<>();
 
-                  String table = request.queryParams("table");
                   String player1 = request.queryParams("us1");
                   String player2 = request.queryParams("us2");
                   String game_id = request.queryParams("game_id");
@@ -150,9 +149,8 @@ public class App{
 
                  Grid g = grid.get(0);               
 
-                  table = game.getGrid().toStringTable(); 
+                 
                   turno = Play.turn(player1,player2,turno);
-                  attributes.put("table", table);
                   attributes.put("us1",player1);
                   attributes.put("us2",player2);
                   attributes.put("game_id",game_id);
@@ -167,9 +165,45 @@ public class App{
                     	c.set("state",c.getState());	
                     	c.save();
                     	g.add(c);
+
+                    	//Check winner
+
+                    	int partida = game.gameOver(c);
+
+  		//>0 indica que el juego termino ya que no hay mas casilleros disponibles
+		// >1 indica que el jugador que hizo el ultimo movimiento gano
+		// >2 indica que no hay ganador, el juego continua
+
+                    	if (partida==0){
+
+                    		String winner = "<p style="+"\"text-align:center\""+"><i>"+"Empatee..!<i><br></p>";
+                    		attributes.put("result",winner);
+                    		return ModelAndView(attributes, "result.moustache");
+                    	}
+
+                    	if (partida==1){
+
+                    		String actual = Play.turn(player1,player2,turno);
+	          		String winner = "<p style="+"\"text-align:center\""+"><i> Ganador!!!:"+actual +"<i><br></p>";
+                    		attributes.put("result",winner);
+                    		return ModelAndView(attributes, "result.moustache");
+                    	}
+
+                    
                   }
+
+                   String table = request.queryParams("table");
+                   table = game.getGrid().toStringTable(); 
+                   attributes.put("table", table);
                    return new ModelAndView(attributes, "play.moustache");
                 }, new MustacheTemplateEngine());
+
+	
+
+	 get("/result", (request, response) -> {
+                  return new ModelAndView(attributes, "Connect4.moustache");                                   
+            }, new MustacheTemplateEngine());
+
 
 
  

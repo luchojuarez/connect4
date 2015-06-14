@@ -1,0 +1,26 @@
+			<!-- play.moustache -->
+
+<html>
+	<head>
+		<h1 style="text-align:center">Connect 4</h1>
+
+	</head>
+
+	<body>
+
+						
+		<form>		
+			{{{result}}}
+
+		</form>
+
+			<form action="/volverConnect4">
+				<p style="text-align:center"><br>
+					<input type="submit" value="Volver" name="volverConnect4">
+				</p>
+			</form>
+
+			<p style="text-align:center"><i>" Cibils - Dominguez - Juarez "<i><br>
+		</form>
+	</body>
+</html>

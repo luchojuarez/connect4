@@ -71,9 +71,7 @@ public class Play extends Model{
 
 	public static String turn(String p1,String p2,String turno){
 
-        System.out.println("AAAAAAAAAA"+turno);
-
-
+       
 		if (turno.equals(p1)){
 			return p2;
 		}		
@@ -85,8 +83,8 @@ public class Play extends Model{
 
 	public static int player_actual(String p1,String p2,String turno){
 
-		if (turno.equals(p1)) return 1;
-		return 2;
+		if (turno.equals(p1)) return 2;
+		return 1;
 	}
 
 
