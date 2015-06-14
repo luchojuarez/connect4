@@ -185,7 +185,8 @@ public class App{
 	          		u = l_us.get(0);
 	          		Rank.draw(u);	
                     		attributes.put("result",draw);
-                    		
+                    		game.set("dateEnd",Start.getFechaActual());
+                    		game.save();
                     	}
 
                     	if (partida==1){
@@ -195,11 +196,14 @@ public class App{
 	          		List<User> l_us = User.where("nickId = ?", actual);
 	          		User u = l_us.get(0);
 	          		Rank.win(u);
+	          		game.set("dateEnd",Start.getFechaActual());
+                    		game.save();
+                    		u.add(game);
 	          		List<User> us = User.where("nickId = ?", turno);
 	          		u = l_us.get(0);
 	          		Rank.loser(u);		          		
                     		attributes.put("result",winner);
-                    		
+
                     	}
 
                     	if(partida==2){
@@ -229,11 +233,11 @@ public class App{
                   List <Rank> ranking = Rank.findAll()
                   .orderBy("points desc");
 
-                  List<int> num = new List();
-                  for (int i=0;i<ranking.size();i++) num.add(i);
+                  // List<int> num = new List();
+                  // for (int i=0;i<ranking.size();i++) num.add(i);
 
                   attributes.put("ranking",ranking);
-                  attributes.put("pos",num);
+                  // attributes.put("pos",num);
 
                   return new ModelAndView(attributes, "rank.moustache");
             }, new MustacheTemplateEngine());
