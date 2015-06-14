@@ -34,9 +34,11 @@ CREATE TABLE games(
  dateBegin VARCHAR(30),
  dateEnd VARCHAR(30),
  grid_id INT,
+ 
 --  user_id INT,
  player1_id INT,
  player2_id INT,
+ win_id INT,
 CONSTRAINT games_pk PRIMARY KEY (id));
 
 -- *********************************************************************************************

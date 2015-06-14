@@ -39,10 +39,11 @@ public class MenuPlayer extends Model{
 		// }
 	}
 
-	public static boolean newGame (String us1,String us2) {
+	public static boolean newGame (String us1,String us2,Game g) {
 		boolean respuesta = false;
 		if(respuesta == false){
-			Game g = new Game();
+            System.out.println("***********");
+			// Game g = new Game();
 			g.set("dateBegin",Start.getFechaActual());
 
 			User u1 = User.findFirst("nickId=?", us1);
@@ -59,6 +60,7 @@ public class MenuPlayer extends Model{
 			grid.set("Y",6);
 			grid.save();
 			grid.add(g);
+            System.out.println("***********");
 			return true;
 		}
 		else{

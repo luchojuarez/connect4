@@ -8,7 +8,7 @@
 
 	<body>
 
-		<form action="action_page.php">
+		<form>
 			<i> Seleccione Dimension Grilla: <i>
 			<select name="dimension">
 			<option value="7x6">7x6 (Default)</option>
@@ -16,43 +16,37 @@
 			<input type="submit" value="Aplicar">
 		</form>
 
-<!-- 		<form action="/rank">
-			<p style="text-align:right"><i> Ver Ranking :  <i>
-			<input type="submit" value="Click">
-		</form>
- -->
-
-		<form action="action_page.php">
+		<form>
 			<i> Color ficha Jugador 1: <i>
 			<input type="color" name="colorP1" value="#ff0000">
 		</form>
 
 
-		<form action="action_page.php">
+		<form>
 			<i> Color ficha Jugador 2: <i>
 			<input type="color" name="colorP2" value="#000dff">
 		</form>
 
 
-
 				
-		<form action="/drop" method="POST">
+		<form action="/play">
 			<p style="text-align:center"><br>
-	<!-- 				<input type="hidden"name="game_id" value={{current.game_id}} />
-					<input type="hidden"name="columna"  />	
-	 -->
-				<input type="submit" value="      C1     " name="C1" />
-				<input type="submit" value="      C2     " name="C2"/>
-				<input type="submit" value="      C3     " name="C3"/>
-				<input type="submit" value="      C4     " name="C4"/>
-				<input type="submit" value="      C5     " name="C5"/>
-				<input type="submit" value="      C6     " name="C6"/>
-				<input type="submit" value="      C7     " name="C7"/>
+					<input type="hidden" name="game_id" value="{{game_id}}" />
+					<input type="hidden" name="us1" value="{{us1}}" />
+					<input type="hidden" name="us2" value="{{us2}}" />
+					<input type="hidden" name="turno" value="{{turno}}" />
+					<input type="hidden" name="ficha" value="{{ficha}}" />
+	
+				<input type="submit" value="  C1  " name="1" />
+				<input type="submit" value="  C2  " name="2"/>
+				<input type="submit" value="  C3  " name="3"/>
+				<input type="submit" value="  C4  " name="4"/>
+				<input type="submit" value="  C5  " name="5"/>
+				<input type="submit" value="  C6  " name="6"/>
+				<input type="submit" value="  C7  " name="7"/>
 			</p>
 		</form>	
-
 		<form>	
-			<p style="text-align:center"><br>
 				<style>
 					table, th, td {
 						border: 1px solid black;
@@ -63,10 +57,11 @@
 						text-align: center;
 					}
 				</style>
-			</p>
 				<table style="width:30%;">
 					<p style="text-align:center"><br>
 					<caption>{{us1}} vs {{us2}}</caption>
+					<i> Turno: {{turno}} <i>
+
 					<tr>
 						<td>C1</td>
 						<td>C2</td>
@@ -122,13 +117,14 @@
 						<td>-</td>
 					</tr>
 					<tr>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
+
+						<td {{ficha}}>{{1}}</td>
+						<td>{{2}}</td>
+						<td>{{3}}</td>
+						<td>{{4}}</td>
+						<td>{{5}}</td>
+						<td>{{6}}</td>
+						<td>{{7}}</td>
 					</tr>
 				</table>
 			</p>

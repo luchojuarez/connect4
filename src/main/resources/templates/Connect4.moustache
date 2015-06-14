@@ -42,6 +42,13 @@
 			</p>
 		</form>
 
+
+
+
+
+
+
+
 		<form action="/rank">
 			<p style="text-align:center"><br>
 				<input type="submit" value="Ver Ranking" name="rank">
