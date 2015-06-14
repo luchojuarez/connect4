@@ -3,7 +3,8 @@
 <html>
 	<head>
 		<h1 style="text-align:center">Connect 4</h1>
-		<h2 style="text-align:center">Los 10 Mejores</h2>
+		<br><br>
+		<h2 style="text-align:center">Ranking</h2>
 
 	</head>
 
@@ -47,78 +48,18 @@
 
 		{{#ranking}}
 		<tr>
-			<td> {{toStringR}}</td>
 			<td> {{toStringR1}}</td>
+			<td> {{toStringR}}</td>
 			<td> {{toStringR2}}</td>
 		</tr>
 		{{/ranking}}
 
 
 
-<!-- 	  <tr>
-	    <td>-</td>
-	    <td>-</td>
-	    <td>-</td>		
-	    <td>-</td>
-	  </tr>
-	  <tr>
-	    <td>-</td>
-	    <td>-</td>
-	    <td>-</td>		
-	    <td>-</td>
-	  </tr>
-	  <tr>
-	    <td>-</td>
-	    <td>-</td>
-	    <td>-</td>		
-	    <td>-</td>
-	  </tr>
-	  <tr>
-	    <td>-</td>
-	    <td>-</td>
-	    <td>-</td>		
-	    <td>-</td>
-	  </tr>
-	  <tr>
-	    <td>-</td>
-	    <td>-</td>		
-	    <td>-</td>
-	    <td>-</td>
-	  </tr>
-	  <tr>
-	    <td>-</td>
-	    <td>-</td>		
-	    <td>-</td>
-	    <td>-</td>
-	  </tr>
-	  <tr>
-	    <td>-</td>
-	    <td>-</td>		
-	    <td>-</td>
-	    <td>-</td>
-	  </tr>
-	  <tr>
-	    <td>-</td>
-	    <td>-</td>		
-	    <td>-</td>
-	    <td>-</td>
-	  </tr>
-	  <tr>
-	    <td>-</td>
-	    <td>-</td>		
-	    <td>-</td>
-	    <td>-</td>
-	  </tr>
-	  <tr>
-	    <td>-</td>
-	    <td>-</td>		
-	    <td>-</td>
-	    <td>-</td>
-	  </tr>
- -->	</table>
-	<form action="/volver">
+	</table>
+	<form action="/volverConnect4">
 		<p style="text-align:center"><br>
-			<input type="submit" value="Volver" name="volver">
+			<input type="submit" value="Volver" name="volverConnect4">
 		</p>
 	</form>
 

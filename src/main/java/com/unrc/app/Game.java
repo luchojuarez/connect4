@@ -279,6 +279,14 @@ public class Game extends Model {
 		return g.gety();
 	}
 
+
+   	public String toString (){
+    	return this.getString("player1_id");
+	}   
+   	public String toString1 (){
+    	return this.getString("player2_id");
+	}   
+
 }
 
 /*

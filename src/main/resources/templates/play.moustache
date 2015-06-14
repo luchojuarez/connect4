@@ -8,54 +8,45 @@
 
 	<body>
 
-			<form action="action_page.php">
-				<i> Seleccione Dimension Grilla: <i>
-				<select name="dimension">
-				<option value="7x6">7x6 (Default)</option>
-				</select>
-				<input type="submit" value="Aplicar">
-			</form>
+		<form>
+			<i> Seleccione Dimension Grilla: <i>
+			<select name="dimension">
+			<option value="7x6">7x6 (Default)</option>
+			</select>
+			<input type="submit" value="Aplicar">
+		</form>
 
-			<form action="/rank">
-				<p style="text-align:right"><i> Ver Ranking :  <i>
-				<input type="submit" value="Click">
-			</form>
-
-
-			<form action="action_page.php">
-				<i> Seleccione color ficha Jugador 1: <i>
-				<input type="color" name="colorP1" value="#ff0000">
-				<input type="submit" value="Aplicar">
-			</form>
+		<form>
+			<i> Color ficha Jugador 1: <i>
+			<input type="color" name="colorP1" value="#ff0000">
+		</form>
 
 
-			<form action="action_page.php">
-				<i> Seleccione color ficha Jugador 2: <i>
-				<input type="color" name="colorP2" value="#ff0000">
-				<input type="submit" value="Aplicar">
-			</form>
-
-			<br><br>
-			<br><br>
+		<form>
+			<i> Color ficha Jugador 2: <i>
+			<input type="color" name="colorP2" value="#000dff">
+		</form>
 
 
 				
-				<form action="/drop" method="POST">
-					<p style="text-align:center"><br>
-	<!-- 				<input type="hidden"name="game_id" value={{current.game_id}} />
-					<input type="hidden"name="columna"  />	
-	 -->
-					<input type="submit" value="      C1     " name="C1" />
-					<input type="submit" value="      C2     " name="C2"/>
-					<input type="submit" value="      C3     " name="C3"/>
-					<input type="submit" value="      C4     " name="C4"/>
-					<input type="submit" value="      C5     " name="C5"/>
-					<input type="submit" value="      C6     " name="C6"/>
-					<input type="submit" value="      C7     " name="C7"/>
-					</p>
-				</form>	
-
-				<p style="text-align:center"><br>
+		<form action="/play">
+			<p style="text-align:center"><br>
+					<input type="hidden" name="game_id" value="{{game_id}}" />
+					<input type="hidden" name="us1" value="{{us1}}" />
+					<input type="hidden" name="us2" value="{{us2}}" />
+					<input type="hidden" name="turno" value="{{turno}}" />
+					<input type="hidden" name="ficha" value="{{ficha}}" />
+	
+				<input type="submit" value="  C1  " name="1" />
+				<input type="submit" value="  C2  " name="2"/>
+				<input type="submit" value="  C3  " name="3"/>
+				<input type="submit" value="  C4  " name="4"/>
+				<input type="submit" value="  C5  " name="5"/>
+				<input type="submit" value="  C6  " name="6"/>
+				<input type="submit" value="  C7  " name="7"/>
+			</p>
+		</form>	
+		<form>	
 				<style>
 					table, th, td {
 						border: 1px solid black;
@@ -66,9 +57,11 @@
 						text-align: center;
 					}
 				</style>
-				<table style="width:50%;">
+				<table style="width:30%;">
 					<p style="text-align:center"><br>
-					<caption>{{comboboxUs1}} vs {{comboboxUs2}}</caption>
+					<caption>{{us1}} vs {{us2}}</caption>
+					<i> Turno: {{turno}} <i>
+
 					<tr>
 						<td>C1</td>
 						<td>C2</td>
@@ -124,17 +117,31 @@
 						<td>-</td>
 					</tr>
 					<tr>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
+
+						<td {{ficha}}>{{1}}</td>
+						<td>{{2}}</td>
+						<td>{{3}}</td>
+						<td>{{4}}</td>
+						<td>{{5}}</td>
+						<td>{{6}}</td>
+						<td>{{7}}</td>
 					</tr>
 				</table>
 			</p>
 			</p>		
+		</form>	
+
+			<form action="/save" method = "POST">
+				<p style="text-align:center"><br>
+					<input type="submit" value="Guardar" name="save">
+				</p>
+			</form>
+
+			<form action="/volverConnect4">
+				<p style="text-align:center"><br>
+					<input type="submit" value="Volver" name="volverConnect4">
+				</p>
+			</form>
 
 			<p style="text-align:center"><i>" Cibils - Dominguez - Juarez "<i><br>
 		</form>

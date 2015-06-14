@@ -45,10 +45,12 @@ public class App{
               Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/connect4_development", "root", "root");
             });
 
+            
             after((request, response) -> {
                   Base.close();
             });        
   
+            
             //ingresa a la pantalla principal
             get("/Connect4", (request, response) -> {
                   Map<String, Object> attributes = new HashMap<>();
@@ -101,34 +103,89 @@ public class App{
 
             //ingresa a la pantalla de Jugar despues de crear un nuevo game y grid
             post("/play", (request, response) -> {
-                  String us1 = request.queryParams("comboboxUs1");
-                  String us2 = request.queryParams("comboboxUs2");
-                  System.out.println("-------------"+request.queryParams("test"));
-                  System.out.println("-------------"+request.queryParams("comboboxUs1"));
-                  System.out.println("-------------"+request.queryParams());
-                  System.out.println("---------------"+us2);
-                  System.out.println("---------------"+request.attributes());
-                  System.out.println("---------------"+request.params());
-                  System.out.println("---------------"+request.queryMap());
-                  // boolean reg = MenuPlayer.newGame(us1,us2);
-                  // if (reg){
-                        return new ModelAndView(null, "play.moustache");
-                  // }                                   
-                  // else{
-                  //       Map<String, Object> attributes = new HashMap<>();
-                  //       List <User> users = User.findAll();
-                  //       attributes.put("users",users);
-
-                  //       String player1 = request.queryParams("comboboxUs1");
-                  //       String player2 = request.queryParams("comboboxUs2");
-
-                  //       attributes.put("us1",player1);
-                  //       attributes.put("us2",player2);
-                  //       return new ModelAndView(attributes, "Connect4.moustache");                                   
-                  // }
+                  Map<String, Object> attributes = new HashMap<>();
+                  String player1 = request.queryParams("comboboxUs1");
+                  String player2 = request.queryParams("comboboxUs2");
+                  System.out.println("----------"+player1);
+                  System.out.println("----------"+player2);
+                  attributes.put("us1",player1);
+                  attributes.put("us2",player2);
+                  attributes.put("turno",player1);
+                  Game g = new Game();
+                  boolean reg = MenuPlayer.newGame(player1,player2,g);
+                  System.out.println("----------"+g.get("id"));
+                  attributes.put("game_id",g.get("id"));
+                  if(reg){
+                    return new ModelAndView(attributes, "play.moustache");
+                  }
+                  else{
+                      return new ModelAndView(attributes, "Connect4.moustache");                                   
+                  }
             }, new MustacheTemplateEngine());
             
+            get("/play", (request, response) -> {
+                  Map<String, Object> attributes = new HashMap<>();
 
+                  System.out.println("***********"+request.attributes());
+                  String player1 = request.queryParams("us1");
+                  String player2 = request.queryParams("us2");
+                  String game_id = request.queryParams("game_id");
+                  String turno = request.queryParams("turno");
+                  String ficha = request.queryParams("ficha");
+                  String c1 = request.queryParams("1");
+                  String c2 = request.queryParams("2");
+                  String c3 = request.queryParams("3");
+                  String c4 = request.queryParams("4");
+                  String c5 = request.queryParams("5");
+                  String c6 = request.queryParams("6");
+                  String c7 = request.queryParams("7");
+                  System.out.println("***********"+player1);
+                  System.out.println("***********"+player2);
+                  System.out.println("***********"+game_id);
+                  System.out.println("***********"+c1);
+                  System.out.println("***********"+c2);
+                  System.out.println("***********"+c3);
+                  System.out.println("***********"+c4);
+                  System.out.println("***********"+c5);
+                  System.out.println("***********"+c6);
+                  System.out.println("***********"+c7);
+                  System.out.println("+++++++++++"+turno);
+                  System.out.println("+++++++++++"+ficha);
+                  turno = Play.turn(player1,player2,turno);
+                  System.out.println("+++++++++++"+turno);
+                  ficha = Play.colorFicha(player1,player2,turno);
+                  System.out.println("+++++++++++"+ficha);
+                  attributes.put("turno",turno);
+                  attributes.put("ficha",ficha);
+                  attributes.put("us1",player1);
+                  attributes.put("us2",player2);
+                  attributes.put("game_id",game_id);
+                  attributes.put("1",c1);
+                  attributes.put("2",c2);
+                  attributes.put("3",c3);
+                  attributes.put("4",c4);
+                  attributes.put("5",c5);
+                  attributes.put("6",c6);
+                  attributes.put("7",c7);
+
+                  List<Game> ga  = Game.where("id = ?", game_id);
+                  Game game = new Game();
+                  game = ga.get(0);
+                  System.out.println("***********"+game.get("player1_id"));
+                  System.out.println("***********"+game.get("player2_id"));
+  
+                  //ACA TENGO QUE LLAMAR A LA CLASE BOARD 
+                  // CON LOS PARAMETROS CORRESPONDIENTES 
+                  // PARA QUE ME PINTE LA CELDA QUE ME TIENE QUE PINTAR
+                  // Y DESPUES PASARLE LA TABLA A LA PAGINA WEB 
+                  // la clase board es nuestra clase grid
+
+                   return new ModelAndView(attributes, "play.moustache");
+                }, new MustacheTemplateEngine());
+
+
+ 
+            //ingresa a la pantalla que te muestra los ranking
             get("/rank", (request, response) -> {
                   Map<String, Object> attributes = new HashMap<>();
                   List <Rank> ranking = Rank.findAll();
@@ -137,319 +194,35 @@ public class App{
                   return new ModelAndView(attributes, "rank.moustache");
             }, new MustacheTemplateEngine());
 
-            get("/volver", (request, response) -> {
-                  return new ModelAndView(null, "play.moustache");
+
+            get("/volverConnect4", (request, response) -> {
+                  Map<String, Object> attributes = new HashMap<>();
+                  List <User> users = User.findAll();
+                  attributes.put("users",users);
+
+                  String player1 = request.queryParams("comboboxUs1");
+                  String player2 = request.queryParams("comboboxUs2");
+
+                  attributes.put("us1",player1);
+                  attributes.put("us2",player2);
+                  return new ModelAndView(attributes, "Connect4.moustache");                                   
             }, new MustacheTemplateEngine());
 
 
+            post("/save", (request, response) -> {
+                return new ModelAndView(null, "play.moustache");
+            }, new MustacheTemplateEngine());
 
-
-
-
-
-
-      //       post("/play", (request, response) -> {
-      //             Map<String, Object> attributes = new HashMap<>();
-      //             String player1 = request.queryParams("comboboxUs1");
-      //             String player2 = request.queryParams("comboboxUs2");
-
-      //             baseOpen();                
-      //             attributes.put("us1",player1);
-      //             attributes.put("us2",player2);
-      //             return new ModelAndView(attributes, "play.mustache");                                   
-      //       }, new MustacheTemplateEngine());
-    //--------------------------------------------------------------------------
-
-
-            // post("/play", (request, response) -> {
-            //       baseOpen();                
-            //       Map<String, Object> attributes = new HashMap<>();
-            //       List <User> users = User.findAll();
-            //       attributes.put("users",users);
-            //       Base.close();
-            //       return new ModelAndView(attributes, "play.mustache");
-            // }, new MustacheTemplateEngine());
-
-
-
-
-
-
+            post("/load", (request, response) -> {
+                return new ModelAndView(null, "play.moustache");
+            }, new MustacheTemplateEngine());
       }
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                            
-
-  //   get("/Connect4", (req, res) -> {
-
-
-  //     String response = "<h1 style="+"text-align:center"+">"+"Connect 4</h1>";
-
-  //     response += " <form action="+"play"+">";
-  //     // response += " <form action="+"registered"+">";
-
-
-  //     // caja de texto para user1
-  //     response += "<br><br>";
-  //     response += "<br><br>";
-  //     response += "<br><br>";
-  //     response += "<p style="+"text-align:center"+"><i> Player 1 Name: <i><br>";
-  //     response += "<input type="+"text"+" name="+"player1"+">";
-  //     response += "<p style="+"text-align:center"+"><i>  Player 2 Name: <i><br>";
-  //     response += "<input type="+"text"+" name="+"player2"+">";
-
-  //     // boton
-  //     response += "<br><br>";
-  //     response += "<br><br>";
-  //     response += "<input type="+"submit"+" value="+"Jugar"+">";
-  //     response += "</form>";
-  //     response += " <form action="+"registered"+">";
-  //     response += "<input type="+"submit"+" value="+"Registrarse"+">";
-  //     response += "</form>";
-
-  //     response += "<br><br>";
-  //     response += "<br><br>";
-  //     response += "<br><br>";
-  //     response += "<br><br>";
-  //     response += "<br><br>";
-  //     response += "<br><br>";
-  //     response += "<br><br>";
-  //     response += "<br><br>";
-  //     response += "<p style="+"text-align:center"+"><i> Cibils - Dominguez - Juarez <i><br>";
-
-  //     return response;
-  //   });   
-
-  //   get("/play", (request, response) -> {
-
-
-  //     String ret = "<h1 style="+"text-align:center"+">"+"Connect 4</h1>";
-
-  //     ret += "<form action="+"action_page.php"+">";
-  //     ret += " <i> Seleccione Dimension Grilla: <i>";
-  //     ret += "<select name="+"dimension"+">";
-  //     ret += "<option value="+"6x7"+">6x7 (Default)</option>";
-  //     ret += "<option value="+"8x7"+">8x7</option>";
-  //     ret += "<option value="+"9x7"+">9x7</option>";
-  //     ret += "<option value="+"10x7"+">10x7</option>";
-  //     ret += "<option value="+"8x8"+">8x8</option>";
-  //     ret += "</select>";
-  //     ret += " <input type="+"submit"+" value="+"Aplicar"+">";
-  //     ret += "</form>";
-
-  //     ret += "<form action="+"rank"+">";
-  //     ret += "<p style="+"text-align:right"+"><i> Ver Ranking Jugador 1:  <i>";
-  //     ret += "<input type="+"submit"+" value="+"Click"+">";
-  //     ret += "</form>";
-
-
-  //     ret += "<form action="+"action_page.php"+">";
-  //     ret += " <i> Seleccione color ficha Jugador 1: <i>";
-  //     ret += " <input type="+"color"+" name="+"colorP1"+" value="+"#ff0000"+">";
-  //     ret += " <input type="+"submit"+" value="+"Aplicar"+">";
-  //     ret += "</form>";
-
-  //     ret += "<form action="+"rank"+">";
-  //     ret += "<p style="+"text-align:right"+"><i> Ver Ranking Jugador 2:  <i>";
-  //     ret += "<input type="+"submit"+" value="+"Click"+">";
-  //     ret += "</form>";
-
-
-  //     ret += "<form action="+"action_page.php"+">";
-  //     ret += " <i> Seleccione color ficha Jugador 2: <i>";
-  //     ret += " <input type="+"color"+" name="+"colorP2"+" value="+"#ff0000"+">";
-  //     ret += " <input type="+"submit"+" value="+"Aplicar"+">";
-  //     ret += "</form>";
-
-  //     ret += "<br><br>";
-  //     ret += "<br><br>";
-  //     ret += "<style>";
-  //     ret += "table, th, td {";
-  //     ret += "border: 1px solid black;";
-  //     ret += "border-collapse: collapse;";
-  //     ret += "}";
-  //     ret += "th, td {";
-  //     ret += "padding: 7px;";
-  //     ret += "text-align: center;";
-  //     ret += "}";
-  //     ret += "</style>";
-
-  //     ret += "<table style="+"width:100%"+">";
-  //     ret += "<caption>J1 vs J2</caption>";
-  //     ret += "<tr>";
-  //     ret += "<th>C1</th>";
-  //     ret += "<th>C2</th>";
-  //     ret += "<th>C3</th>";
-  //     ret += "<th>C4</th>";
-  //     ret += "<th>C5</th>";
-  //     ret += "<th>C6</th>";
-  //     ret += "<th>C7</th>";
-  //     ret += "</tr>";
-  //     ret += "<tr>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "</tr>";
-  //     ret += "<tr>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "</tr>";
-  //     ret += "<tr>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "</tr>";
-  //     ret += "<tr>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "</tr>";
-  //     ret += "<tr>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "</tr>";
-  //     ret += "<tr>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "<th>-</th>";
-  //     ret += "</tr>";
-  //     ret += "</table>";
-
-
-  //     ret += "<br><br>";
-  //     ret += "<br><br>";
-  //     ret += "<p style="+"text-align:center"+"><i> Cibils - Dominguez - Juarez <i><br>";
-  //     return ret;
-  //   });
-
-  //   get("/registered", (request, response) -> {
-  //     String res = "<h1 style="+"text-align:center"+">"+"Connect 4</h1>";
-  //     res += " <form action="+"Connect4"+">";
-  //     res += "<br><br>";
-
-  //     res += "<p style="+"text-align:center"+"><i> Nick: <i><br>";
-  //     res += "<input type="+"text"+" name="+"nick"+">";
-
-  //     res += "<p style="+"text-align:center"+"><i> Nombre: <i><br>";
-  //     res += "<input type="+"text"+" name="+"nombre"+">";
-
-  //     res += "<p style="+"text-align:center"+"><i> Apellido: <i><br>";
-  //     res += "<input type="+"text"+" name="+"apellido"+">";
-
-  //     res += "<p style="+"text-align:center"+"><i> E-mail: <i><br>";
-  //     res += "<input type="+"email"+" name="+"e-mail"+">";
-
-  //     res += "<p style="+"text-align:center"+"><i> Contraseña: <i><br>";
-  //     res += "<input type="+"password"+" name="+"pass"+">";
-
-  //     res += "<p style="+"text-align:center"+"><i> Dni: <i><br>";
-  //     res += "<input type="+"text"+" name="+"dni"+">";
-
-  //     res += "<p style="+"text-align:center"+"><i> Edad: <i><br>";
-  //     res += "<input type="+"text"+" name="+"edad"+">";
-
-  //     res += "<br><br>";
-  //     res += "<input type="+"submit"+" value="+"Registrarse"+">";
-  //     res += "</form>";
-  //     res += "<br><br>";
-  //     res += "<br><br>";
-  //     res += "<br><br>";
-  //     res += "<p style="+"text-align:center"+"><i> Cibils - Dominguez - Juarez <i><br>";
-
-  //     return res;
-
-  //   });
-
-  //   get("/rank", (request, response) -> {
-  //     String ran = "<h1 style="+"text-align:center"+">"+"Connect 4</h1>";
-  //     ran += "<br><br>";
-  //     ran += "<br><br>";
-  //     ran += "<br><br>";
-  //     ran += "<br><br>";
-  //     ran += "<br><br>";
-  //     ran += "<br><br>";
-  //     ran += "<p style="+"text-align:center"+"><i> Sorry, In Build <i><br>";
-  //     ran += "<br><br>";
-  //     ran += "<br><br>";
-  //     ran += "<br><br>";
-  //     ran += "<br><br>";
-  //     ran += "<br><br>";
-  //     ran += "<br><br>";
-  //     ran += "<br><br>";
-  //     ran += "<p style="+"text-align:center"+"><i> Cibils - Dominguez - Juarez <i><br>";
-  //     return ran;
-
-  //   });
-
-  // }
-
-
-    // Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/connect4_development", "root", "root");
-    // System.out.println( "Hello World!" );
-    // System.out.println();
-    // Start.begin();
-    // Base.close();   	
-    // System.out.println( "GoodBye!! XD" );
-
-
-
+  
 // FALTA PARA EL VIERNES:
       // >> INTERFAZ COMPLETA! (MAIN,REGISTRARSE,JUGAR)
       // >> INTERACCION DEL REGISTRARSE CON LA BASE DE DATOS >>> LISTO <<<
@@ -460,6 +233,8 @@ public class App{
       // >> como manejar los graficos de las fichas
       // >> recuperar partida
       // >> ranking
+     // >> fichas
+     // >> que no pueda jugar el mismo jugador contra el
 
 
 }
