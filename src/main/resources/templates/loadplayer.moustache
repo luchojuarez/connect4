@@ -27,9 +27,9 @@
 
 		</form>
 
-		<form action="/volverConnect4">
+		<form action="/load">
 			<p style="text-align:center"><br>
-				<input type="submit" value="Volver" name="volverConnect4">
+				<input type="submit" value="Volver" name="load">
 			</p>
 		</form>
 			

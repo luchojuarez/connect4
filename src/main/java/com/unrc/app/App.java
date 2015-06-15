@@ -302,10 +302,14 @@ public class App{
                   String player1 = (String) lu1.get(0).get("nickId");   
                   String player2 = (String) lu2.get(0).get("nickId");
                   String table = g.getGrid().toStringTable();
+                  String turno = "";
 
+                  if ((g.getGrid().getCant()%2)==0) turno = player1;
+                  else turno = player2;
+                  
                   attributes.put("us1",player1);
                   attributes.put("us2",player2);
-                  attributes.put("turno",player1);     
+                  attributes.put("turno",turno);     
                   attributes.put("game_id",g.get("id"));
                   attributes.put("table", table);
 
@@ -330,13 +334,15 @@ public class App{
                   System.out.println("<><><><><><><><><><><><>"+u1.get("id"));
                   System.out.println("<><><><><><><><><><><><>"+u2.get("id"));
 
-                  List<Game> juegos = Game.where("player1_id = '"+u1.get("id")+"' AND player2_id = '"+u2.get("id")+"'");
+                  List<Game> juegos = Game.where("player1_id = '"+u1.get("id")+"' AND player2_id = '"+u2.get("id")+"' AND dateEnd IS NULL");
                   attributes.put("juegos",juegos);
                   attributes.put("us1",player1);
                   attributes.put("us2",player2);
 
                   List <User> users = User.findAll();
                   attributes.put("users",users);
+
+                  if (player1.equals(player2)) return new ModelAndView(attributes,"load.moustache");
 
                   return new ModelAndView(attributes, "loadplayer.moustache");
             }, new MustacheTemplateEngine());
