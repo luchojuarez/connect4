@@ -282,52 +282,73 @@ public class App{
                   return new ModelAndView(attributes, "Connect4.moustache");                                   
             }, new MustacheTemplateEngine());
 
+            post("/loadplayer", (request, response) -> {
+                  
+                  Map<String, Object> attributes = new HashMap<>();
+                  String game_id = request.queryParams("game_id");
+                  
+                  List<Game> gamelist = Game.where("id = ?", game_id);
+                  List<Cell> cellList  = Cell.where ("grid_id = ?", game_id); 
 
-            // post("/save", (request, response) -> {
-            //     return new ModelAndView(null, "play.moustache");
-            // }, new MustacheTemplateEngine());
+                  Game g = gamelist.get(0);
+                  g.set_Cells(cellList);
+
+                  int player1_id = (int) g.get("player1_id");
+                  int player2_id = (int) g.get("player2_id");
+
+                  List<User> lu1  = User.where("id = ?",player1_id);              
+                  List<User> lu2  = User.where("id = ?",player2_id);
+
+                  String player1 = (String) lu1.get(0).get("nickId");   
+                  String player2 = (String) lu2.get(0).get("nickId");
+                  String table = g.getGrid().toStringTable();
+                  String turno = "";
+
+                  if ((g.getGrid().getCant()%2)==0) turno = player1;
+                  else turno = player2;
+                  
+                  attributes.put("us1",player1);
+                  attributes.put("us2",player2);
+                  attributes.put("turno",turno);     
+                  attributes.put("game_id",g.get("id"));
+                  attributes.put("table", table);
+
+                 return new ModelAndView(attributes, "play.moustache");
+            }, new MustacheTemplateEngine());
+
+
 
             post("/load", (request, response) -> {
-                  // Map<String, Object> attributes = new HashMap<>();
-
-                  // String gameId = request.queryParams("comboboxGame");
-                  // String player1 = request.queryParams("us1");
-                  // String player2 = request.queryParams("us2");
-                  // attributes.put("us1",player1);
-                  // attributes.put("us2",player2);
-                  // attributes.put("us2",game_id);
+                  
                   Map<String, Object> attributes = new HashMap<>();
-
-                  String j1 = request.queryParams("comboboxUs1");
-                  String j2 = request.queryParams("comboboxUs2");
-
-                  System.out.println("<><><><><><><><><><><><>"+j1);
-                  System.out.println("<><><><><><><><><><><><>"+j2);
-                  List<User> lu1  = User.where("nickId = ?",j1);
-                  User u1 = lu1.get(0);
-                  List<User> lu2  = User.where("nickId = ?",j2);
-                  User u2 = lu2.get(0);
-                  System.out.println("<><><><><><><><><><><><>"+u1.get("id"));
-                  System.out.println("<><><><><><><><><><><><>"+u2.get("id"));
-
-                  List<Game> juegos = Game.where("player1_id = '"+u1.get("id")+"' AND player2_id = '"+u2.get("id")+"'");
-                  attributes.put("juegos",juegos);
-                  attributes.put("comboboxUs1",j1);
-                  attributes.put("comboboxUs2",j2);
-
-                  List <User> users = User.findAll();
-                  attributes.put("users",users);
 
                   String player1 = request.queryParams("comboboxUs1");
                   String player2 = request.queryParams("comboboxUs2");
 
+                  System.out.println("<><><><><><><><><><><><>"+player1);
+                  System.out.println("<><><><><><><><><><><><>"+player2);
+                  List<User> lu1  = User.where("nickId = ?",player1);
+                  User u1 = lu1.get(0);
+                  List<User> lu2  = User.where("nickId = ?",player2);
+                  User u2 = lu2.get(0);
+                  System.out.println("<><><><><><><><><><><><>"+u1.get("id"));
+                  System.out.println("<><><><><><><><><><><><>"+u2.get("id"));
+
+                  List<Game> juegos = Game.where("player1_id = '"+u1.get("id")+"' AND player2_id = '"+u2.get("id")+"' AND dateEnd IS NULL");
+                  attributes.put("juegos",juegos);
                   attributes.put("us1",player1);
                   attributes.put("us2",player2);
 
-                return new ModelAndView(attributes, "load.moustache");
+                  List <User> users = User.findAll();
+                  attributes.put("users",users);
+
+                  if (player1.equals(player2)) return new ModelAndView(attributes,"load.moustache");
+
+                  return new ModelAndView(attributes, "loadplayer.moustache");
             }, new MustacheTemplateEngine());
 
             get("/load", (request, response) -> {
+
                   Map<String, Object> attributes = new HashMap<>();
                   List <User> users = User.findAll();
                   attributes.put("users",users);
@@ -339,22 +360,14 @@ public class App{
                   attributes.put("us1",player1);
                   attributes.put("us2",player2);
                   attributes.put("juegos",juegos);
-
-                  // Map<String, Object> attributes = new HashMap<>();
-
-                  // String j1 = request.queryParams("comboboxUs1");
-                  // String j2 = request.queryParams("comboboxUs2");
-
-                  // System.out.println("<><><><><><><><><><><><>"+j1);
-                  // System.out.println("<><><><><><><><><><><><>"+j2);
-                  // List<Game> juegos = Game.where("player1_id = ?",j1);
-                  // attributes.put("juegos",juegos);
-                  // attributes.put("us1",j1);
-                  // attributes.put("us2",j2);
-
-
+                                    
                 return new ModelAndView(attributes, "load.moustache");
             }, new MustacheTemplateEngine());
+
+            post("/save", (request, response) -> {
+                return new ModelAndView(null, "play.moustache");
+            }, new MustacheTemplateEngine());
+
 
 
             // post("/cargar", (request, response) -> {
