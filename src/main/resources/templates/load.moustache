@@ -10,11 +10,7 @@
 	<body>
 
 		<br><br>
-		<br><br>
-		<br><br>
 		<h2 style="text-align:center">Cargar Partida</h2>
-		<br><br>
-		<br><br>
 		<br><br>
 
 
@@ -41,27 +37,22 @@
 
 
 
+		<br><br>
 
 		<form action="/play">
 		<p style="text-align:center"><i> Seleccione el id de la partida de {{us1}} y {{us2}} : <i><b>
 			<select name="game_id">
 				{{#juegos}}
 				<option value="{{toStringGame}}"> {{toStringGame}}</option>
-				{{/juegos}
+				{{/juegos}}
 			</select>
 		</p>
 			<p style="text-align:center"><br>
 				<input type="submit" value="Cargar" name="play">
 			</p>
-<!-- 					<input type="hidden" name="us1" value="{{us1}}" />
-					<input type="hidden" name="us2" value="{{us2}}" />
- -->
 		</form>
 
 
-		<br><br>
-		<br><br>
-		<br><br>
 		<br><br>
 		<br><br>
 		<br><br>

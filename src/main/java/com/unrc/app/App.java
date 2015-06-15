@@ -296,7 +296,14 @@ public class App{
 
                   System.out.println("<><><><><><><><><><><><>"+j1);
                   System.out.println("<><><><><><><><><><><><>"+j2);
-                  List<Game> juegos = Game.where("player1_id = ?",j1);
+                  List<User> lu1  = User.where("nickId = ?",j1);
+                  User u1 = lu1.get(0);
+                  List<User> lu2  = User.where("nickId = ?",j2);
+                  User u2 = lu2.get(0);
+                  System.out.println("<><><><><><><><><><><><>"+u1.get("id"));
+                  System.out.println("<><><><><><><><><><><><>"+u2.get("id"));
+
+                  List<Game> juegos = Game.where("player1_id = ?",u1.get("id")); // "player2_id = ?",u2.get("id"));
                   attributes.put("juegos",juegos);
                   attributes.put("us1",j1);
                   attributes.put("us2",j2);
@@ -369,8 +376,9 @@ public class App{
       // >> que no pueda jugar el mismo jugador contra el
       
 
-      // control de usuarios diferentes
+      // control de usuarios diferentes >>> LISTO <<<
       // cargar partida
+      // test
 
 
 }
