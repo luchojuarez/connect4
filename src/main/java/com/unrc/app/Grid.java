@@ -170,64 +170,64 @@ public class Grid extends Model{
 		    "<td>C4</td>" +
 		    "<td>C5</td><tr>" +		    
 
-	                "<td"+returnCell(getCell(0,0))+"-</td>" +
+	                "<td"+returnCell(getCell(0,0))+"&nbsp;</td>" +
 
-	                "<td"+returnCell(getCell(0,1))+"-</td>" +
-	                "<td"+returnCell(getCell(0,2))+"-</td>" +
-	                "<td"+returnCell(getCell(0,3))+"-</td>" +
-	                "<td"+returnCell(getCell(0,4))+"-</td>" +
-	                "<td"+returnCell(getCell(0,5))+"-</td>" +
+	                "<td"+returnCell(getCell(0,1))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(0,2))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(0,3))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(0,4))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(0,5))+"&nbsp;</td>" +
 
 	                "</tr>"+
 	                
 	                "<tr>" +		
-	                "<td"+returnCell(getCell(1,0))+"-</td>" +
-	                "<td"+returnCell(getCell(1,1))+"-</td>"+
-	                "<td"+returnCell(getCell(1,2))+"-</td>" +
-	                "<td"+returnCell(getCell(1,3))+"-</td>" +
-	                "<td"+returnCell(getCell(1,4))+"-</td>" +
-	                "<td"+returnCell(getCell(1,5))+"-</td>" +
+	                "<td"+returnCell(getCell(1,0))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(1,1))+"&nbsp;</td>"+
+	                "<td"+returnCell(getCell(1,2))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(1,3))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(1,4))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(1,5))+"&nbsp;</td>" +
 	                "</tr>"+
 	                "<tr>" +		
-	                "<td"+returnCell(getCell(2,0))+"-</td>" +
-	                "<td"+returnCell(getCell(2,1))+"-</td>"+
-	                "<td"+returnCell(getCell(2,2))+"-</td>" +
-	                "<td"+returnCell(getCell(2,3))+"-</td>" +
-	                "<td"+returnCell(getCell(2,4))+"-</td>" +
-	                "<td"+returnCell(getCell(2,5))+"-</td>" +
+	                "<td"+returnCell(getCell(2,0))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(2,1))+"&nbsp;</td>"+
+	                "<td"+returnCell(getCell(2,2))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(2,3))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(2,4))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(2,5))+"&nbsp;</td>" +
 	                "</tr>"+
 	                
 	                "<tr>" +		
-	                "<td"+returnCell(getCell(3,0))+"-</td>" +
-	                "<td"+returnCell(getCell(3,1))+"-</td>"+
-	                "<td"+returnCell(getCell(3,2))+"-</td>" +
-	                "<td"+returnCell(getCell(3,3))+"-</td>" +
-	                "<td"+returnCell(getCell(3,4))+"-</td>" +
-	                "<td"+returnCell(getCell(3,5))+"-</td>" +
+	                "<td"+returnCell(getCell(3,0))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(3,1))+"&nbsp;</td>"+
+	                "<td"+returnCell(getCell(3,2))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(3,3))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(3,4))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(3,5))+"&nbsp;</td>" +
 	                "</tr>"+
 	                 "<tr>" +		
-	                "<td"+returnCell(getCell(4,0))+"-</td>" +
-	                "<td"+returnCell(getCell(4,1))+"-</td>"+
-	                "<td"+returnCell(getCell(4,2))+"-</td>" +
-	                "<td"+returnCell(getCell(4,3))+"-</td>" +
-	                "<td"+returnCell(getCell(4,4))+"-</td>" +
-	                "<td"+returnCell(getCell(4,5))+"-</td>" +
+	                "<td"+returnCell(getCell(4,0))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(4,1))+"&nbsp;</td>"+
+	                "<td"+returnCell(getCell(4,2))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(4,3))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(4,4))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(4,5))+"&nbsp;</td>" +
 	                "</tr>"+
 	                    "<tr>" +		
-	                "<td"+returnCell(getCell(5,0))+"-</td>" +
-	                "<td"+returnCell(getCell(5,1))+"-</td>"+
-	                "<td"+returnCell(getCell(5,2))+"-</td>" +
-	                "<td"+returnCell(getCell(5,3))+"-</td>" +
-	                "<td"+returnCell(getCell(5,4))+"-</td>" +
-	                "<td"+returnCell(getCell(5,5))+"-</td>" +
+	                "<td"+returnCell(getCell(5,0))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(5,1))+"&nbsp;</td>"+
+	                "<td"+returnCell(getCell(5,2))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(5,3))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(5,4))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(5,5))+"&nbsp;</td>" +
 	                "</tr>"+
 	                "<tr>" +		
-	                "<td"+returnCell(getCell(6,0))+"-</td>" +
-	                "<td"+returnCell(getCell(6,1))+"-</td>"+
-	                "<td"+returnCell(getCell(6,2))+"-</td>" +
-	                "<td"+returnCell(getCell(6,3))+"-</td>" +
-	                "<td"+returnCell(getCell(6,4))+"-</td>" +
-	                "<td"+returnCell(getCell(6,5))+"-</td>" +
+	                "<td"+returnCell(getCell(6,0))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(6,1))+"&nbsp;</td>"+
+	                "<td"+returnCell(getCell(6,2))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(6,3))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(6,4))+"&nbsp;</td>" +
+	                "<td"+returnCell(getCell(6,5))+"&nbsp;</td>" +
 	                "</tr></table>";
 
 	            return table;
