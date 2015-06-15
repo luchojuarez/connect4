@@ -1,0 +1,42 @@
+			<!-- load.moustache -->
+
+
+<html>
+	<head>
+		<h1 style="text-align:center">Connect 4</h1>
+
+	</head>
+
+	<body>
+
+		<br><br>
+
+		<form action="/loadplayer" method = "POST">
+		
+		<p style="text-align:center"><i> Seleccione el id de la partida de {{us1}} y {{us2}} : <i><b>
+			<select name="game_id">
+				{{#juegos}}
+				<option value="{{toStringGame}}"> {{toStringGame}}</option>
+				{{/juegos}}
+			</select>
+		</p>
+			<p style="text-align:center"><br>
+				<input type="submit" value="Cargar" name="loadplayer">
+			</p>
+
+
+		</form>
+
+		<form action="/volverConnect4">
+			<p style="text-align:center"><br>
+				<input type="submit" value="Volver" name="volverConnect4">
+			</p>
+		</form>
+			
+		<br><br>
+		<br><br>
+		<br><br>
+		<p style="text-align:center"><i>" Cibils - Dominguez - Juarez "<i><br>
+
+	</body>
+</html>
