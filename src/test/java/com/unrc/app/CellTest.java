@@ -11,28 +11,32 @@ import static org.junit.Assert.assertEquals;
 import static org.javalite.test.jspec.JSpec.the;
 
 
-public class UserTest {
+public class CellTest {
     @Before
     public void before(){
         Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/connect4_test", "root", "root");
-        System.out.println("UserTest setup");
+        System.out.println("CellTest setup");
         Base.openTransaction();
     }
 
     @After
     public void after(){
-        System.out.println("UserTest tearDown");
+        System.out.println("CellTest tearDown");
         Base.rollbackTransaction();
         Base.close();
     }
 
+    @Test
+    public void notEmptyCell(){
+        Cell c = new Cell();
+        c.set("state", 1);
+        assertEquals(c.isEmpty(),false);        
+    }
 
     @Test
-    public void shouldValidateMandatoryFields(){
-      User user = new User();
-
-      user.set("first_name", "Juan");
-
-      the(user).shouldBe("valid");
+    public void emptyCell(){
+        Cell c = new Cell();
+        c.set("state", 0);
+        assertEquals(c.isEmpty(),true); 
     }
 }

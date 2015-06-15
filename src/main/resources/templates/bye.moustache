@@ -1,20 +1,43 @@
 			<!-- bye.moustache -->
-	<br><br>
-	<br><br>
-	<br><br>
-	<br><br>
-	<br><br>
-	<br><br>
-	<br><br>
-	<br><br>
-	<p style="text-align:center"><i> Bye <i><br>
-	<br><br>
-	<br><br>
-	<br><br>
-	<br><br>
-	<br><br>
-	<br><br>
-	<br><br>
-	<br><br>
-	<p style="text-align:center"><i>" Cibils - Dominguez - Juarez "<i><br>
-
+<html>
+	<head>
+		<style>
+			#section {
+			    width:350px;
+			    float:center;
+			    padding:10px;	 	 
+			}
+			#footer {
+			    background-color:white;
+			    color:black;
+			    clear:both;
+			    text-align:center;
+			   padding:5px;	 	 
+			}
+		</style>
+	</head>
+		<body>
+			<section>
+		 		<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<p style="text-align:center"><i> Bye <i><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+			</section>
+			<div id="footer">
+				<i>" Cibils - Dominguez - Juarez "<i>
+			</div>
+		</body>
+</html>

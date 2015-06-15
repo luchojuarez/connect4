@@ -11,28 +11,24 @@ import static org.junit.Assert.assertEquals;
 import static org.javalite.test.jspec.JSpec.the;
 
 
-public class UserTest {
+public class RankTest {
     @Before
     public void before(){
         Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/connect4_test", "root", "root");
-        System.out.println("UserTest setup");
+        System.out.println("RankTest setup");
         Base.openTransaction();
     }
 
     @After
     public void after(){
-        System.out.println("UserTest tearDown");
+        System.out.println("RankTest tearDown");
         Base.rollbackTransaction();
         Base.close();
     }
 
 
     @Test
-    public void shouldValidateMandatoryFields(){
-      User user = new User();
-
-      user.set("first_name", "Juan");
-
-      the(user).shouldBe("valid");
+    public void shouldBeFull(){
     }
+    
 }

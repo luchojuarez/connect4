@@ -4,6 +4,12 @@ import org.javalite.activejdbc.Base;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+package com.unrc.app;
+
+import org.javalite.activejdbc.Base;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import com.unrc.app.*;
 
@@ -11,7 +17,8 @@ import static org.junit.Assert.assertEquals;
 import static org.javalite.test.jspec.JSpec.the;
 
 
-public class UserTest {
+public class GridTest {
+
     @Before
     public void before(){
         Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/connect4_test", "root", "root");
@@ -26,13 +33,9 @@ public class UserTest {
         Base.close();
     }
 
-
     @Test
-    public void shouldValidateMandatoryFields(){
-      User user = new User();
-
-      user.set("first_name", "Juan");
-
-      the(user).shouldBe("valid");
+    public void fullColumn_emptyColumn_false() {
+        Grid g = new Grid();
+        assertEquals(g.fullColumn(3),false);      
     }
 }
