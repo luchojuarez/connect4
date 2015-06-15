@@ -137,7 +137,8 @@ public class App{
                   }      
             }, new MustacheTemplateEngine());
             
-            
+
+
             get("/play", (request, response) -> {
                   Map<String, Object> attributes = new HashMap<>();
 
@@ -150,6 +151,7 @@ public class App{
                   List<Game> ga  = Game.where("id = ?", game_id);
                   Game game = new Game();
                   game = ga.get(0); 
+
 
                   int id_grid = (int) game.get("grid_id");
 
@@ -166,52 +168,72 @@ public class App{
                   System.out.println("---->>>>>>>>  CCCCCCCCCCCC");
 
                  
-                  turno = Play.turn(player1,player2,turno);
+                
                   System.out.println("---->>>>>>>>  DDDDDDDDDDDDD");
                   attributes.put("us1",player1);
                   attributes.put("us2",player2);
                   attributes.put("game_id",game_id);
-                  attributes.put("turno",turno);
                   System.out.println("---->>>>>>>>  EEEEEEEEEEEEE");
-                  int y = Character.getNumericValue(boton.charAt(3));
-                  Cell c = game.pushDisc(y,Play.player_actual(player1,player2,turno)); 
-                  System.out.println("---->>>>>>>>  FFFFFFFFFFFFFF");
+
+                  Cell c = null;
+                  if (game.get("dateEnd") == null){
+
+                        int y = Character.getNumericValue(boton.charAt(3));
+                        turno = Play.turn(player1,player2,turno);
+                        c = game.pushDisc(y,Play.player_actual(player1,player2,turno)); 
+                        if (c==null) turno = Play.turn(player1,player2,turno);
+                  }
+
+                  String table = request.queryParams("table");
+                  table = game.getGrid().toStringTable(); 
+                  attributes.put("table", table);
                   
                   if (c!=null){
 
-                  c.set("X",c.getx());    
-                  c.set("Y",c.gety());    
+                        c.set("X",c.getx());    
+                        c.set("Y",c.gety());    
                         c.set("state",c.getState());  
                         c.save();
                         g.add(c);
 
-                        //Check winner
+                  }
+                  attributes.put("turno",turno);
+                  
+                  //Check winner
 
-                        int partida = game.gameOver(c);
+                  int partida = game.gameOver(c);
 
-            //>0 indica que el juego termino ya que no hay mas casilleros disponibles
-            // >1 indica que el jugador que hizo el ultimo movimiento gano
-            // >2 indica que no hay ganador, el juego continua
+                  //>0 indica que el juego termino ya que no hay mas casilleros disponibles
+                  // >1 indica que el jugador que hizo el ultimo movimiento gano
+                  // >2 indica que no hay ganador, el juego continua
 
-                        if (partida==0){
+                  if ((partida==0) || (game.get("dateEnd")!=null)){
 
-                              String actual = Play.turn(player1,player2,turno);
-                              String draw = "<h2 style="+"\"text-align:center\""+"><i>"+"Empatee..!<i><br></h2>";
+                        String actual = Play.turn(player1,player2,turno);
+                        String draw = "<h2 style="+"\"text-align:center\""+"><i>"+"Empatee..!<i><br></h2>";
+                        attributes.put("result",draw);
+
+                        if (game.get("dateEnd")==null){
+
                               List<User> l_us = User.where("nickId = ?", actual);
                               User u1 = l_us.get(0);
                               Rank.draw(u1);
                               List<User> us = User.where("nickId = ?", turno);
                               User u2 = us.get(0);
                               Rank.draw(u2);     
-                              attributes.put("result",draw);
                               game.set("dateEnd",Start.getFechaActual());
                               game.save();
                         }
+                  }
 
-                        if (partida==1){
+                  if ((partida==1) || (game.get("dateEnd")!=null)){
 
-                              String actual = Play.turn(player1,player2,turno);
-                              String winner = "<h2 style="+"\"text-align:center\""+"><i> Ganador!!!:"+actual +"<i><br></h2>";
+                        String actual = Play.turn(player1,player2,turno);
+                        String winner = "<h2 style="+"\"text-align:center\""+"><i> Ganador!!!:  "+actual +"<i><br></h2>";
+                        attributes.put("result",winner);
+
+                        if (game.get("dateEnd")==null){
+
                               List<User> l_us = User.where("nickId = ?", actual);
                               User u1 = l_us.get(0);
                               System.out.println("||||||||||||||||---->>>>>>>>"+actual);
@@ -227,22 +249,11 @@ public class App{
                               System.out.println("||||||||||||||||---->>>>>>>>"+turno);
                               System.out.println("||||||||||||||||---->>>>>>>>"+u2.get("nickId"));
                               Rank.loser(u2);                            
-                              attributes.put("result",winner);
+                        }                       
 
-                        }
-
-                        if(partida==2){
-
-                              String table = request.queryParams("table");
-                              table = game.getGrid().toStringTable(); 
-                              attributes.put("table", table);
-
-                        }
-
-                    
                   }
 
-                   
+                                            
                    return new ModelAndView(attributes, "play.moustache");
                   }, new MustacheTemplateEngine());
 
