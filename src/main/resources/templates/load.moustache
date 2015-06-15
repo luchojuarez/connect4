@@ -51,7 +51,16 @@
 				<input type="submit" value="Cargar" name="play">
 			</p>
 		</form>
+					<input type="hidden" name="table" value="{{table}}" />
+					<input type="hidden" name="turno" value="{{turno}}" />
+					<input type="hidden" name="us1" value="{{us1}}" />
+					<input type="hidden" name="us2" value="{{us2}}" />
 
+			<form action="/volverConnect4">
+				<p style="text-align:center"><br>
+					<input type="submit" value="Volver" name="volverConnect4">
+				</p>
+			</form>
 
 		<br><br>
 		<br><br>

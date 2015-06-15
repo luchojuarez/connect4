@@ -10,8 +10,6 @@
 	<body>
 
 		<br><br>
-		<br><br>
-		<br><br>
 		<form action="/play" method = "POST">
 		<p style="text-align:center"><i> Player 1 Name: <i><br>
 			<select name="comboboxUs1">
@@ -57,6 +55,12 @@
 		<form action="/load">
 			<p style="text-align:center"><br>
 				<input type="submit" value="Cargar Partida" name="load">
+			</p>
+		</form>
+
+		<form action="/bye">
+			<p style="text-align:center"><br>
+				<input type="submit" value="Salir" name="bye">
 			</p>
 		</form>
 

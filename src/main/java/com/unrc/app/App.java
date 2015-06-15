@@ -157,18 +157,25 @@ public class App{
                  
                  List<Cell> celdas = Cell.where("grid_id = ?",id_grid);  
 
+                  System.out.println("---->>>>>>>>  AAAAAAAAAAAAA");
+
                  game.set_Cells(celdas);
+                  System.out.println("---->>>>>>>>  BBBBBBBBBBBBB");
 
                  Grid g = grid.get(0);               
+                  System.out.println("---->>>>>>>>  CCCCCCCCCCCC");
 
                  
                   turno = Play.turn(player1,player2,turno);
+                  System.out.println("---->>>>>>>>  DDDDDDDDDDDDD");
                   attributes.put("us1",player1);
                   attributes.put("us2",player2);
                   attributes.put("game_id",game_id);
                   attributes.put("turno",turno);
+                  System.out.println("---->>>>>>>>  EEEEEEEEEEEEE");
                   int y = Character.getNumericValue(boton.charAt(3));
                   Cell c = game.pushDisc(y,Play.player_actual(player1,player2,turno)); 
+                  System.out.println("---->>>>>>>>  FFFFFFFFFFFFFF");
                   
                   if (c!=null){
 
@@ -303,11 +310,19 @@ public class App{
                   System.out.println("<><><><><><><><><><><><>"+u1.get("id"));
                   System.out.println("<><><><><><><><><><><><>"+u2.get("id"));
 
-                  List<Game> juegos = Game.where("player1_id = ?",u1.get("id")); // "player2_id = ?",u2.get("id"));
+                  List<Game> juegos = Game.where("player1_id = '"+u1.get("id")+"' AND player2_id = '"+u2.get("id")+"'");
                   attributes.put("juegos",juegos);
-                  attributes.put("us1",j1);
-                  attributes.put("us2",j2);
+                  attributes.put("comboboxUs1",j1);
+                  attributes.put("comboboxUs2",j2);
 
+                  List <User> users = User.findAll();
+                  attributes.put("users",users);
+
+                  String player1 = request.queryParams("comboboxUs1");
+                  String player2 = request.queryParams("comboboxUs2");
+
+                  attributes.put("us1",player1);
+                  attributes.put("us2",player2);
 
                 return new ModelAndView(attributes, "load.moustache");
             }, new MustacheTemplateEngine());
@@ -353,6 +368,12 @@ public class App{
             //       attributes.put("game_id",gameId);
             //     return new ModelAndView(attributes, "play.moustache");
             // }, new MustacheTemplateEngine());
+
+
+            //ingresa a la pantalla de salir
+            get("/bye", (request, response) -> {
+                  return new ModelAndView(null, "bye.moustache");                                   
+            }, new MustacheTemplateEngine());
 
 
       }
