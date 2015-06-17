@@ -4,7 +4,6 @@ import org.javalite.activejdbc.Base;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-package com.unrc.app;
 
 import org.javalite.activejdbc.Base;
 import org.junit.After;
@@ -34,8 +33,8 @@ public class GridTest {
     }
 
     @Test
-    public void fullColumn_emptyColumn_false() {
+    public void gridfull() {
         Grid g = new Grid();
-        assertEquals(g.fullColumn(3),false);      
+        assertEquals(g.gridFull(),false);      
     }
 }

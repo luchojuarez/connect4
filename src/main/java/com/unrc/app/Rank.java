@@ -5,11 +5,7 @@ import org.javalite.activejdbc.Base;
 import java.util.List;
 
 public class Rank extends Model {
-
-   // @Override
-   
-
-
+ 
     public String toStringPoint(){
       return this.getString("points");
   }   
@@ -41,8 +37,7 @@ public class Rank extends Model {
   // partida ganada
   public static void win(User us) {
     Rank ranking = Rank.findFirst("user_id = ?", us.get("id"));
-    System.out.println("||||||||||||||||---->>>>>>>>><<<<<<<<<<<<<"+ranking.get("user_id"));
-
+ 
     if (ranking == null) {
       Rank r = new Rank();
       r.set("user_id", us.get("id"));
@@ -66,7 +61,6 @@ public class Rank extends Model {
   // partida empatada
   public static void draw(User us){
     Rank ranking = Rank.findFirst("user_id = ?", us.get("id"));
-    System.out.println("||||||||||||||||---->>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<"+ranking.get("user_id"));
     
     if (ranking == null) {
       Rank r = new Rank();
@@ -89,7 +83,6 @@ public class Rank extends Model {
   // partida perdida
   public static void loser(User us){
     Rank ranking = Rank.findFirst("user_id = ?", us.get("id"));
-    System.out.println("||||||||||||||||---->>>>>>>><<<<<<<<<<<<<<"+ranking.get("user_id"));
     
     if (ranking == null) {
       Rank r = new Rank();
@@ -108,7 +101,6 @@ public class Rank extends Model {
       
     }
   }
-// FALTAN LAS POSICIONES QUE SERIA EL NRO RANK
 }
 
 

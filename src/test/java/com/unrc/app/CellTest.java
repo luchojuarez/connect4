@@ -30,13 +30,13 @@ public class CellTest {
     public void notEmptyCell(){
         Cell c = new Cell();
         c.set("state", 1);
-        assertEquals(c.isEmpty(),false);        
+        assertEquals(c.getState(),1);        
     }
 
     @Test
     public void emptyCell(){
         Cell c = new Cell();
         c.set("state", 0);
-        assertEquals(c.isEmpty(),true); 
+        assertEquals(c.getState(),0); 
     }
 }

@@ -4,7 +4,6 @@ import org.javalite.activejdbc.Base;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-package com.unrc.app;
 
 import org.javalite.activejdbc.Base;
 import org.junit.After;
@@ -17,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 import static org.javalite.test.jspec.JSpec.the;
 
 
-public class GridTest {
+public class GameTest {
 
     @Before
     public void before(){
@@ -33,7 +32,7 @@ public class GridTest {
         Base.close();
     }
 
-    @Test
-    public void fullColumn_emptyColumn_false() {
-    }
+    // @Test
+    // public void fullColumn_emptyColumn_false() {
+    // }
 }

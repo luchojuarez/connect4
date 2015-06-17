@@ -47,9 +47,6 @@ public class Play extends Model{
 			}
 		}
 
-		System.out.println("*************************************************************");
-		System.out.println(game.gameOver(c));
-		System.out.println("*************************************************************");
 		return game.gameOver(c);
 	}
 
@@ -90,7 +87,6 @@ public class Play extends Model{
 
 	public static String colorFicha(String p1,String p2,String turno){
 
-        System.out.println("AAAAAAAAAA"+turno);
 
         String fi;
 		if (turno.equals(p1)){

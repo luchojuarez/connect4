@@ -30,13 +30,7 @@ import com.github.mustachejava.MustacheFactory;
 
 
 
-/**
- **Hello world!
- **
- */
 public class App{
-	// private User player1;
-	// private User player2;
 
   
       public static void main( String[] args ){
@@ -106,8 +100,6 @@ public class App{
                   Map<String, Object> attributes = new HashMap<>();
                   String player1 = request.queryParams("comboboxUs1");
                   String player2 = request.queryParams("comboboxUs2");
-                  System.out.println("----------"+player1);
-                  System.out.println("----------"+player2);
 
                   // control de usuarios diferentes
                   if(player1.equals(player2)){
@@ -125,7 +117,6 @@ public class App{
                         Game g = new Game();
                         String table = g.getGrid().toStringTable();
                         boolean reg = MenuPlayer.newGame(player1,player2,g);
-                        System.out.println("----------"+g.get("id"));
                         attributes.put("game_id",g.get("id"));
                         attributes.put("table", table);
                         if(reg){
@@ -154,30 +145,15 @@ public class App{
 
 
                   int id_grid = (int) game.get("grid_id");
-
                   List<Grid> grid = Grid.where("id = ?", id_grid);
-                 
-                 List<Cell> celdas = Cell.where("grid_id = ?",id_grid);  
-
-                  System.out.println("---->>>>>>>>  AAAAAAAAAAAAA");
-
-                 game.set_Cells(celdas);
-                  System.out.println("---->>>>>>>>  BBBBBBBBBBBBB");
-
-                 Grid g = grid.get(0);               
-                  System.out.println("---->>>>>>>>  CCCCCCCCCCCC");
-
-                 
-                
-                  System.out.println("---->>>>>>>>  DDDDDDDDDDDDD");
+                  List<Cell> celdas = Cell.where("grid_id = ?",id_grid);  
+                  game.set_Cells(celdas);
+                  Grid g = grid.get(0);               
                   attributes.put("us1",player1);
                   attributes.put("us2",player2);
                   attributes.put("game_id",game_id);
-                  System.out.println("---->>>>>>>>  EEEEEEEEEEEEE");
-
                   Cell c = null;
                   if (game.get("dateEnd") == null){
-
                         int y = Character.getNumericValue(boton.charAt(3));
                         turno = Play.turn(player1,player2,turno);
                         c = game.pushDisc(y,Play.player_actual(player1,player2,turno)); 
@@ -236,18 +212,12 @@ public class App{
 
                               List<User> l_us = User.where("nickId = ?", actual);
                               User u1 = l_us.get(0);
-                              System.out.println("||||||||||||||||---->>>>>>>>"+actual);
-                              System.out.println("||||||||||||||||---->>>>>>>>"+turno);
-                              System.out.println("||||||||||||||||---->>>>>>>>"+u1.get("nickId"));
                               Rank.win(u1);
                               game.set("dateEnd",Start.getFechaActual());
                               game.save();
                               // u.add(game);
                               List<User> us = User.where("nickId = ?", turno);
                               User u2 = us.get(0);
-                              System.out.println("||||||||||||||||---->>>>>>>>"+actual);
-                              System.out.println("||||||||||||||||---->>>>>>>>"+turno);
-                              System.out.println("||||||||||||||||---->>>>>>>>"+u2.get("nickId"));
                               Rank.loser(u2);                            
                         }                       
 
@@ -335,15 +305,10 @@ public class App{
 
                   String player1 = request.queryParams("comboboxUs1");
                   String player2 = request.queryParams("comboboxUs2");
-
-                  System.out.println("<><><><><><><><><><><><>"+player1);
-                  System.out.println("<><><><><><><><><><><><>"+player2);
                   List<User> lu1  = User.where("nickId = ?",player1);
                   User u1 = lu1.get(0);
                   List<User> lu2  = User.where("nickId = ?",player2);
                   User u2 = lu2.get(0);
-                  System.out.println("<><><><><><><><><><><><>"+u1.get("id"));
-                  System.out.println("<><><><><><><><><><><><>"+u2.get("id"));
 
                   List<Game> juegos = Game.where("player1_id = '"+u1.get("id")+"' AND player2_id = '"+u2.get("id")+"' AND dateEnd IS NULL");
                   attributes.put("juegos",juegos);
@@ -381,17 +346,6 @@ public class App{
 
 
 
-            // post("/cargar", (request, response) -> {
-            //       Map<String, Object> attributes = new HashMap<>();
-
-            //       String gameId = request.queryParams("comboboxGame");
-            //       String player1 = request.queryParams("us1");
-            //       String player2 = request.queryParams("us2");
-            //       attributes.put("us1",player1);
-            //       attributes.put("us2",player2);
-            //       attributes.put("game_id",gameId);
-            //     return new ModelAndView(attributes, "play.moustache");
-            // }, new MustacheTemplateEngine());
 
 
             //ingresa a la pantalla de salir
@@ -407,23 +361,11 @@ public class App{
 
 
   
-// FALTA PARA EL VIERNES:
-      // >> INTERFAZ COMPLETA! (MAIN,REGISTRARSE,JUGAR)
-      // >> INTERACCION DEL REGISTRARSE CON LA BASE DE DATOS >>> LISTO <<<
-      // >> INTERACCION DEL MAIN CON LA BASE DE DATOS
-      // >> como sacar los parametros del combobox >>> LISTO <<<
 
-      // >> como obtener los ranking
-      // >> como manejar los graficos de las fichas
-      // >> recuperar partida
-      // >> ranking
-      // >> fichas
-      // >> que no pueda jugar el mismo jugador contra el
-      
-
-      // control de usuarios diferentes >>> LISTO <<<
-      // cargar partida
-      // test
+// FALTA PARA EL JUEVES:
+      // >> TEST
+      // >> POWER POINT
+      // >> LIMPIAR CODIGO
 
 
 }
