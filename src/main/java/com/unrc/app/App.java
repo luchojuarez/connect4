@@ -43,9 +43,7 @@ public class App{
             after((request, response) -> {
                   Base.close();
             });        
-  
-            
-            //ingresa a la pantalla principal
+              //ingresa a la pantalla principal
             get("/Connect4", (request, response) -> {
                   Map<String, Object> attributes = new HashMap<>();
                   List <User> users = User.findAll();
@@ -53,7 +51,6 @@ public class App{
 
                   String player1 = request.queryParams("comboboxUs1");
                   String player2 = request.queryParams("comboboxUs2");
-
                   attributes.put("us1",player1);
                   attributes.put("us2",player2);
                   return new ModelAndView(attributes, "Connect4.moustache");                                   
@@ -186,7 +183,7 @@ public class App{
                   if ((partida==0) || (game.get("dateEnd")!=null)){
 
                         String actual = Play.turn(player1,player2,turno);
-                        String draw = "<h2 style="+"\"text-align:center\""+"><i>"+"Empatee..!<i><br></h2>";
+                        String draw = "<h2> Empatee..!</h2>";
                         attributes.put("result",draw);
 
                         if (game.get("dateEnd")==null){
@@ -205,7 +202,7 @@ public class App{
                   if ((partida==1) || (game.get("dateEnd")!=null)){
 
                         String actual = Play.turn(player1,player2,turno);
-                        String winner = "<h2 style="+"\"text-align:center\""+"><i> Ganador!!!:  "+actual +"<i><br></h2>";
+                        String winner = "<h2> The Winner is:  "+actual +"</h2> ";  
                         attributes.put("result",winner);
 
                         if (game.get("dateEnd")==null){
@@ -237,13 +234,13 @@ public class App{
             //ingresa a la pantalla que te muestra los ranking
             get("/rank", (request, response) -> {
                   Map<String, Object> attributes = new HashMap<>();
-                  List <Rank> ranking = Rank.findAll()
-                  .orderBy("points desc");
+                  // List <Rank> ranking = Rank.findAll()
+                  // .orderBy("points desc");
 
                   List <Rank> position = Rank.findAll()
                   .orderBy("nroRank asc");
 
-                  attributes.put("ranking",ranking);
+                  // attributes.put("ranking",ranking);
                   attributes.put("pos",position);
 
                   return new ModelAndView(attributes, "rank.moustache");

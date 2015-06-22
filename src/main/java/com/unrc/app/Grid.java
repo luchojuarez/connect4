@@ -151,7 +151,7 @@ public class Grid extends Model{
 	    if (getState(c)==0)
 	    	 return " bgcolor="+"\"#ffffff\""+">";
 
-	    if (getState(c)==1) 
+	    if (getState(c)==1)
 	    	 return " bgcolor="+"\"#FF0000\""+">";
 	    
 	    return " bgcolor="+"\"#0004FF\""+">";
@@ -161,14 +161,14 @@ public class Grid extends Model{
     
    	public String toStringTable(){
      	
-	            String table ="<table style="+"width:30%;"+"><tr>"+
+	            String table ="<table align="+"center"+" style="+"width = "+"700px"+" height = "+"200px;><tr>"+
 		    
-		    "<td>C0</td>" +
-		    "<td>C1</td>" +
-		    "<td>C2</td>" +
-		    "<td>C3</td>" +
-		    "<td>C4</td>" +
-		    "<td>C5</td><tr>" +		    
+		    "<td><b><i>C0</i></b></td>" +
+		    "<td><b><i>C1</i></b></td>" +
+		    "<td><b><i>C2</i></b></td>" +
+		    "<td><b><i>C3</i></b></td>" +
+		    "<td><b><i>C4</i></b></td>" +
+		    "<td><b><i>C5</i></b></td><tr>" +
 
 	                "<td"+returnCell(getCell(0,0))+"&nbsp;</td>" +
 

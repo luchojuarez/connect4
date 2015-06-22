@@ -53,6 +53,18 @@ public class Rank extends Model {
       ranking.set("PJ", ranking.getInteger("PJ")+1);
       ranking.set("points", ranking.getInteger("points")+3);
       ranking.save();
+      int posActual = ranking.getInteger("nroRank");
+      if(posActual != 1){
+        Rank rankUp = Rank.findFirst("nroRank = ?", posActual-1);
+        int pointActual = ranking.getInteger("points");
+        int pointsUp = rankUp.getInteger("points");
+        if(pointActual>=pointsUp){
+          ranking.set("nroRank", posActual-1);
+          ranking.save();
+          rankUp.set("nroRank", posActual);
+          rankUp.save();
+        }
+      }
     }
   } 
 
@@ -77,6 +89,19 @@ public class Rank extends Model {
       ranking.set("points", ranking.getInteger("points")+1);
       ranking.set("PJ", ranking.getInteger("PJ")+1);
       ranking.save();
+
+      int posActual = ranking.getInteger("nroRank");
+      if(posActual != 1){
+        Rank rankUp = Rank.findFirst("nroRank = ?", posActual-1);
+        int pointActual = ranking.getInteger("points");
+        int pointsUp = rankUp.getInteger("points");
+        if(pointActual>=pointsUp){
+          ranking.set("nroRank", posActual-1);
+          ranking.save();
+          rankUp.set("nroRank", posActual);
+          rankUp.save();
+        }
+      }
     }
   }
 
