@@ -161,14 +161,14 @@ public class Grid extends Model{
     
    	public String toStringTable(){
      	
-	            String table ="<table align="+"center"+" style="+"width = "+"700px"+" height = "+"200px;><tr>"+
+	            String table ="<table align="+"center><tr>"+
 		    
-		    "<td><b><i>C0</i></b></td>" +
-		    "<td><b><i>C1</i></b></td>" +
-		    "<td><b><i>C2</i></b></td>" +
-		    "<td><b><i>C3</i></b></td>" +
-		    "<td><b><i>C4</i></b></td>" +
-		    "<td><b><i>C5</i></b></td><tr>" +
+		    "<th><b><i>C0</i></b></th>" +
+		    "<th><b><i>C1</i></b></th>" +
+		    "<th><b><i>C2</i></b></th>" +
+		    "<th><b><i>C3</i></b></th>" +
+		    "<th><b><i>C4</i></b></th>" +
+		    "<th><b><i>C5</i></b></th><tr>" +
 
 	                "<td"+returnCell(getCell(0,0))+"&nbsp;</td>" +
 
