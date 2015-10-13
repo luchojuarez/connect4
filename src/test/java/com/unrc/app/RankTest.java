@@ -28,7 +28,12 @@ public class RankTest {
 
 
     @Test
-    public void shouldBeFull(){
+    public void shouldValidateMandatoryFields(){
+      Rank r = new Rank();
+
+      r.set("nroRank", "1");
+
+      the(r).shouldBe("valid");
     }
     
 }

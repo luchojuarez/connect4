@@ -32,7 +32,7 @@ public class GameTest {
         Base.close();
     }
 
-    // @Test
-    // public void fullColumn_emptyColumn_false() {
-    // }
+    @Test
+    public void shouldValidate(){
+    }
 }
